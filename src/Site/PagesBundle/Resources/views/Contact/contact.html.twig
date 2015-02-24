@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% set page_title = "Contact" %}
+
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <section class="content">
+            
+            {% for flashMessage in app.session.flashbag.get('blogger-notice') %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="blogger-notice">
+                    {{ flashMessage }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="large-6 columns">
+                    <div>
+                    {{ form(form) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

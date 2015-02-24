@@ -1,0 +1,141 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        ['SitePagesBundle','SiteBlogBundle']
+    java: /usr/bin/java
+    node: /usr/local/bin/node
+    filters:
+        cssrewrite: ~
+        cssembed:
+          jar: %kernel.root_dir%/Resources/java/cssembed-0.4.5.jar
+        yui_js:
+          jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
+        uglifycss:
+          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglifycss/uglifycss
+        uglifyjs2:
+          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglify-js/bin/uglifyjs
+
+    assets:
+        foundation_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/vendor/modernizr.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/vendor/jquery.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/foundation.min.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/foundation/foundation.alert.js'
+            filters: [?yui_js]
+        foundation_css:
+            inputs:
+                - '%kernel.root_dir%/../vendor/foundation/foundation/css/foundation.css'
+            filters: [cssembed]
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/DoctrineMigrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: mongodb://localhost:27017
+            options: {}
+    default_database: medzoner
+    document_managers:
+        default:
+            auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  "%mailer_transport%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    encryption: "tls"
+    port:       "587"
+    #encryption: "%mailer_encryption%"
+    #port:       "%mailer_port%"
+    spool:      { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Site\UserBundle\Entity\User
+    group:
+        group_class: Site\UserBundle\Entity\Group
+    registration:
+        confirmation:
+            #from_email: # Use this node only if you don't want the global email address for the confirmation email
+                #address:        ...
+                #sender_name:    ...
+            enabled:    true # change to true for required email confirmation
+            template:   FOSUserBundle:Registration:email.txt.twig
+
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: knp_menu.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig
+    
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        blog_thumb:
+            quality: 100
+            filters:
+                thumbnail: { size: [178, 134], mode: outbound }

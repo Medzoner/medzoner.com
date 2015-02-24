@@ -1,0 +1,40 @@
+#site:
+   # pattern:  /
+    #defaults: { _controller: SitePagesBundle:Index:index }
+    
+site:
+    pattern:  /
+    defaults: { _controller: SitePagesBundle:Portfolio:index}
+    
+site_home:
+    pattern:  /
+    defaults: { _controller: SitePagesBundle:Portfolio:index}
+
+#site_home:
+ #   pattern:  /home
+ #   defaults: { _controller: SitePagesBundle:Index:index }
+
+site_book:
+    pattern:  /book
+    defaults: { _controller: SitePagesBundle:Portfolio:index}
+
+site_contact:
+    pattern:  /contact
+    defaults: { _controller: SitePagesBundle:Contact:contact }
+
+site_foundation:
+    pattern:  /foundation
+    defaults: { _controller: SitePagesBundle:Foundation:index }
+    
+site_pages_proxy:
+    pattern:  /proxy
+    defaults: { _controller: SitePagesBundle:Proxy:index }
+    
+site_pages_proxy_url:
+    pattern:  /proxy/{url}
+    defaults: { _controller: SitePagesBundle:Proxy:index }
+
+    
+site_cv:
+    path: /cv
+    defaults: { _controller: SitePagesBundle:Cv:index }

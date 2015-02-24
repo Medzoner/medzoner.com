@@ -1,0 +1,42 @@
+site_blog_homepage:
+    pattern:  /blog
+    defaults: { _controller: SiteBlogBundle:Index:index }
+
+site_blog_show:
+    pattern:  /blog/{id}/{slug}/{comments}
+    defaults: { _controller: SiteBlogBundle:Index:show, comments: true }
+    requirements:
+        _method:  GET
+        id: \d+
+        
+site_blog_page:
+    pattern:  /blog/page/{page}
+    defaults: { _controller: SiteBlogBundle:Index:list, page: 1 }
+
+site_blog_sidebar:
+    pattern:  /sidebar
+    defaults: { _controller: SiteBlogBundle:Index:sidebar }
+    requirements:
+        _method:  GET
+        
+site_blog_comment_create:
+    pattern:  /comment/{blog_id}
+    defaults: { _controller: SiteBlogBundle:Comment:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+
+
+
+        
+site_blog_new:
+    pattern:  /blog/new
+    defaults: { _controller: SiteBlogBundle:Blog:new }
+    requirements:
+        _method:  GET
+
+site_blog_create:
+    pattern:  /blog/create
+    defaults: { _controller: SiteBlogBundle:Blog:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+
