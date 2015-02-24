@@ -1,0 +1,14 @@
+parameters:
+    my.authentication_success_handler.class: Site\UserBundle\EventListener\AuthenticationSuccessHandler
+    my.logout_success_handler.class: Site\UserBundle\EventListener\LogoutSuccessHandler
+
+services:
+    my.authentication_success_handler:
+        class: %my.authentication_success_handler.class%
+        arguments: [ @security.http_utils, [],@service_container ]
+        calls:
+            - [ setProviderKey, ["main"] ]
+            
+    my.logout_success_handler:
+        class: %my.logout_success_handler.class%
+        arguments: [ @security.http_utils, '/' ]

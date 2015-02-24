@@ -1,0 +1,29 @@
+.orbit-container {
+    min-height: 348px;
+    margin: 10px auto;
+    width: 310px;
+}
+
+.orbit-container .orbit-timer {
+    position: relative;
+    display: block;
+    margin: 10px 0;
+    width: 100px;
+    z-index: 10;
+}
+
+
+.orbit-container .orbit-slide-number {
+    position: relative;
+    display: block;
+    top: inherit;
+    bottom: inherit;
+    left: inherit;
+    right: inherit;
+}
+
+.orbit-container .orbit-timer.paused > span {
+      right: -4px;
+      top: 0px;
+}
+
