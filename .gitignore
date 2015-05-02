@@ -6,3 +6,4 @@ log
 .idea
 /app/cache/*
 /app/logs/*
+/patches
