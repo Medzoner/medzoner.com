@@ -32,24 +32,6 @@ class ExprTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('$addToSet' => array('a' => array('$each' => array(1, 2)))), $expr->getNewObj());
     }
 
-    public function testLanguageWithText()
-    {
-        $expr = new Expr();
-        $expr->text('foo');
-
-        $this->assertSame($expr, $expr->language('en'));
-        $this->assertEquals(array('$text' => array('$search' => 'foo', '$language' => 'en')), $expr->getQuery());
-    }
-
-    /**
-     * @expectedException BadMethodCallException
-     */
-    public function testLanguageRequiresTextOperator()
-    {
-        $expr = new Expr();
-        $expr->language('en');
-    }
-
     public function testOperatorWithCurrentField()
     {
         $expr = new Expr();
@@ -59,60 +41,12 @@ class ExprTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('field' => array('$op' => 'value')), $expr->getQuery());
     }
 
-    public function testOperatorWithCurrentFieldWrapsEqualityCriteria()
-    {
-        $expr = new Expr();
-
-        $this->assertSame($expr, $expr->field('a')->equals(1));
-        $this->assertSame($expr, $expr->field('a')->lt(2));
-        $this->assertSame($expr, $expr->field('b')->equals(null));
-        $this->assertSame($expr, $expr->field('b')->lt(2));
-        $this->assertSame($expr, $expr->field('c')->equals(array()));
-        $this->assertSame($expr, $expr->field('c')->lt(2));
-        $this->assertSame($expr, $expr->field('d')->equals(array('x' => 1)));
-        $this->assertSame($expr, $expr->field('d')->lt(2));
-
-        $expectedQuery = array(
-            'a' => array('$in' => array(1), '$lt' => 2),
-            'b' => array('$in' => array(null), '$lt' => 2),
-            // Equality match on empty array cannot be distinguished from no criteria and will be overridden
-            'c' => array('$lt' => 2),
-            'd' => array('$in' => array(array('x' => 1)), '$lt' => 2),
-        );
-
-        $this->assertEquals($expectedQuery, $expr->getQuery());
-    }
-
     public function testOperatorWithoutCurrentField()
     {
         $expr = new Expr();
 
         $this->assertSame($expr, $expr->operator('$op', 'value'));
         $this->assertEquals(array('$op' => 'value'), $expr->getQuery());
-    }
-
-    public function testOperatorWithoutCurrentFieldWrapsEqualityCriteria()
-    {
-        $expr = new Expr();
-        $this->assertSame($expr, $expr->equals(1));
-        $this->assertSame($expr, $expr->lt(2));
-        $this->assertEquals(array('$in' => array(1), '$lt' => 2), $expr->getQuery());
-
-        $expr = new Expr();
-        $this->assertSame($expr, $expr->equals(null));
-        $this->assertSame($expr, $expr->lt(2));
-        $this->assertEquals(array('$in' => array(null), '$lt' => 2), $expr->getQuery());
-
-        $expr = new Expr();
-        $this->assertSame($expr, $expr->equals(array()));
-        $this->assertSame($expr, $expr->lt(2));
-        // Equality match on empty array cannot be distinguished from no criteria and will be overridden
-        $this->assertEquals(array('$lt' => 2), $expr->getQuery());
-
-        $expr = new Expr();
-        $this->assertSame($expr, $expr->equals(array('x' => 1)));
-        $this->assertSame($expr, $expr->lt(2));
-        $this->assertEquals(array('$in' => array(array('x' => 1)), '$lt' => 2), $expr->getQuery());
     }
 
     /**
@@ -174,56 +108,6 @@ class ExprTest extends \PHPUnit_Framework_TestCase
     {
         $expr = new Expr();
         $expr->maxDistance(1);
-    }
-
-    /**
-     * @dataProvider provideGeoJsonPoint
-     */
-    public function testMinDistanceWithNearAndGeoJsonPoint($point, array $expected)
-    {
-        $expr = new Expr();
-        $expr->near($point);
-
-        $this->assertSame($expr, $expr->minDistance(1));
-        $this->assertEquals(array('$near' => $expected + array('$minDistance' => 1)), $expr->getQuery());
-    }
-
-    public function testMinDistanceWithNearAndLegacyCoordinates()
-    {
-        $expr = new Expr();
-        $expr->near(1, 2);
-
-        $this->assertSame($expr, $expr->minDistance(1));
-        $this->assertEquals(array('$near' => array(1, 2), '$minDistance' => 1), $expr->getQuery());
-    }
-
-    public function testMinDistanceWithNearSphereAndGeoJsonPoint()
-    {
-        $json = array('type' => 'Point', 'coordinates' => array(1, 2));
-
-        $expr = new Expr();
-        $expr->nearSphere($this->getMockPoint($json));
-
-        $this->assertSame($expr, $expr->minDistance(1));
-        $this->assertEquals(array('$nearSphere' => array('$geometry' => $json, '$minDistance' => 1)), $expr->getQuery());
-    }
-
-    public function testMinDistanceWithNearSphereAndLegacyCoordinates()
-    {
-        $expr = new Expr();
-        $expr->nearSphere(1, 2);
-
-        $this->assertSame($expr, $expr->minDistance(1));
-        $this->assertEquals(array('$nearSphere' => array(1, 2), '$minDistance' => 1), $expr->getQuery());
-    }
-
-    /**
-     * @expectedException BadMethodCallException
-     */
-    public function testMinDistanceRequiresNearOrNearSphereOperator()
-    {
-        $expr = new Expr();
-        $expr->minDistance(1);
     }
 
     /**
@@ -433,15 +317,6 @@ class ExprTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($expr, $expr->field('a.b.c')->set(1, false));
         $this->assertEquals(array('a' => array('b' => array('c' => 1))), $expr->getNewObj());
-    }
-
-    public function testText()
-    {
-        $expr = new Expr();
-
-        $this->assertSame($expr, $expr->text('foo'));
-        $this->assertEquals(array('$text' => array('$search' => 'foo')), $expr->getQuery());
-        $this->assertNull($expr->getCurrentField());
     }
 
     public function testWhere()

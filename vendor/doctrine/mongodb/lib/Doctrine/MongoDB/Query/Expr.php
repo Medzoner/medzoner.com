@@ -474,28 +474,6 @@ class Expr
     }
 
     /**
-     * Set the $language option for $text criteria.
-     *
-     * This method must be called after text().
-     *
-     * @see Builder::language()
-     * @see http://docs.mongodb.org/manual/reference/operator/text/
-     * @param string $language
-     * @return self
-     * @throws BadMethodCallException if the query does not already have $text criteria
-     */
-    public function language($language)
-    {
-        if ( ! isset($this->query['$text'])) {
-            throw new BadMethodCallException('This method requires a $text operator (call text() first)');
-        }
-
-        $this->query['$text']['$language'] = (string) $language;
-
-        return $this;
-    }
-
-    /**
      * Specify $lt criteria for the current field.
      *
      * @see Builder::lte()
@@ -553,43 +531,6 @@ class Expr
             $query['$nearSphere']['$maxDistance'] = $maxDistance;
         } else {
             $query['$maxDistance'] = $maxDistance;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the $minDistance option for $near or $nearSphere criteria.
-     *
-     * This method must be called after near() or nearSphere(), since placement
-     * of the $minDistance option depends on whether a GeoJSON point or legacy
-     * coordinates were provided for $near/$nearSphere.
-     *
-     * @see http://docs.mongodb.org/manual/reference/operator/minDistance/
-     * @param float $minDistance
-     * @return self
-     * @throws BadMethodCallException if the query does not already have $near or $nearSphere criteria
-     */
-    public function minDistance($minDistance)
-    {
-        if ($this->currentField) {
-            $query = &$this->query[$this->currentField];
-        } else {
-            $query = &$this->query;
-        }
-
-        if ( ! isset($query['$near']) && ! isset($query['$nearSphere'])) {
-            throw new BadMethodCallException(
-                'This method requires a $near or $nearSphere operator (call near() or nearSphere() first)'
-            );
-        }
-
-        if (isset($query['$near']['$geometry'])) {
-            $query['$near']['$minDistance'] = $minDistance;
-        } elseif (isset($query['$nearSphere']['$geometry'])) {
-            $query['$nearSphere']['$minDistance'] = $minDistance;
-        } else {
-            $query['$minDistance'] = $minDistance;
         }
 
         return $this;
@@ -712,8 +653,6 @@ class Expr
      */
     public function operator($operator, $value)
     {
-        $this->wrapEqualityCriteria();
-
         if ($this->currentField) {
             $this->query[$this->currentField][$operator] = $value;
         } else {
@@ -968,22 +907,6 @@ class Expr
     }
 
     /**
-     * Specify $text criteria for the current query.
-     *
-     * The $language option may be set with {@link Expr::language()}.
-     *
-     * @see Builder::text()
-     * @see http://docs.mongodb.org/master/reference/operator/query/text/
-     * @param string $search
-     * @return self
-     */
-    public function text($search)
-    {
-        $this->query['$text'] = array('$search' => (string) $search);
-        return $this;
-    }
-
-    /**
      * Specify $type criteria for the current field.
      *
      * @todo Remove support for string $type argument in 2.0
@@ -1144,42 +1067,5 @@ class Expr
         if ( ! $this->currentField) {
             throw new LogicException('This method requires you set a current field using field().');
         }
-    }
-
-    /**
-     * Wraps equality criteria with an operator.
-     *
-     * If equality criteria was previously specified for a field, it cannot be
-     * merged with other operators without first being wrapped in an operator of
-     * its own. Ideally, we would wrap it with $eq, but that is only available
-     * in MongoDB 2.8. Using a single-element $in is backwards compatible.
-     *
-     * @see Expr::operator()
-     */
-    private function wrapEqualityCriteria()
-    {
-        /* If the current field has no criteria yet, do nothing. This ensures
-         * that we do not inadvertently inject {"$in": null} into the query.
-         */
-        if ($this->currentField && ! isset($this->query[$this->currentField]) && ! array_key_exists($this->currentField, $this->query)) {
-            return;
-        }
-
-        if ($this->currentField) {
-            $query = &$this->query[$this->currentField];
-        } else {
-            $query = &$this->query;
-        }
-
-        /* If the query is an empty array, we'll assume that the user has not
-         * specified criteria. Otherwise, check if the array includes a query
-         * operator (checking the first key is sufficient). If neither of these
-         * conditions are met, we'll wrap the query value with $in.
-         */
-        if (is_array($query) && (empty($query) || strpos(key($query), '$') === 0)) {
-            return;
-        }
-
-        $query = array('$in' => array($query));
     }
 }

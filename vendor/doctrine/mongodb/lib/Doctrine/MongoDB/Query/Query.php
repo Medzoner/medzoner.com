@@ -170,22 +170,16 @@ class Query implements IteratorAggregate
                 return $this->prepareCursor($cursor);
 
             case self::TYPE_FIND_AND_UPDATE:
-                $queryOptions = $this->getQueryOptions('new', 'select', 'sort', 'upsert');
-                $queryOptions = $this->renameQueryOptions($queryOptions, array('select' => 'fields'));
-
                 return $this->collection->findAndUpdate(
                     $this->query['query'],
                     $this->query['newObj'],
-                    array_merge($options, $queryOptions)
+                    array_merge($options, $this->getQueryOptions('new', 'select', 'sort', 'upsert'))
                 );
 
             case self::TYPE_FIND_AND_REMOVE:
-                $queryOptions = $this->getQueryOptions('select', 'sort');
-                $queryOptions = $this->renameQueryOptions($queryOptions, array('select' => 'fields'));
-
                 return $this->collection->findAndRemove(
                     $this->query['query'],
-                    array_merge($options, $queryOptions)
+                    array_merge($options, $this->getQueryOptions('select', 'sort'))
                 );
 
             case self::TYPE_INSERT:
@@ -421,27 +415,6 @@ class Query implements IteratorAggregate
         return array_filter(
             array_intersect_key($this->query, array_flip(func_get_args())),
             function($value) { return $value !== null; }
-        );
-    }
-
-    /**
-     * Returns an array with its keys renamed based on the translation map.
-     *
-     * @param array $options Query options
-     * @return array $rename Translation map (from => to) for renaming keys
-     */
-    private function renameQueryOptions(array $options, array $rename)
-    {
-        if (empty($options)) {
-            return $options;
-        }
-
-        return array_combine(
-            array_map(
-                function($key) use ($rename) { return isset($rename[$key]) ? $rename[$key] : $key; },
-                array_keys($options)
-            ),
-            array_values($options)
         );
     }
 

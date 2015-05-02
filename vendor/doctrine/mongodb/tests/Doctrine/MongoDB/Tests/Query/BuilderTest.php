@@ -333,7 +333,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
             'type()' => array('type', array(7)),
             'all()' => array('all', array(array('value1', 'value2'))),
             'maxDistance' => array('maxDistance', array(5)),
-            'minDistance' => array('minDistance', array(5)),
             'mod()' => array('mod', array(2, 0)),
             'near()' => array('near', array(1, 2)),
             'nearSphere()' => array('nearSphere', array(1, 2)),
@@ -368,8 +367,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
             'elemMatch() array' => array('elemMatch', array(array())),
             'elemMatch() Expr' => array('elemMatch', array($this->getMockExpr())),
             'not()' => array('not', array($this->getMockExpr())),
-            'language()' => array('language', array('en')),
-            'text()' => array('text', array('foo')),
         );
     }
 
@@ -457,19 +454,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $qb = $this->getTestQueryBuilder();
 
         $this->assertSame($qb, $qb->geoNear(0, 0)->maxDistance(5));
-        $this->assertEquals($expected, $qb->debug('geoNear'));
-    }
-
-    public function testMinDistanceWithGeoNearCommand()
-    {
-        $expected = array(
-            'near' => array(0, 0),
-            'options' => array('spherical' => false, 'minDistance' => 5),
-        );
-
-        $qb = $this->getTestQueryBuilder();
-
-        $this->assertSame($qb, $qb->geoNear(0, 0)->minDistance(5));
         $this->assertEquals($expected, $qb->debug('geoNear'));
     }
 
@@ -606,16 +590,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $qb->debug('select'));
     }
 
-    public function testSelectMeta()
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->selectMeta('score', 'textScore');
-
-        $expected = array('score' => array('$meta' => 'textScore'));
-
-        $this->assertEquals($expected, $qb->debug('select'));
-    }
-
     public function testSetReadPreference()
     {
         $qb = $this->getTestQueryBuilder();
@@ -623,67 +597,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('secondary', $qb->debug('readPreference'));
         $this->assertEquals(array(array('dc' => 'east')), $qb->debug('readPreferenceTags'));
-    }
-
-    public function testSortWithFieldNameAndDefaultOrder()
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->sort('foo');
-
-        $this->assertEquals(array('foo' => 1), $qb->debug('sort'));
-    }
-
-    /**
-     * @dataProvider provideSortOrders
-     */
-    public function testSortWithFieldNameAndOrder($order, $expectedOrder)
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->sort('foo', $order);
-
-        $this->assertEquals(array('foo' => $expectedOrder), $qb->debug('sort'));
-    }
-
-    public function provideSortOrders()
-    {
-        return array(
-            array(1, 1),
-            array(-1, -1),
-            array('asc', 1),
-            array('desc', -1),
-            array('ASC', 1),
-            array('DESC', -1),
-        );
-    }
-
-    public function testSortWithArrayOfFieldNameAndOrderPairs()
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->sort(array('foo' => 1, 'bar' => -1));
-
-        $this->assertEquals(array('foo' => 1, 'bar' => -1), $qb->debug('sort'));
-    }
-
-    public function testSortMetaDoesProjectMissingField()
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->select('score')
-            ->sortMeta('score', 'textScore');
-
-        /* This will likely yield a server error, but sortMeta() should only set
-         * the projection if it doesn't already exist.
-         */
-        $this->assertEquals(array('score' => 1), $qb->debug('select'));
-        $this->assertEquals(array('score' => array('$meta' => 'textScore')), $qb->debug('sort'));
-    }
-
-    public function testSortMetaDoesNotProjectExistingField()
-    {
-        $qb = $this->getTestQueryBuilder()
-            ->sortMeta('score', 'textScore');
-
-        $this->assertEquals(array('score' => array('$meta' => 'textScore')), $qb->debug('select'));
-        $this->assertEquals(array('score' => array('$meta' => 'textScore')), $qb->debug('sort'));
     }
 
     private function getStubQueryBuilder()
