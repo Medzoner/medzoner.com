@@ -7,3 +7,9 @@ log
 /app/cache/*
 /app/logs/*
 /patches
+/web/bundles
+/web/media/cache
+/web/img/*
+/web/css/*
+/web/js/*
+/web/assetic/*
