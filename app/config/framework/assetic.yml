@@ -2,7 +2,7 @@
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['SitePagesBundle','SiteBlogBundle']
+    bundles:        ['SitePagesBundle','SiteBlogBundle','MedzonerGlobalBundle']
     java: /usr/bin/java
     node: /usr/local/bin/node
     filters:

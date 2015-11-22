@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +41,7 @@ class ContactController extends Controller {
             return $this->redirect($this->generateUrl('site_contact'));
         }
 
-        return $this->render('SitePagesBundle:Contact:contact.html.twig', array(
+        return $this->render('@MedzonerGlobal/Contact/contact.html.twig', array(
                     'form' => $form->createView(),)
         );
     }

@@ -7,13 +7,16 @@ class AppKernel extends Kernel {
 
     public function registerBundles() {
         $bundles = array(
+            // Framework Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            // Doctrine
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
@@ -21,17 +24,22 @@ class AppKernel extends Kernel {
 
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
 
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            //Knp
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
-            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            //Fos
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            #new FOS\ElasticaBundle\FOSElasticaBundle(),
 
+            //Liip
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
+            //Medzoner
+            new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
             new Site\PagesBundle\SitePagesBundle(),
             new Site\BlogBundle\SiteBlogBundle(),
             new Site\UserBundle\SiteUserBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -46,5 +54,4 @@ class AppKernel extends Kernel {
     public function registerContainerConfiguration(LoaderInterface $loader) {
         $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
     }
-
 }

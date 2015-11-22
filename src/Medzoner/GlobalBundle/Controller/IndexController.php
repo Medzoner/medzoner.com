@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -18,7 +18,7 @@ class IndexController extends Controller {
                 ->getLatestBlogs(5);
 
         $pagination = $this->blogPagination(1);
-        return $this->render('SiteBlogBundle:Index:index.html.twig', array(
+        return $this->render('@MedzonerGlobal/Index/index.html.twig', array(
                     'blogs' => $blogs,
                     'pagination' => $pagination,
         ));

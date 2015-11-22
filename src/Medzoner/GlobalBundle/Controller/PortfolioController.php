@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -17,7 +17,7 @@ class PortfolioController extends Controller {
         $products = $dm->getRepository('SitePagesBundle:Project')
                 ->findAll();
 
-        return $this->render('SitePagesBundle:Portfolio:index.html.twig', array(
+        return $this->render('MedzonerGlobalBundle:Portfolio:index.html.twig', array(
                     'projects' => $products
         ));
     }

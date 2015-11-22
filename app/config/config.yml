@@ -16,7 +16,7 @@ imports:
     - { resource: security.yml }
 
     # Bundles - Fos Elastica
-    - { resource: bundles/fos_elastica.yml }
+    #- { resource: bundles/fos_elastica.yml }
     # Bundles - Fos User
     - { resource: bundles/fos_user.yml }
     # Bundles - Knp Menu

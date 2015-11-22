@@ -1,0 +1,23 @@
+# Home
+site:
+    pattern:  /
+    defaults: { _controller: MedzonerGlobalBundle:Index:index }
+
+site_home:
+    pattern:  /home
+    defaults: { _controller: MedzonerGlobalBundle:Index:index }
+
+# Contact
+site_contact:
+    pattern:  /contact
+    defaults: { _controller: MedzonerGlobalBundle:Contact:contact }
+
+# Portfolio
+site_book:
+    pattern:  /book
+    defaults: { _controller: MedzonerGlobalBundle:Portfolio:index}
+
+# CV
+site_cv:
+    path: /cv
+    defaults: { _controller: MedzonerGlobalBundle:Cv:index }

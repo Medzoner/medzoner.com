@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends '@MedzonerGlobal/base.html.twig' %}
 {% set page_title = "Book" %}
 
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets
     '../vendor/kenwheeler/slick/slick/slick.css'
-        'bundles/sitepages/css/portfolio.css'
+        'bundles/medzonerglobal/css/portfolio.css'
         filter='?cssrewrite,?uglifycss'            
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
