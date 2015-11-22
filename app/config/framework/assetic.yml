@@ -12,9 +12,9 @@ assetic:
         yui_js:
           jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
         uglifycss:
-          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglifycss/uglifycss
+          bin: %kernel.root_dir%/Resources/node_modules/uglifycss/uglifycss
         uglifyjs2:
-          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglify-js/bin/uglifyjs
+          bin: %kernel.root_dir%/Resources/node_modules/uglify-js/bin/uglifyjs
 
     assets:
         foundation_js:
