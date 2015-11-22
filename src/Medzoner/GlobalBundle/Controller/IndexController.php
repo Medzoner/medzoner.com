@@ -4,13 +4,17 @@ namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class IndexController extends Controller {
-
+/**
+ * Class IndexController
+ * @package Medzoner\GlobalBundle\Controller
+ */
+class IndexController extends Controller
+{
     /**
-     * 
-     * @return type
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()
                 ->getManager();
 
@@ -25,11 +29,12 @@ class IndexController extends Controller {
     }
 
     /**
-     * 
-     * @param type $page
-     * @return type
+     * @param $page
+     *
+     * @return array
      */
-    public function blogPagination($page) {
+    public function blogPagination($page)
+    {
         $maxArticles = $this->container
                 ->getParameter('site_blog.blog.max_articles_per_page');
         $em = $this->getDoctrine()
@@ -43,5 +48,4 @@ class IndexController extends Controller {
             'route_params' => array()
         );
     }
-
 }

@@ -30,34 +30,30 @@
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev",
 
+        "stof/doctrine-extensions-bundle": "dev-master",
+
         "twig/extensions": "~1.0",
+
+        "imagine/imagine": ">=0.2.8",
+        "liip/imagine-bundle": "dev-master",
+
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "friendsofsymfony/jsrouting-bundle": "dev-master",
+        "friendsofsymfony/elastica-bundle": "^3.1",
+
+        "lexik/translation-bundle": "~1.4",
+
+        "knplabs/knp-menu-bundle": "~2.0",
 
         "components/backbone": "^1.2",
         "jquery/jquery": "2.1.1",
         "bootstrap/bootstrap": "dev-master",
         "bootstrap/datepicker": "dev-master",
+
         "fancybox/fancybox": "dev-master",
         "foundation/foundation": "5.3.*",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-        "friendsofsymfony/jsrouting-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "~2.0",
-        "stof/doctrine-extensions-bundle": "dev-master",
-        "imagine/imagine": ">=0.2.8",
-        "sortable/sortable": "dev-master",
-        "jcrop/jcrop": "dev-master",
-        "simpleWeather/simpleWeather": "dev-master",
-        "geolocation/geolocation": "dev-master",
-        "maplacejs/maplacejs": "dev-master",
-        "videojs/videojs": "dev-master",
-        "html5-video-php": "dev-master",
-        "owlcarousel/owlcarousel": "dev-master",
         "fontawesome/fontawesome": "dev-master",
-        "salva/pdfjs-bundle": "1.0.*@dev",
-        "lexik/translation-bundle": "~1.4",
-        "nivo-slider/nivo-slider": "dev-master",
-        "kenwheeler/slick": "dev-master",
-        "liip/imagine-bundle": "dev-master",
-        "friendsofsymfony/elastica-bundle": "^3.1"
+        "kenwheeler/slick": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -141,118 +137,10 @@
         {
             "type": "package",
             "package": {
-                "name": "jcrop/jcrop",
-                "version": "master",
-                "dist": {
-                    "url": "https://github.com/tapmodo/Jcrop/zipball/master",
-                    "type": "zip",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "uploaderbundle/uploaderbundle",
-                "version": "master",
-                "dist": {
-                    "url": "https://github.com/cordoval/UploaderExample/zipball/master",
-                    "type": "zip",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "sortable/sortable",
-                "version": "master",
-                "dist": {
-                    "url": "https://github.com/RubaXa/Sortable/archive/master.zip",
-                    "type": "zip",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "owlcarousel/owlcarousel",
-                "source": {
-                    "url": "https://github.com/OwlFonk/OwlCarousel",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "version": "master",
                 "name": "fancybox/fancybox",
                 "source": {
                     "url": "https://github.com/fancyapps/fancyBox",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "maplacejs/maplacejs",
-                "source": {
-                    "url": "https://github.com/danielemoraschi/maplace.js",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "geolocation/geolocation",
-                "source": {
-                    "url": "https://github.com/vikaskbh/jquery.geolocation.js",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "videojs/videojs",
-                "source": {
-                    "url": "https://github.com/videojs/video.js",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "simpleWeather/simpleWeather",
-                "source": {
-                    "url": "https://github.com/monkeecreate/jquery.simpleWeather/",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "html5-video-php",
-                "source": {
-                    "url": "https://github.com/xemle/html5-video-php",
                     "type": "git",
                     "reference": "master"
                 }
@@ -271,18 +159,6 @@
                 "dist": {
                     "url": "http://foundation.zurb.com/cdn/releases/foundation-5.3.0.zip",
                     "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "nivo-slider/nivo-slider",
-                "source": {
-                    "url": "https://github.com/gilbitron/Nivo-Slider",
-                    "type": "git",
-                    "reference": "master"
                 }
             }
         }
@@ -313,7 +189,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.4-dev"
+            "dev-master": "2.7-dev"
         }
     }
 }

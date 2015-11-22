@@ -4,17 +4,23 @@ namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class ContactController extends Controller {
+use Site\PagesBundle\Entity\Contact;
 
+/**
+ * Class ContactController
+ * @package Medzoner\GlobalBundle\Controller
+ */
+class ContactController extends Controller
+{
     /**
-     * 
-     * @param \Site\PagesBundle\Controller\Request $request
-     * @return type
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function contactAction(Request $request) {
-
-        $Contact = new \Site\PagesBundle\Entity\Contact();
+    public function contactAction(Request $request)
+    {
+        $Contact = new Contact();
 
         $form = $this->createFormBuilder($Contact)
                 ->add('name', 'text')
@@ -31,7 +37,10 @@ class ContactController extends Controller {
                     ->setSubject('Contact site')
                     ->setFrom('medzoner@medzoner.com')
                     ->setTo('medzux@gmail.com')
-                    ->setBody($this->renderView('SitePagesBundle:Contact:contactEmail.txt.twig', array('enquiry' => $Contact)));
+                    ->setBody($this->renderView(
+                        'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', array('enquiry' => $Contact))
+                    );
+
             $this->get('mailer')->send($message);
 
             $this->get('session')->getFlashBag()->set('blogger-notice', 'Votre message a bien été envoyé. Merci!');
@@ -45,5 +54,4 @@ class ContactController extends Controller {
                     'form' => $form->createView(),)
         );
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Entity;
+namespace Medzoner\GlobalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  * Contact
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Site\BlogBundle\Entity\ContactRepository")
+ * @ORM\Entity(repositoryClass="Medzoner\GlobalBundle\Entity\ContactRepository")
  */
-class Contact {
-
+class Contact
+{
     /**
      * @var integer
      *
@@ -103,8 +103,8 @@ class Contact {
     /**
      * Set email
      *
-     * @param string $email
-     * @return Contact
+     * @param $message
+     * @return $this
      */
     public function setMessage($message) {
         $this->message = $message;
@@ -141,5 +141,4 @@ class Contact {
     public function getDateAdd() {
         return $this->dateAdd;
     }
-
 }

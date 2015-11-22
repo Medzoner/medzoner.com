@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class CvController extends Controller
 {
-
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
