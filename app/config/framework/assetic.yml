@@ -1,0 +1,30 @@
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        ['SitePagesBundle','SiteBlogBundle']
+    java: /usr/bin/java
+    node: /usr/local/bin/node
+    filters:
+        cssrewrite: ~
+        cssembed:
+          jar: %kernel.root_dir%/Resources/java/cssembed-0.4.5.jar
+        yui_js:
+          jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
+        uglifycss:
+          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglifycss/uglifycss
+        uglifyjs2:
+          bin: /var/www/sf.medzoner.com/app/Resources/node_modules/uglify-js/bin/uglifyjs
+
+    assets:
+        foundation_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/vendor/modernizr.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/vendor/jquery.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/foundation.min.js'
+                - '%kernel.root_dir%/../vendor/foundation/foundation/js/foundation/foundation.alert.js'
+            filters: [?yui_js]
+        foundation_css:
+            inputs:
+                - '%kernel.root_dir%/../vendor/foundation/foundation/css/foundation.css'
+            filters: [cssembed]

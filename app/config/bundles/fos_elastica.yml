@@ -1,0 +1,27 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                user:
+                    mappings:
+                        username: ~
+                        email: ~
+                    persistence:
+                        driver: orm
+                        model: Site\UserBundle\Entity\User
+                        provider: ~
+                        listener: ~
+                        finder: ~
+                blog:
+                    mappings:
+                        title: ~
+                        author: ~
+                    persistence:
+                        driver: orm
+                        model: Site\BlogBundle\Entity\Blog
+                        repository: Site\BlogBundle\Entity\BlogRepository
+                        provider: ~
+                        listener: ~
+                        finder: ~
