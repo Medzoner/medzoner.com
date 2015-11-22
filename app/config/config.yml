@@ -1,4 +1,7 @@
 imports:
+    # Bundles
+    - { resource: bundles/fos_elastica.yml }
+
     - { resource: parameters.yml }
     - { resource: security.yml }
 
