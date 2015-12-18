@@ -9,7 +9,7 @@ parameters:
 
     mailer_transport: gmail
     mailer_host:      ~
-    mailer_user: medzoner@gmail.com
+    mailer_user: medzux@gmail.com
     mailer_password: spewpode
 
     locale: fr
