@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  * Proxy
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Site\PagesBundle\Repository\ProxyRepository")
  */
-class Proxy {
-
+class Proxy
+{
     /**
      * @var integer
      *
@@ -48,6 +48,25 @@ class Proxy {
      * @ORM\Column(name="baseUrl", type="string", length=255)
      */
     private $baseUrl;
+
+    /**
+     *
+     */
+    public function __construct() {
+
+        $this->prefix = 'http://facebook.com';
+        $this->blockedDomains = array('facebook.com');
+
+        $this->ch = curl_init();
+        curl_setopt($this->ch, CURLOPT_HEADER, true);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        @curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($this->ch, CURLOPT_MAXREDIRS, 10);
+        curl_setopt($this->ch, CURLOPT_USERAGENT, 'Opera/9.23 (Windows NT 5.1; U; en)');
+
+        // URL without proxy.php
+        $this->baseUrl = substr($_SERVER['PHP_SELF'], 0, -9);
+    }
 
     /**
      * Get id
@@ -134,39 +153,18 @@ class Proxy {
     }
 
     /**
-     * Get baseUrl
-     *
-     * @return string 
+     * @return string
      */
     public function getBaseUrl() {
         return $this->baseUrl;
     }
 
     /**
-     * 
-     */
-    public function __construct() {
-
-        $this->prefix = 'http://facebook.com';
-        $this->blockedDomains = array('facebook.com');
-
-        $this->ch = curl_init();
-        curl_setopt($this->ch, CURLOPT_HEADER, true);
-        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
-        @curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($this->ch, CURLOPT_MAXREDIRS, 10);
-        curl_setopt($this->ch, CURLOPT_USERAGENT, 'Opera/9.23 (Windows NT 5.1; U; en)');
-
-        // URL without proxy.php
-        $this->baseUrl = substr($_SERVER['PHP_SELF'], 0, -9);
-    }
-
-    /**
-     * Run
-     * @param string $url
-     * @param array $get $_GET global var
-     * @param array $post $_POST global var
-     * @return string Response 
+     * @param $url
+     * @param $get
+     * @param $post
+     * @return mixed
+     * @throws \Exception
      */
     public function run($url, $get, $post) {
         // Use default
@@ -191,7 +189,7 @@ class Proxy {
 
         // Throw exception on error
         if ($return === false)
-            throw new Exception($this->error());
+            throw new \Exception($this->error());
 
         // Strip redirect headers
         $body = $return;
@@ -269,7 +267,7 @@ class Proxy {
     /**
      * Allow redirects under safe mode
      * @param curl_handle $ch
-     * @return string 
+     * @return string
      */
     protected function curlExecFollow($ch) {
         $mr = 5;
@@ -304,13 +302,16 @@ class Proxy {
                         }
                     }
                 } while ($code && --$mr);
+
                 curl_close($rch);
                 if (!$mr) {
-                    if ($maxredirect === null) {
-                        trigger_error('Too many redirects. When following redirects, libcurl hit the maximum amount.', E_USER_WARNING);
-                    } else {
-                        $maxredirect = 0;
+                    if ($mr === null) {
+                        trigger_error(
+                            'Too many redirects. When following redirects, libcurl hit the maximum amount.',
+                            E_USER_WARNING
+                        );
                     }
+
                     return false;
                 }
                 curl_setopt($ch, CURLOPT_URL, $newurl);

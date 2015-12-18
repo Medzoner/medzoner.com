@@ -5,23 +5,21 @@ namespace Site\PagesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Site\PagesBundle\Entity\Proxy;
 
+/**
+ * Class ProxyController
+ * @package Site\PagesBundle\Controller
+ */
 class ProxyController extends Controller {
 
     /**
-     * 
-     * @param type $url
-     * @return type
+     * @param null $url
+     * @return string|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
-    public function indexAction($url = null) {
-
-        try {
-            $oProxy = new Proxy();
-        } catch (Exception $e) {
-            return 'Error: ' . $e->getMessage();
-        }
+    public function indexAction($url = null)
+    {
+        $oProxy = new Proxy();
 
         return $this->render('SitePagesBundle:Proxy:index.html.twig', array('proxy' => $oProxy->run($url, $_GET, $_POST)));
     }
-
 }
-

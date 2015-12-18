@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Site\PagesBundle\Entity\Contact;
+use Medzoner\GlobalBundle\Entity\Contact;
 
 /**
  * Class ContactController
@@ -32,10 +32,9 @@ class ContactController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
             $message = \Swift_Message::newInstance()
                     ->setSubject('Contact site')
-                    ->setFrom('medzoner@medzoner.com')
+                    ->setFrom('medzux@gmail.com')
                     ->setTo('medzux@gmail.com')
                     ->setBody($this->renderView(
                         'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', array('enquiry' => $Contact))
