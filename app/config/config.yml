@@ -46,4 +46,11 @@ monolog:
           from_email: %monolog_mail%
           to_email:   %monolog_mail%
           subject:    "[medzoner.com] An Error Occurred!"
+          level:      critical
+      elasticsearch:
+          type:       elasticsearch
+          index: medzoner
+          elasticsearch:
+              host: localhost
+              port:  9200
           level:      debug

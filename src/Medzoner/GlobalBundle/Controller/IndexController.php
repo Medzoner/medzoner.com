@@ -15,6 +15,7 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
+        throw new \RuntimeException();
         $em = $this->getDoctrine()
                 ->getManager();
 
