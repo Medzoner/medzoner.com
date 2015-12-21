@@ -33,3 +33,10 @@ monolog:
               host: elastic.medzoner.com
               port: 9200
           level: critical
+
+      swift:
+          type: swift_mailer
+          from_email: %monolog_mail%
+          to_email: %monolog_mail%
+          subject: "[medzoner.com] An Error Occurred!"
+          level: critical
