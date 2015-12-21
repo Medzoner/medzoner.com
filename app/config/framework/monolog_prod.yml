@@ -23,7 +23,7 @@ monolog:
 
       elasticsearch:
             type: elasticsearch
-            index: medzoner
+            index: medzoner-%branch%
             elasticsearch:
               host: elastic.medzoner.com
               port: 9200
