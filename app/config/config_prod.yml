@@ -1,5 +1,7 @@
 imports:
     - { resource: config.yml }
+    # Framework - monolog
+    - { resource: framework/monolog_prod.yml }
 
 #framework:
 #    validation:
