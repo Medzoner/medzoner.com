@@ -26,15 +26,7 @@ monolog:
                 VERBOSITY_DEBUG:        DEBUG
             channels:         ["doctrine"]
 
-        elasticsearch:
-          type: elasticsearch
-          index: medzoner
-          elasticsearch:
-              host: elastic.medzoner.com
-              port: 9200
-          level: critical
-
-      swift:
+        swift:
           type: swift_mailer
           from_email: %monolog_mail%
           to_email: %monolog_mail%
