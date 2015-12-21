@@ -15,5 +15,5 @@ parameters:
     locale: fr
     secret: asdBHwmI1hsjKjanJK2WD@wdnak
 
-
+    branch: master
     monolog_mail: medzux@gmail.com

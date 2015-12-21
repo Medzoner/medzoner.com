@@ -6,6 +6,7 @@ log
 .idea
 /app/cache/*
 /app/logs/*
+/app/config/parameters.yml
 /patches
 /web/bundles
 /web/media/cache
