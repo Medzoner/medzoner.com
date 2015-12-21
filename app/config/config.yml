@@ -9,6 +9,8 @@ imports:
     - { resource: framework/doctrine.yml }
     # Framework - swiftmailer
     - { resource: framework/swiftmailer.yml }
+    # Framework - monolog
+    - { resource: framework/monolog.yml }
 
     # Parameters
     - { resource: parameters.yml }
@@ -23,27 +25,3 @@ imports:
     - { resource: bundles/knp_menu.yml }
     # Bundles - Liip Imagine
     - { resource: bundles/liip_imagine.yml }
-
-
-monolog:
-  handlers:
-      main:
-          type:         fingers_crossed
-          action_level: critical
-          handler:      grouped
-      grouped:
-          type:    group
-          members: [streamed, buffered]
-      streamed:
-          type:  stream
-          path:  "%kernel.logs_dir%/%kernel.environment%.log"
-          level: debug
-      buffered:
-          type:    buffer
-          handler: swift
-      swift:
-          type:       swift_mailer
-          from_email: %monolog_mail%
-          to_email:   %monolog_mail%
-          subject:    "[medzoner.com] An Error Occurred!"
-          level:      debug

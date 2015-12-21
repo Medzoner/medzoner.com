@@ -15,4 +15,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
 
+    branch: prod
     monolog_mail: medzoner@gmail.com

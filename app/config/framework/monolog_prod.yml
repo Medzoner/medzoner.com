@@ -1,0 +1,30 @@
+monolog:
+  handlers:
+      main:
+          type: fingers_crossed
+          action_level: critical
+          handler: grouped
+      grouped:
+          type:    group
+          members: [streamed, buffered]
+      streamed:
+          type:  stream
+          path:  "%kernel.logs_dir%/%kernel.environment%.log"
+          level: debug
+      buffered:
+          type:    buffer
+          handler: swift
+      swift:
+          type: swift_mailer
+          from_email: %monolog_mail%
+          to_email: %monolog_mail%
+          subject: "[medzoner.com %env%] An Error Occurred!"
+          level: critical
+
+      elasticsearch:
+            type: elasticsearch
+            index: medzoner
+            elasticsearch:
+              host: elastic.medzoner.com
+              port: 9200
+            level: critical
