@@ -30,5 +30,5 @@ monolog:
           type: swift_mailer
           from_email: %monolog_mail%
           to_email: %monolog_mail%
-          subject: "[medzoner.com] An Error Occurred!"
+          subject: "[medzoner.com %branch%] An Error Occurred!"
           level: critical
