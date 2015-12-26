@@ -13,7 +13,7 @@ monolog:
           level: debug
       buffered:
           type:    buffer
-          handler: [swift,elasticsearch]
+          handler: swift
 
       elasticsearch:
           type: elasticsearch
