@@ -1,0 +1,12 @@
+snc_redis:
+  clients:
+    monolog:
+        type: predis
+        alias: monolog
+        dsn: %monolog_redis_dns%
+        logging: false
+        options:
+            connection_persistent: true
+  monolog:
+    client: monolog
+    key: monolog

@@ -3,17 +3,20 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: medzoner
     database_user: root
-    database_password: pode7676
-
+    database_password: lswd3504
     mailer_transport: gmail
-    mailer_host:      ~
+    mailer_host: null
     mailer_user: medzux@gmail.com
     mailer_password: spewpode
-
     locale: fr
     secret: asdBHwmI1hsjKjanJK2WD@wdnak
-
     branch: master
     monolog_mail: medzux@gmail.com
+
+    node_path: /usr/bin/node
+    java_path: /usr/bin/java
+
+    monolog_redis_dns: redis://pode7676@elastic.medzoner.com
+    elasticsearch_host: elastic.medzoner.com

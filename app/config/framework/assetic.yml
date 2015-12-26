@@ -3,8 +3,8 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        ['SitePagesBundle','SiteBlogBundle','MedzonerGlobalBundle']
-    java: /usr/bin/java
-    node: /usr/local/bin/node
+    java: %java_path%
+    node: %node_path%
     filters:
         cssrewrite: ~
         cssembed:

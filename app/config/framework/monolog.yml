@@ -33,10 +33,15 @@ monolog:
             subject: "[medzoner.com %branch%] Fatal Error!"
             level: critical
 
+        redislogstash:
+            type:  service
+            id:    snc_redis.monolog.handler
+            level: debug
+
         elasticsearch:
             type: elasticsearch
             index: medzoner-%branch%
             elasticsearch:
-              host: elastic.medzoner.com
+              host: %elasticsearch_host%
               port: 9200
             level: critical
