@@ -18,5 +18,5 @@ parameters:
     node_path: /usr/bin/node
     java_path: /usr/bin/java
 
-    monolog_redis_dns: redis://pode7676@elastic.medzoner.com
+    monolog_redis_dns: redis://127.0.0.1
     elasticsearch_host: elastic.medzoner.com

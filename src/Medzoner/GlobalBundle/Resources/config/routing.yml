@@ -1,20 +1,20 @@
 # Home
 site:
-    pattern:  /
+    path:  /
     defaults: { _controller: MedzonerGlobalBundle:Index:index }
 
 site_home:
-    pattern:  /home
+    path:  /home
     defaults: { _controller: MedzonerGlobalBundle:Index:index }
 
 # Contact
 site_contact:
-    pattern:  /contact
+    path:  /contact
     defaults: { _controller: MedzonerGlobalBundle:Contact:contact }
 
 # Portfolio
 site_book:
-    pattern:  /book
+    path:  /book
     defaults: { _controller: MedzonerGlobalBundle:Portfolio:index}
 
 # CV

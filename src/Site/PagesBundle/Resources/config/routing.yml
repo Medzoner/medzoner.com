@@ -1,13 +1,13 @@
 site_foundation:
-    pattern:  /foundation
+    path:  /foundation
     defaults: { _controller: SitePagesBundle:Foundation:index }
     
 site_pages_proxy:
-    pattern:  /proxy
+    path:  /proxy
     defaults: { _controller: SitePagesBundle:Proxy:index }
     
 site_pages_proxy_url:
-    pattern:  /proxy/{url}
+    path:  /proxy/{url}
     defaults: { _controller: SitePagesBundle:Proxy:index }
 
 #site_search:
