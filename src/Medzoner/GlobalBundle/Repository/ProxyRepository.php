@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ProxyRepository
- * @package Site\PagesBundle\Repository
+ * @package Medzoner\GlobalBundle\Repository
  */
 class ProxyRepository extends EntityRepository
 {

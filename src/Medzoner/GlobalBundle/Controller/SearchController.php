@@ -20,7 +20,7 @@ class SearchController extends Controller
         $repositoryBlog = $repositoryManager->getRepository('SiteBlogBundle:Blog');
         $articles = $repositoryBlog->find('t');
 
-        $repositoryUser = $repositoryManager->getRepository('SiteUserBundle:User');
+        $repositoryUser = $repositoryManager->getRepository('MedzonerUserBundle:User');
         $users = $repositoryUser->find('medz');
         
         return $this->render('MedzonerGlobalBundle:Search:index.html.twig',

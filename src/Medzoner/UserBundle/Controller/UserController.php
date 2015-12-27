@@ -27,7 +27,7 @@ class UserController extends Controller
         $this->users = $userManager->findUsers();
         $this->trierUsersAlpha();
 
-        return $this->render('SiteUserBundle:User:list.html.twig', array(
+        return $this->render('MedzonerUserBundle:User:list.html.twig', array(
                     'users' => $this->users,
         ));
     }
