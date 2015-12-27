@@ -5,10 +5,6 @@ medzoner_global_index:
 site_blog:
     resource: "@SiteBlogBundle/Resources/config/routing.yml"
     prefix:   /
-
-site_pages:
-    resource: "@SitePagesBundle/Resources/config/routing.yml"
-    prefix:   /
     
 #rest : 
 #    type : rest 

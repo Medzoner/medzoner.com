@@ -40,7 +40,6 @@ class AppKernel extends Kernel {
 
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
-            new Site\PagesBundle\SitePagesBundle(),
             new Site\BlogBundle\SiteBlogBundle(),
             new Site\UserBundle\SiteUserBundle(),
         );

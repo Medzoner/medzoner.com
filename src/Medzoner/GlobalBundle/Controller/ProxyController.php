@@ -1,13 +1,13 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Site\PagesBundle\Entity\Proxy;
+use Medzoner\GlobalBundle\Entity\Proxy;
 
 /**
  * Class ProxyController
- * @package Site\PagesBundle\Controller
+ * @package Medzoner\GlobalBundle\Controller
  */
 class ProxyController extends Controller {
 
@@ -18,8 +18,11 @@ class ProxyController extends Controller {
      */
     public function indexAction($url = null)
     {
-        $oProxy = new Proxy();
+        $proxy = new Proxy();
 
-        return $this->render('SitePagesBundle:Proxy:index.html.twig', array('proxy' => $oProxy->run($url, $_GET, $_POST)));
+        return $this->render(
+            'MedzonerGlobalBundle:Proxy:index.html.twig',
+            array('proxy' => $proxy->run($url, $_GET, $_POST))
+        );
     }
 }

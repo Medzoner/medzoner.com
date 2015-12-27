@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -15,6 +15,6 @@ class FoundationController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SitePagesBundle:Foundation:index.html.twig', array('name' => '$name'));
+        return $this->render('MedzonerGlobalBundle:Foundation:index.html.twig', array('name' => '$name'));
     }
 }

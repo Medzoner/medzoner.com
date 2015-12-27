@@ -1,10 +1,10 @@
 <?php
 
-namespace Site\PagesBundle\Service;
+namespace Medzoner\GlobalBundle\Service;
 
 /**
  * Class ProxyRepository
- * @package Site\PagesBundle\Repository
+ * @package Medzoner\GlobalBundle\Repository
  */
 class ProxyService extends EntityRepository
 {

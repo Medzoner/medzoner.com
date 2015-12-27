@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Controller;
+namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -23,7 +23,7 @@ class SearchController extends Controller
         $repositoryUser = $repositoryManager->getRepository('SiteUserBundle:User');
         $users = $repositoryUser->find('medz');
         
-        return $this->render('SitePagesBundle:Search:index.html.twig',
+        return $this->render('MedzonerGlobalBundle:Search:index.html.twig',
             array('articles' => $articles, 'users' => $users)
         );
     }

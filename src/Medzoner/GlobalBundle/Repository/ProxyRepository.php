@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\PagesBundle\Repository;
+namespace Medzoner\GlobalBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping as ORM;
