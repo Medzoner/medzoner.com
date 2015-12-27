@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\UserBundle\EventListener;
+namespace Medzoner\UserBundle\EventListener;
 
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler,
     Symfony\Component\HttpFoundation\Request,

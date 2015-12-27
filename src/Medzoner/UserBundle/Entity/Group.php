@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\UserBundle\Entity;
+namespace Medzoner\UserBundle\Entity;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;

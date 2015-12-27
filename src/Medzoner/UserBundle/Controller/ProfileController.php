@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Site\UserBundle\Controller;
+namespace Medzoner\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use FOS\UserBundle\FOSUserEvents;
@@ -22,14 +22,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * 
+ * Class ProfileController
+ * @package Medzoner\UserBundle\Controller
  */
-class ProfileController extends BaseController {
-
+class ProfileController extends BaseController
+{
     /**
-     * Show the user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction() {
+    public function showAction()
+    {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -43,8 +45,8 @@ class ProfileController extends BaseController {
     /**
      * Edit the user
      */
-    public function editAction(Request $request, \Site\UserBundle\Entity\User $user = null) {
-
+    public function editAction(Request $request, \Medzoner\UserBundle\Entity\User $user = null)
+    {
         if ($user == null)
             $user = $this->getUser();
 
@@ -93,5 +95,4 @@ class ProfileController extends BaseController {
                     'form' => $form->createView()
         ));
     }
-
 }

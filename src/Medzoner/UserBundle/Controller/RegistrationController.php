@@ -1,15 +1,6 @@
 <?php
 
-/*
- * This file is part of the FOSUserBundle package.
- *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-namespace Site\UserBundle\Controller;
+namespace Medzoner\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use FOS\UserBundle\FOSUserEvents;
@@ -20,17 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * 
+ * Class RegistrationController
+ * @package Medzoner\UserBundle\Controller
  */
-class RegistrationController extends BaseController {
-
+class RegistrationController extends BaseController
+{
     /**
-     * 
      * @param Request $request
-     * @return RedirectResponse
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function registerAction(Request $request) {
-
+    public function registerAction(Request $request)
+    {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -93,8 +84,8 @@ class RegistrationController extends BaseController {
      * @param type $id
      * @return RedirectResponse
      */
-    public function deleteAction($id) {
-        
+    public function deleteAction($id)
+    {
         if($id==1){
             throw $this->createNotFoundException('Impossible de supprimer le super administrateur.');
         }
@@ -108,5 +99,4 @@ class RegistrationController extends BaseController {
 
         return $response;
     }
-
 }

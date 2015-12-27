@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\UserBundle\EventListener;
+namespace Medzoner\UserBundle\EventListener;
 
 use Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler,
     Symfony\Component\HttpFoundation\Request;

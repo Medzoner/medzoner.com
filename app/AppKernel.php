@@ -40,8 +40,8 @@ class AppKernel extends Kernel {
 
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
+            new Medzoner\UserBundle\MedzonerUserBundle(),
             new Site\BlogBundle\SiteBlogBundle(),
-            new Site\UserBundle\SiteUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\UserBundle\Controller;
+namespace Medzoner\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,17 +13,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Description of UserController
- *
- * @author mehdi
+ * Class UserController
+ * @package Medzoner\UserBundle\Controller
  */
-class UserController extends Controller {
-
+class UserController extends Controller
+{
     /**
-     * 
-     * @return type
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction() {
+    public function listAction()
+    {
         $userManager = $this->get('fos_user.user_manager');
         $this->users = $userManager->findUsers();
         $this->trierUsersAlpha();
@@ -34,20 +33,20 @@ class UserController extends Controller {
     }
 
     /**
-     * 
+     *
      */
-    private function trierUsersAlpha() {
+    private function trierUsersAlpha()
+    {
         usort($this->users, array($this, 'comparerUsername'));
     }
 
     /**
-     * 
-     * @param type $a
-     * @param type $b
-     * @return type
+     * @param $a
+     * @param $b
+     * @return int
      */
-    private function comparerUsername($a, $b) {
+    private function comparerUsername($a, $b)
+    {
         return strcmp($a->getUsernameCanonical(), $b->getUsernameCanonical());
     }
-
 }
