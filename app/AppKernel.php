@@ -36,7 +36,7 @@ class AppKernel extends Kernel {
             new Liip\ImagineBundle\LiipImagineBundle(),
 
             //SncRedis
-            new Snc\RedisBundle\SncRedisBundle(),
+            #new Snc\RedisBundle\SncRedisBundle(),
 
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
