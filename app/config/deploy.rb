@@ -7,7 +7,7 @@ set :deploy_to,   "/home/medzoner/www/medzoner"
 set :app_path,    "app"
 
 set :repository,  "git@bitbucket.org:MEdzoner/medzoner.git"
-set :branch, "prod"
+set :branch, "master"
 set :scm, :git
 set :deploy_via, :remote_cache
 set :copy_exclude, [ '.git' ]

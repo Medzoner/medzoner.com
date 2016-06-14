@@ -1,0 +1,14 @@
+{
+  "name": "medzoner.com",
+  "description": "",
+  "main": "",
+  "authors": [
+    "medzoner <medzoner@medzoner.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "foundation": "^5.5.3"
+  }
+}
