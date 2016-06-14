@@ -2,15 +2,19 @@
 
 namespace Medzoner\GlobalBundle\Menu;
 
-use Knp\Menu\FactoryInterface,
-    Symfony\Component\DependencyInjection\ContainerAware;
+use Knp\Menu\FactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
  * Class Builder
+ *
  * @package Medzoner\GlobalBundle\Menu
  */
-class Builder extends ContainerAware
+class Builder implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     /**
      * @param FactoryInterface $factory
      * @param array $options
@@ -52,7 +56,7 @@ class Builder extends ContainerAware
         $menuTools->addChild('PROXY', array('route' => 'site_pages_proxy'));
         $menuTools->addChild('FOUNDATION FRAMEWORK', array('route' => 'site_foundation',));
          */
-        $menuTools->addChild('BOOK', array('route' => 'site_book',));
+        //$menuTools->addChild('BOOK', array('route' => 'site_book',));
         $menuTools->addChild('CV', array('route' => 'site_cv',));
 
         $menu->setChildrenAttributes(array('class' => 'right'));

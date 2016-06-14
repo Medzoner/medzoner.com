@@ -2,9 +2,9 @@ medzoner_global_index:
     resource: "@MedzonerGlobalBundle/Resources/config/routing.yml"
     prefix:   /
 
-site_blog:
-    resource: "@SiteBlogBundle/Resources/config/routing.yml"
-    prefix:   /
+#site_blog:
+#    resource: "@SiteBlogBundle/Resources/config/routing.yml"
+#    prefix:   /
     
 #rest : 
 #    type : rest 

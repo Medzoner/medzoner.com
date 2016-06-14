@@ -6624,6 +6624,41 @@ th.hide-for-touch {
     right: -6px;
 }
 
+.s11 {
+    border-left: 2px dotted #000;
+    margin-left: -1px;
+    color: #000;
+}
+.s10 {
+    border-bottom: 2px dotted #000;
+    color: #000;
+}
+.s10 ul li {
+    color: #000;
+}
+
+.SvgShp1-qsl_ho7a7umo svg {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+}
+
+.SvgShp1-qsl_ho7a7umo path,
+.SvgShp1-qsl_ho7a7umo polygon,
+.SvgShp1-qsl_ho7a7umo rect,
+.SvgShp1-qsl_ho7a7umo circle,
+.SvgShp1-qsl_ho7a7umo ellipse,
+.SvgShp1-qsl_ho7a7umo polyline,
+.SvgShp1-qsl_ho7a7umo line {
+    fill:rgba(255, 255, 255, 1);
+    stroke:rgba(0, 0, 0, 1);
+    stroke-width:0px;
+}
 /* 
     Document   : global
     Created on : 9 juil. 2012, 18:37:47

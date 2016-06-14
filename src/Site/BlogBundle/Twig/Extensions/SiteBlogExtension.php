@@ -1,14 +1,12 @@
 <?php
 
-// src/Site/BlogBundle/Twig/Extensions/SiteBlogExtension.php
-
 namespace Site\BlogBundle\Twig\Extensions;
 
 class SiteBlogExtension extends \Twig_Extension {
 
     public function getFilters() {
         return array(
-            'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+            'created_ago' => new \Twig_SimpleFilter('createdAgo', [$this, 'createdAgo']),
         );
     }
 
@@ -18,7 +16,6 @@ class SiteBlogExtension extends \Twig_Extension {
             throw new \Exception("createdAgo is unable to handle dates in the future");
         }
 
-        $duration = "";
         if ($delta < 60) {
             // Seconds
             $time = $delta;
