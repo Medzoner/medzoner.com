@@ -5,7 +5,7 @@ parameters:
     database_port: null
     database_name: medzoner
     database_user: root
-    database_password: lswd3504
+    database_password: pode7676
     mailer_transport: gmail
     mailer_host: null
     mailer_user: medzux@gmail.com
@@ -14,9 +14,7 @@ parameters:
     secret: asdBHwmI1hsjKjanJK2WD@wdnak
     branch: master
     monolog_mail: medzux@gmail.com
-
     node_path: /usr/bin/node
     java_path: /usr/bin/java
-
-    monolog_redis_dns: redis://127.0.0.1
+    monolog_redis_dns: 'redis://127.0.0.1'
     elasticsearch_host: elastic.medzoner.com
