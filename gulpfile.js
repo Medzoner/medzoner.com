@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var minify = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var browserify = require('browserify');
@@ -37,12 +38,18 @@ gulp.task('javascripts', function() {
     return gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
         .pipe(gulp.dest('web/js'))
+        .pipe(uglify())
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('web/js'))
         .pipe(browserSync.stream());
 });
 
 gulp.task('styles', function() {
     return gulp.src(paths.styles)
         .pipe(concat('app.css'))
+        .pipe(gulp.dest('web/css'))
+        .pipe(minify())
+        .pipe(concat('app.min.css'))
         .pipe(gulp.dest('web/css'))
         .pipe(browserSync.stream());
 });
