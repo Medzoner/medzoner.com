@@ -12,8 +12,5 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
-assetic:
-    use_controller: true
-
 #swiftmailer:
 #    delivery_address: medzoner@gmail.com

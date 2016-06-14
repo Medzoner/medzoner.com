@@ -3,8 +3,6 @@ imports:
     - { resource: framework/framework.yml }
     # Framework - twig
     - { resource: framework/twig.yml }
-    # Framework - assetic
-    - { resource: framework/assetic.yml }
     # Framework - doctrine
     - { resource: framework/doctrine.yml }
     # Framework - swiftmailer
