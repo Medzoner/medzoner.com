@@ -4,8 +4,6 @@ nbproject
 log
 /vendor/*
 .idea
-/app/cache/*
-/app/logs/*
 /app/config/parameters.yml
 /patches
 /web/bundles
@@ -14,3 +12,6 @@ log
 /web/css/*
 /web/js/*
 /web/assetic/*
+/bower_components/
+/app/cache/
+/app/logs/
