@@ -4,12 +4,7 @@ log
 /app/config/parameters.yml
 /patches
 /web/media/cache
-/web/css/*
-/web/js/*
 /bower_components/
 /app/cache/
 /app/logs/
 /node_modules/
-/web/css/
-/web/js/
-/web/images/
