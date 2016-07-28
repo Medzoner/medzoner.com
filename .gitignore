@@ -8,3 +8,4 @@ log
 /app/cache/
 /app/logs/
 /node_modules/
+/web/*
