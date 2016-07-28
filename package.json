@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "init": "npm install && gulp"
+    "init": "npm install && bower install && gulp"
   },
   "dependencies": {
   },
