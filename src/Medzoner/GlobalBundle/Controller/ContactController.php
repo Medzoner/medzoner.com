@@ -3,6 +3,10 @@
 namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,10 +27,10 @@ class ContactController extends Controller
         $Contact = new Contact();
 
         $form = $this->createFormBuilder($Contact)
-                ->add('name', 'text')
-                ->add('email', 'email')
-                ->add('message', 'textarea')
-                ->add('Envoyer', 'submit')
+                ->add('name', TextType::class)
+                ->add('email', EmailType::class)
+                ->add('message', TextareaType::class)
+                ->add('Envoyer', SubmitType::class)
                 ->getForm();
 
         $form->handleRequest($request);

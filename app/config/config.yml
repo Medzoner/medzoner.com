@@ -15,13 +15,8 @@ imports:
     # Security
     - { resource: security.yml }
 
-    # Bundles - Fos Elastica
-    #- { resource: bundles/fos_elastica.yml }
-    # Bundles - Fos User
-    - { resource: bundles/fos_user.yml }
     # Bundles - Knp Menu
     - { resource: bundles/knp_menu.yml }
     # Bundles - Liip Imagine
     - { resource: bundles/liip_imagine.yml }
-    # Bundles - Snc Redis
-    - { resource: bundles/redis.yml }
+

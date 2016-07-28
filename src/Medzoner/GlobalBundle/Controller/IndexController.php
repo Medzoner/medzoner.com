@@ -15,16 +15,9 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()
-                ->getManager();
-
-        $blogs = $em->getRepository('SiteBlogBundle:Blog')
-                ->getLatestBlogs(5);
-
-        $pagination = $this->blogPagination(1);
         return $this->render('@MedzonerGlobal/Index/index.html.twig', array(
-                    'blogs' => $blogs,
-                    'pagination' => $pagination,
+                    'blogs' => [],
+                    'pagination' => [],
         ));
     }
 

@@ -39,11 +39,3 @@ monolog:
         #    level: critical
         #    index: medzoner-%branch%
         #    to_email: %monolog_mail%
-
-        elasticsearch:
-            type: elasticsearch
-            index: medzoner-%branch%
-            elasticsearch:
-              host: %elasticsearch_host%
-              port: 9200
-            level: critical

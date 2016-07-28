@@ -22,7 +22,7 @@ class Builder implements ContainerAwareInterface
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $request = $this->container->get('request');
+        $request = $this->container->get('request_stack')->getCurrentRequest();
         $routeName = $request->get('_route');
 
         $menu = $factory->createItem('root');

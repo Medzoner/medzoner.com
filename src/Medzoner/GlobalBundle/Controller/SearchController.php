@@ -15,16 +15,16 @@ class SearchController extends Controller
      */
     public function indexAction()
     {
-        $repositoryManager = $this->get('fos_elastica.manager.orm');
+        #$repositoryManager = $this->get('fos_elastica.manager.orm');
 
-        $repositoryBlog = $repositoryManager->getRepository('SiteBlogBundle:Blog');
-        $articles = $repositoryBlog->find('t');
+        #$repositoryBlog = $repositoryManager->getRepository('SiteBlogBundle:Blog');
+        #$articles = $repositoryBlog->find('t');
 
-        $repositoryUser = $repositoryManager->getRepository('MedzonerUserBundle:User');
-        $users = $repositoryUser->find('medz');
+        #$repositoryUser = $repositoryManager->getRepository('MedzonerUserBundle:User');
+        #$users = $repositoryUser->find('medz');
         
         return $this->render('MedzonerGlobalBundle:Search:index.html.twig',
-            array('articles' => $articles, 'users' => $users)
+            array('articles' => [], 'users' => [])
         );
     }
 }

@@ -1,5 +1,0 @@
-parameters:
-    site_blog.comments.latest_comment_limit: 5
-    site_blog.blog.max_articles_per_page: 4
-    
-

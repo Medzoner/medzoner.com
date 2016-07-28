@@ -21,33 +21,23 @@ class AppKernel extends Kernel {
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
-            //new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
-
             //Knp
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             //Fos
-            new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            #new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             //Liip
             new Liip\ImagineBundle\LiipImagineBundle(),
 
-            //SncRedis
-            #new Snc\RedisBundle\SncRedisBundle(),
-
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
-            new Medzoner\UserBundle\MedzonerUserBundle(),
-            new Site\BlogBundle\SiteBlogBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
         return $bundles;
