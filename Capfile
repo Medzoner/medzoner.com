@@ -1,4 +1,8 @@
-load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+require 'capistrano/setup'
+require 'capistrano/deploy'
 
-require 'capifony_symfony2'
-load 'app/config/deploy'
+require 'capistrano/npm'
+require 'capistrano/gulp'
+require 'capistrano/bower'
+
+Dir.glob('lib/capistrano/**/*.rb').each { |r| import r }

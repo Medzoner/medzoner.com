@@ -1,12 +1,10 @@
 set :user, "medzoner"
 set :application, "Medzoner"
 set :domain,      "medzoner.com"
-set :home, "/home/medzoner"
-set :deploy_to, "#{home}/#{domain}"
 set :deploy_to,   "/home/medzoner/www/medzoner"
 set :app_path,    "app"
 
-set :repository,  "git@bitbucket.org:MEdzoner/medzoner.git"
+set :repo_url,  "git@bitbucket.org:MEdzoner/medzoner.git"
 set :branch, "master"
 set :scm, :git
 set :deploy_via, :remote_cache
@@ -14,15 +12,15 @@ set :copy_exclude, [ '.git' ]
 
 set :model_manager, "doctrine" # ORM
 
-role :web, domain
-role :app,        domain, :primary => true
+role :web, 'medzoner.com'
+role :app,        'medzoner.com', :primary => true
 
 set :use_sudo, false
-set :keep_releases, 3 #
+
 
 ## Symfony2
 set :shared_files, ["app/config/parameters.yml"]
-set :shared_children, [app_path + "/logs", "vendor"]
+set :shared_children, ["app/logs", "vendor"]
 set :use_composer, true
 set :update_vendors, false
 #set :composer_options, "--verbose --prefer-dist"
@@ -34,13 +32,22 @@ set :webserver_user,    "medzoner"
 set :permission_method, :acl
 set :use_set_permissions, true
 
-#default_run_options[:pty] = true
-#ssh_options[:forward_agent] = true
+set :npm_target_path, -> { release_path.join('') }
+set :npm_flags, ''
+set :npm_roles, :all
+set :npm_env_variables, {}
 
-logger.level = Logger::MAX_LEVEL
+set :bower_flags, '--config.interactive=true'
+set :bower_roles, :all
+set :bower_target_path, "#{release_path}"
+set :bower_bin, '/usr/bin/bower'
 
-after "deploy:finalize_update" do
-#run "chown -R www-data:www-data #{latest_release}"
-#run "chmod -R 777 #{latest_release}/#{cache_path}"
-#run "chmod -R 777 #{latest_release}/#{log_path}"
+set :gulp_executable, 'gulp'
+
+after 'deploy:finishing', 'deploy:cleanup'
+
+namespace :deploy do
+  after :finished, 'npm:install'
+  after :finished, 'bower:install'
+  after :finished, 'gulp'
 end
