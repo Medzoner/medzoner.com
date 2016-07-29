@@ -9,7 +9,16 @@ set :scm, :git
 set :format, :pretty
 set :log_level, :debug
 
-set :composer_install_flags, '--dev --prefer-dist --no-interaction --optimize-autoloader'
+set :composer_install_flags, '--no-dev --no-interaction --quiet --optimize-autoloader'
+set :composer_roles, :all
+set :composer_working_dir, -> { fetch(:release_path) }
+set :composer_dump_autoload_flags, '--optimize'
+set :composer_download_url, "https://getcomposer.org/installer"
+SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+namespace :deploy do
+  after :starting, 'composer:install_executable'
+end
+
 
 set :linked_files, %w{app/config/parameters.yml}
 set :linked_dirs, %w{app/logs web/uploads}
