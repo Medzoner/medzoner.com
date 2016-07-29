@@ -16,7 +16,6 @@ set :linked_dirs, %w{app/logs web/uploads}
 
 set :keep_releases, 3
 
-set :gulp_executable, 'gulp'
 
 set :npm_target_path, -> { release_path.join('') }
 set :npm_flags, ''
@@ -27,6 +26,8 @@ set :bower_flags, '--config.interactive=true'
 set :bower_roles, :all
 set :bower_target_path, "#{release_path}"
 set :bower_bin, '/usr/bin/bower'
+
+set :gulp_executable, 'gulp'
 
 after 'deploy:updated', 'medzoner:database'
 after 'deploy:updated', 'npm:install'
