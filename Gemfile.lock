@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/TheBigBrainsCompany/capistrano-symfony.git
+  revision: f46aa99531d0ffc764119c4e66b5b3859bb8ae70
+  branch: parameters
+  specs:
+    capistrano-symfony (0.3.0)
+      capistrano (~> 3.1)
+      capistrano-composer (~> 0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -11,6 +20,8 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bower (1.1.0)
       capistrano (~> 3.0)
+    capistrano-composer (0.0.6)
+      capistrano (>= 3.0.0.pre)
     capistrano-gulp (0.0.2)
       capistrano (~> 3.0)
     capistrano-harrow (0.5.3)
@@ -31,8 +42,10 @@ PLATFORMS
 DEPENDENCIES
   capistrano (~> 3.5)
   capistrano-bower
+  capistrano-composer
   capistrano-gulp
   capistrano-npm
+  capistrano-symfony!
 
 BUNDLED WITH
    1.12.5

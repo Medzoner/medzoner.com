@@ -1,0 +1,10 @@
+namespace :medzoner do
+  desc 'Force database update'
+  task :database do
+    on roles(:app) do
+      invoke 'symfony:run', :'doctrine:migration:migrate', '--force'
+    end
+  end
+
+  after 'deploy:updated', 'medzoner:database'
+end
