@@ -2,7 +2,7 @@ monolog:
     handlers:
         main:
             type:             stream
-            path:             %kernel.logs_dir%/%kernel.environment%.log
+            path:             '%kernel.logs_dir%/%kernel.environment%.log'
             level:            debug
         firephp:
             type:             firephp
@@ -28,8 +28,8 @@ monolog:
 
         swift:
             type: swift_mailer
-            from_email: %monolog_mail%
-            to_email: %monolog_mail%
+            from_email: '%monolog_mail%'
+            to_email: '%monolog_mail%'
             subject: "[medzoner.com %branch%] Fatal Error!"
             level: critical
 

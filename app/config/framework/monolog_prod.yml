@@ -17,7 +17,7 @@ monolog:
 
       swift:
           type: swift_mailer
-          from_email: %monolog_mail%
-          to_email: %monolog_mail%
+          from_email: '%monolog_mail%'
+          to_email: '%monolog_mail%'
           subject: "[medzoner.com %branch%] Fatal Error!"
           level: critical
