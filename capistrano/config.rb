@@ -21,7 +21,7 @@ end
 
 
 set :linked_files, %w{app/config/parameters.yml}
-set :linked_dirs, %w{app/logs web/uploads}
+set :linked_dirs, %w{node_modules bower_components app/logs web/uploads}
 
 set :keep_releases, 3
 
@@ -33,15 +33,15 @@ set :npm_env_variables, {}
 
 set :bower_flags, '--config.interactive=true'
 set :bower_roles, :all
-set :bower_target_path, "#{release_path}"
+set :bower_target_path, -> { release_path.join('') }
 set :bower_bin, '/usr/bin/bower'
 
 set :gulp_executable, 'gulp'
 
-after 'deploy:updated', 'medzoner:database'
-after 'deploy:updated', 'npm:install'
-after 'deploy:updated', 'bower:install'
-after 'deploy:updated', 'gulp'
-
-after 'deploy:finishing', 'deploy:cleanup'
+namespace :deploy do
+  after :updated, 'medzoner:database'
+  before :finished, 'npm:install'
+  before :gulp, 'bower:install'
+  after :finished, 'gulp'
+end
 
