@@ -3,8 +3,6 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync').create();
 var connect = require('gulp-connect');
 
