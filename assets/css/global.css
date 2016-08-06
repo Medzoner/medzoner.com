@@ -69,6 +69,7 @@ header {
     padding: 0;
     margin: 0 0 0 5px;
     font-size: 22px;
+    color: #ffffff;
 }
 #logo img { 
     display: block;
@@ -107,7 +108,7 @@ header {
     white-space:nowrap;
     text-decoration: none;
 }
-#menu li a*{ 
+#menu li a* {
     color: #ffffff;
 }
 

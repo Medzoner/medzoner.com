@@ -43,10 +43,12 @@ gulp.task('javascripts', function() {
 });
 
 gulp.task('styles', function() {
-    return gulp.src(paths.styles)
-        .pipe(concat('app.css'))
+    gulp.src(paths.styles)
+        .pipe(concat('app.min.css'))
         .pipe(gulp.dest('web/css'))
-        .pipe(minify())
+        .pipe(browserSync.stream());
+
+    return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest('web/css'))
         .pipe(browserSync.stream());
