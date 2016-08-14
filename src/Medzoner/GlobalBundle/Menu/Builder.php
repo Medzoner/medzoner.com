@@ -58,6 +58,7 @@ class Builder implements ContainerAwareInterface
          */
         //$menuTools->addChild('BOOK', array('route' => 'site_book',));
         $menuTools->addChild('CV', array('route' => 'site_cv',));
+        $menuTools->addChild('CONTACT', array('route' => 'site_contact',));
 
         $menu->setChildrenAttributes(array('class' => 'right'));
         $menuTools->setChildrenAttributes(array('class' => 'dropdown'));
