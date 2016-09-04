@@ -13,3 +13,4 @@ log
 /web/js
 /web/assetic
 /web/bundles
+/build
