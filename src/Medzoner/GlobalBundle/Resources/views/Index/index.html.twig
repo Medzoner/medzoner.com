@@ -5,6 +5,18 @@
 {% block content %}
     <div class="row">
         <div class="large-12 columns">
+            <div class="advert-1">
+                <script type="text/javascript">
+                    getJSON("http://sharadserver.dev/app_dev.php/serve/adverts",
+                            function(err, data) {
+                                if (err != null) {
+                                    alert("Something went wrong: " + err);
+                                } else {
+                                    alert("Your query count: " + data.content);
+                                }
+                            });
+                </script>
+            </div>
         </div>
     </div>
 {% endblock %}
