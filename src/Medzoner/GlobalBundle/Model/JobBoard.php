@@ -50,7 +50,7 @@ class JobBoard
                 ],
                 [
                     'sub_title' => 'OS',
-                    'sub_content' => 'GNU/LINUX (Debian/Ubuntu), UNIX BSD et Microsoft Windows',
+                    'sub_content' => 'GNU/LINUX (Debian/Ubuntu)',
                 ],
             ],
             [

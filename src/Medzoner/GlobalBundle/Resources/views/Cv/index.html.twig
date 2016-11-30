@@ -5,27 +5,6 @@
     <div class="row">
         <div class="large-12 columns">
             <section class="content2">
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <h2>My Resume</h2>
-                        <div style="width: 35px; left: 820px; top: 628px; height: 34px;" class="s13" id="Cntnr7">
-                            <div id="Cntnr7bg" class="s13bg">
-                            </div>
-                            <div id="Cntnr7inlineContent" class="s13inlineContent">
-                                <div style="width: 10px; left: 13px; top: 1px; height: 30px;" id="SvgShp1-qsl" class="SvgShp1-qsl_ho7a7umo">
-                                    <style type="text/css">
-                                    </style>
-                                    <svg style="width: 11px; height: 10px;" data-original-aspect-ratio="1.0514730671958303" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g transform="translate(0,0)">
-                                            <polygon points="5.000001,0 6.544713,3.130309 10.000001,3.632735 7.49969,6.06977 8.089962,9.510468 5.000001,7.886165 1.909474,9.510468 2.499718,6.06977 0,3.632735 3.454751,3.130309"></polygon>
-                                        </g>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-
                 {% for part in jobboard %}
                     {% if part is not empty %}
                         <div class="row">
@@ -65,4 +44,5 @@
             </section>
         </div>
     </div>
+    <br>
 {% endblock %}
