@@ -94,7 +94,7 @@ class JobBoard
             2 => [
                 0 => [
                     'sub_title' => '2014',
-                    'sub_content' => 'Formation JAVA',
+                    'sub_content' => 'Formation JAVA - Global Knowledge',
                 ],
                 1 => [
                     'sub_title' => '2011-2012',
