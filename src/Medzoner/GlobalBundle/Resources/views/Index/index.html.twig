@@ -5,14 +5,14 @@
 {% block content %}
     <div class="row">
         <div class="large-12 columns">
-            <div class="advert-1">
+            <div id="advert-1">
                 <script type="text/javascript">
-                    getJSON("http://sharadserver.dev/app_dev.php/serve/adverts",
+                    getJSON("http://sharadserver.dev/app_dev.php/serve/adverts/1",
                             function(err, data) {
                                 if (err != null) {
-                                    alert("Something went wrong: " + err);
+                                    console.info("Something went wrong: " + err);
                                 } else {
-                                    alert("Your query count: " + data.content);
+                                    document.getElementById("advert-1").innerHTML = data.content;
                                 }
                             });
                 </script>
