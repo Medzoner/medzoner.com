@@ -2,6 +2,7 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
+use Medzoner\GlobalBundle\Services\JobBoardService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -15,6 +16,14 @@ class CvController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MedzonerGlobalBundle:Cv:index.html.twig');
+        /** @var JobBoardService $jobBordService */
+        $jobBordService = $this->get('medzoner.jobboard.service');
+
+        return $this->render(
+            'MedzonerGlobalBundle:Cv:index.html.twig',
+            [
+                'jobboard' => $jobBordService->getJobBoard()
+            ]
+        );
     }
 }

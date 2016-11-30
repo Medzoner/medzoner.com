@@ -24,268 +24,43 @@
                             </div>
                         </div> 
                     </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Langages</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>PHP/Symfony, javascript/nodejs/angularjs, HTML, CSS</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Base de données et de stockage</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>MySQL, Sqlite, MongoDB, Redis</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Frameworks</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Symfony 1.4 > 3.1</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>IDE</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Phpstorm, Netbeans, Eclipse</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Versionning</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Git, svn</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Test, intégration continue et déploiement continu</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>PhpUnit, Behat, Moka, Codeship, Jenkins, Capistrano</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>OS</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>GNU/LINUX (Debian/Ubuntu), UNIX BSD et Microsoft Windows</h6>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <h5>EXPÉRIENCE PROFESSIONNELLE</h5>
-                    </div>
-                    <div class="s10 large-12 columns">
+                {% for part in jobboard %}
+                    {% if part is not empty %}
                         <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2012-2015</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>ADMP -  Développeur Backend et Frontend</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        <ul>
-                            <li>Création et gestion de projets: Sites web, CRM, ERP</li>
-                            <li>Maintenance</li>
-                            <li>Administration de serveur web et mail (nginx/apache2, varnish, postfix....)</li>
-                            <li>Gestion de bases de données</li>
-                        </ul>
-                    </div>
-                </div>
+                            {% if part.title is not empty %}
+                                <div class="s10 large-12 columns">
+                                    <h5>{{ part.title }}</h5>
+                                </div>
+                            {% endif %}
+                            {% for subpart in part.content %}
+                                {% if subpart is not empty %}
+                                    <div class="s10 large-12 columns">
+                                        <div class="row">
+                                            <div class="small-3 columns">
+                                                <h6>{{ subpart.sub_title }}</h6>
+                                            </div>
+                                            <div class="s11 small-9 columns">
+                                                <h6>{{ subpart.sub_content }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
 
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2011-2012</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>ADMP Informatique -  Contrat Professionnelle</h6>
-                            </div>
+                                {% if subpart.sub_description is defined and subpart.sub_description is not empty %}
+                                    <div class="s10 large-12 columns">
+                                        <ul>
+                                            {% for description in subpart.sub_description %}
+                                                <li>{{ description }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        Création du CRM interne en PHP5 :
-                        <ul>
-                            <li>Gestion des sociétés, des contacts, des interventions, des techniciens.</li>
-                            <li>Relevés mensuels par mailing,</li>
-                            <li>Ticketing. Statistiques. Exports CSV et PDF.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2008-2011</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>WEBPORTAGE - Développeur/Webmaster.</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        Portage salarial
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2003-2004</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>AXYMECA - Epreuve de Synthèse Professionnelle de BTS niveau 2 - Le Havre (76)</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        Service Qualité et SHE :  Mise en place de la certification M.A.S.E (Manuel d’Assurance Sécurité Entreprise).
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>05/03-06/03</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>HUREL-HISPANO - Stage de BTS niveau 1 - Le Havre (76)</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        Service Gestion de Production : Mise à jour de la base de données de gestion des stocks : Inverseurs d’Airbus A320/A340.
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <h5>FORMATION</h5>
-                    </div>
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>11/2012</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Formation Professionnelle – IP Formation – Paris</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s10 large-12 columns"> 
-                        Formation JAVA
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2004</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>BTS d’Assistance Technique d’Ingénieur - Lycée Jules Siegfried – Le Havre (76)</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>2001</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Bac STI option génie Electrotechnique - Lycée Pierre de Coubertin – Bolbec (76)</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <h5>LANGUES</h5>
-                    </div>
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Anglais</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Niveau intermédiaire. Bonne maîtrise des documentations et notices techniques.</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <h5>ACTIVITES ET PROJETS DIVERS</h5>
-                    </div>
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Internet</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Participation à des tutoriels et traduction de documentations Linux.</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="s10 large-12 columns">
-                        <div class="row">
-                            <div class="small-3 columns">
-                                <h6>Video</h6>
-                            </div>
-                            <div class="s11 small-9 columns">
-                                <h6>Assistant monteur de la vidéo de skateboard PrivateWork (Pacificwear 2010).</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                    {% endif %}
+                {% endfor %}
             </section>
         </div>
     </div>
