@@ -1,28 +1,86 @@
 <?php
 
-namespace Medzoner\GlobalBundle\Model;
+namespace Medzoner\GlobalBundle\Provider\JobBoard;
+
+use Medzoner\GlobalBundle\Model\JobBoard\JobBoard;
+use Medzoner\GlobalBundle\Model\JobBoard\JobBoardContent;
+use Medzoner\GlobalBundle\Model\ModelCollection;
 
 /**
- * Class JobBoard
+ * Class JobBoardProvider
  */
-class JobBoard
+class JobBoardProvider
 {
     /**
-     * @var array
+     * @var JobBoard
      */
-    private $parts = [];
+    private $jobBoard;
+    /**
+     * @var JobBoardContent
+     */
+    private $jobBoardContent;
 
     /**
-     * @var array
+     * @return ModelCollection
      */
-    private $subparts = [];
+    public function getJobBoards()
+    {
+        $collection = new ModelCollection();
+
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('');
+        $this->jobBoard->setContents($this->getJobBoardContents(0));
+        $collection->add($this->jobBoard);
+
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('EXPÉRIENCES PROFESSIONNELLES');
+        $this->jobBoard->setContents($this->getJobBoardContents(1));
+        $collection->add($this->jobBoard);
+
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('FORMATIONS');
+        $this->jobBoard->setContents($this->getJobBoardContents(2));
+        $collection->add($this->jobBoard);
+
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('LANGUES');
+        $this->jobBoard->setContents($this->getJobBoardContents(3));
+        $collection->add($this->jobBoard);
+
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('ACTIVITES ET PROJETS DIVERS');
+        $this->jobBoard->setContents($this->getJobBoardContents(4));
+        $collection->add($this->jobBoard);
+
+        return $collection;
+    }
+
+    /**
+     * @param $key
+     * @return ModelCollection
+     */
+    public function getJobBoardContents($key)
+    {
+        $subparts = $this->getAllSubparts()[$key];
+
+        $collection = new ModelCollection();
+        foreach ($subparts as $subpart) {
+            $this->jobBoardContent = new JobBoardContent();
+            !isset($subpart['sub_title']) ?: $this->jobBoardContent->setTitle($subpart['sub_title']);
+            !isset($subpart['sub_content']) ?: $this->jobBoardContent->setContent($subpart['sub_content']);
+            !isset($subpart['sub_description']) ?: $this->jobBoardContent->setDescription($subpart['sub_description']);
+            $collection->add($this->jobBoardContent);
+        }
+
+        return $collection;
+    }
 
     /**
      * @return array
      */
-    public function getSubparts()
+    public function getAllSubparts()
     {
-        $this->subparts = [
+        return [
             [
                 [
                     'sub_title' => 'Langages',
@@ -114,54 +172,5 @@ class JobBoard
                 ],
             ],
         ];
-
-        return $this->subparts;
-    }
-
-    /**
-     * @param array $subparts
-     */
-    public function setSubparts($subparts)
-    {
-        $this->subparts = $subparts;
-    }
-
-    /**
-     * @return array
-     */
-    public function getParts()
-    {
-        $this->parts = [
-            [
-                'title' => '',
-                'content' => $this->getSubparts()[0],
-            ],
-            [
-                'title' => 'EXPÉRIENCES PROFESSIONNELLES',
-                'content' => $this->getSubparts()[1],
-            ],
-            [
-                'title' => 'FORMATIONS',
-                'content' => $this->getSubparts()[2],
-            ],
-            [
-                'title' => 'LANGUES',
-                'content' => $this->getSubparts()[3],
-            ],
-            [
-                'title' => 'ACTIVITES ET PROJETS DIVERS',
-                'content' => $this->getSubparts()[3],
-            ],
-        ];
-
-        return $this->parts;
-    }
-
-    /**
-     * @param array $parts
-     */
-    public function setParts($parts)
-    {
-        $this->parts = $parts;
     }
 }

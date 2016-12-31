@@ -2,7 +2,8 @@
 
 namespace Medzoner\GlobalBundle\Services;
 
-use Medzoner\GlobalBundle\Model\JobBoard;
+use Medzoner\GlobalBundle\Model\JobBoard\JobBoard;
+use Medzoner\GlobalBundle\Provider\JobBoard\JobBoardProvider;
 
 /**
  * Class JobBoardService
@@ -17,12 +18,12 @@ class JobBoardService
     /**
      * JobBoardService constructor.
      *
-     * @param JobBoard $jobBoard
+     * @param JobBoardProvider $jobBoardProvider
      */
-    public function __construct(JobBoard $jobBoard)
+    public function __construct(JobBoardProvider $jobBoardProvider)
     {
 
-        $this->jobBoard = $jobBoard;
+        $this->jobBoard = $jobBoardProvider;
     }
 
     /**
@@ -30,7 +31,7 @@ class JobBoardService
      */
     public function getJobBoard()
     {
-        return $this->jobBoard->getParts();
+        return $this->jobBoard->getJobBoards();
     }
 
     /**

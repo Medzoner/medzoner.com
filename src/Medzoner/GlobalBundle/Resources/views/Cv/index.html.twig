@@ -14,24 +14,24 @@
                                     <h5>{{ part.title }}</h5>
                                 </div>
                             {% endif %}
-                            {% for subpart in part.content %}
+                            {% for subpart in part.contents %}
                                 {% if subpart is not empty %}
                                     <div class="s10 large-12 columns">
                                         <div class="row">
                                             <div class="small-3 columns">
-                                                <h6>{{ subpart.sub_title }}</h6>
+                                                <h6>{{ subpart.title }}</h6>
                                             </div>
                                             <div class="s11 small-9 columns">
-                                                <h6>{{ subpart.sub_content }}</h6>
+                                                <h6>{{ subpart.content }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 {% endif %}
 
-                                {% if subpart.sub_description is defined and subpart.sub_description is not empty %}
+                                {% if subpart.description is defined and subpart.description is not empty %}
                                     <div class="s10 large-12 columns">
                                         <ul>
-                                            {% for description in subpart.sub_description %}
+                                            {% for description in subpart.description %}
                                                 <li>{{ description }}</li>
                                             {% endfor %}
                                         </ul>
