@@ -21,11 +21,17 @@ class JobBoardProvider
     private $jobBoardContent;
 
     /**
+     * @param $lang
+     *
      * @return ModelCollection
      */
-    public function getJobBoards()
+    public function getJobBoards($lang)
     {
         $collection = new ModelCollection();
+
+        if (!$lang) {
+            return $collection;
+        }
 
         $this->jobBoard = new JobBoard();
         $this->jobBoard->setTitle('');

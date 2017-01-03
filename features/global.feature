@@ -12,3 +12,12 @@ Feature: Global behavior "Medzoner"
 
     Scenario: [Medzoner - GET_ALL] "Home page"
         When    I send a GET request to ""
+        Then    the response status code should be 200
+
+#------------------------------------------------------------------------------------------
+# TEST STANDARD : GET "CV" - Test succeeded
+#------------------------------------------------------------------------------------------
+
+    Scenario: [Medzoner - GET_ALL] "Home page"
+        When    I send a GET request to "/cv"
+        Then    the response status code should be 200

@@ -2,27 +2,65 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Medzoner\GlobalBundle\Services\JobBoardService;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Medzoner\QueryHandler\ListJobBoardQueryHandler;
+use Medzoner\Query\ListJobBoardQuery;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CvController
- * @package Medzoner\GlobalBundle\Controller
  */
-class CvController extends Controller
+class CvController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @var RequestStack
+     */
+    private $request;
+
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    /**
+     * @var ListJobBoardQueryHandler
+     */
+    private $jobBoardQueryHandler;
+
+    /**
+     * CvController constructor.
+     *
+     * @param RequestStack $request
+     * @param EngineInterface $templating
+     * @param ListJobBoardQueryHandler $jobBoardQueryHandler
+     */
+    public function __construct(
+        RequestStack $request,
+        EngineInterface $templating,
+        ListJobBoardQueryHandler $jobBoardQueryHandler
+    )
+    {
+        $this->request = $request->getMasterRequest();
+        $this->templating = $templating;
+        $this->jobBoardQueryHandler = $jobBoardQueryHandler;
+    }
+
+    /**
+     * @return Response
      */
     public function indexAction()
     {
-        /** @var JobBoardService $jobBordService */
-        $jobBordService = $this->get('medzoner.jobboard.service');
+        $query = new ListJobBoardQuery(
+            $this->request->request->all()
+        );
 
-        return $this->render(
+        $jobBoard = $this->jobBoardQueryHandler->handle($query);
+
+        return $this->templating->renderResponse(
             'MedzonerGlobalBundle:Cv:index.html.twig',
             [
-                'jobboard' => $jobBordService->getJobBoard()
+                'jobboard' => $jobBoard
             ]
         );
     }

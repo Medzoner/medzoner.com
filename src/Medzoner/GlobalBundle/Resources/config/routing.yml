@@ -1,37 +1,37 @@
 # Home
 site:
     path:  /
-    defaults: { _controller: MedzonerGlobalBundle:Index:index }
+    defaults: { _controller: 'MedzonerGlobalBundle:Index:index' }
 
 site_home:
     path:  /home
-    defaults: { _controller: MedzonerGlobalBundle:Index:index }
+    defaults: { _controller: 'MedzonerGlobalBundle:Index:index' }
 
 # Contact
 site_contact:
     path:  /contact
-    defaults: { _controller: MedzonerGlobalBundle:Contact:contact }
+    defaults: { _controller: 'MedzonerGlobalBundle:Contact:contact' }
 
 # Portfolio
 site_book:
     path:  /book
-    defaults: { _controller: MedzonerGlobalBundle:Portfolio:index}
+    defaults: { _controller: 'MedzonerGlobalBundle:Portfolio:index' }
 
 # CV
 site_cv:
     path: /cv
-    defaults: { _controller: MedzonerGlobalBundle:Cv:index }
+    defaults: { _controller: 'medzoner.jobboard.controller:indexAction' }
 
 # Foundation
 site_foundation:
     path:  /foundation
-    defaults: { _controller: MedzonerGlobalBundle:Foundation:index }
+    defaults: { _controller: 'MedzonerGlobalBundle:Foundation:index' }
 
 # Proxy
 site_pages_proxy:
     path:  /proxy
-    defaults: { _controller: MedzonerGlobalBundle:Proxy:index }
+    defaults: { _controller: 'MedzonerGlobalBundle:Proxy:index' }
 
 site_pages_proxy_url:
     path:  /proxy/{url}
-    defaults: { _controller: MedzonerGlobalBundle:Proxy:index }
+    defaults: { _controller: 'MedzonerGlobalBundle:Proxy:index' }

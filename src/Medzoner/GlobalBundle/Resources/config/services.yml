@@ -4,8 +4,20 @@ services:
     arguments:
         - '@medzoner.jobboard.provider'
 
+  medzoner.jobboard.controller:
+    class: 'Medzoner\GlobalBundle\Controller\CvController'
+    arguments:
+        - '@request_stack'
+        - '@templating'
+        - '@medzoner.jobboard.queryhandler'
+
   medzoner.jobboard.model:
     class: 'Medzoner\GlobalBundle\Model\JobBoard'
+
+  medzoner.jobboard.queryhandler:
+    class: 'Medzoner\QueryHandler\ListJobBoardQueryHandler'
+    arguments:
+        - '@medzoner.jobboard.service'
 
   medzoner.jobboard.content.model:
     class: 'Medzoner\GlobalBundle\Model\JobBoardContent'

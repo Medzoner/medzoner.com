@@ -3,12 +3,13 @@
 namespace Medzoner\GlobalBundle\Services;
 
 use Medzoner\GlobalBundle\Model\JobBoard\JobBoard;
+use Medzoner\GlobalBundle\Model\ModelCollection;
 use Medzoner\GlobalBundle\Provider\JobBoard\JobBoardProvider;
 
 /**
  * Class JobBoardService
  */
-class JobBoardService
+class JobBoardService implements JobBoardServiceInterface
 {
     /**
      * @var JobBoard
@@ -27,18 +28,12 @@ class JobBoardService
     }
 
     /**
-     * @return array
+     * @param $lang
+     *
+     * @return ModelCollection
      */
-    public function getJobBoard()
+    public function getJobBoardByLang($lang)
     {
-        return $this->jobBoard->getJobBoards();
-    }
-
-    /**
-     * @param JobBoard $jobBoard
-     */
-    public function setJobBoard($jobBoard)
-    {
-        $this->jobBoard = $jobBoard;
+        return $this->jobBoard->getJobBoards($lang);
     }
 }
