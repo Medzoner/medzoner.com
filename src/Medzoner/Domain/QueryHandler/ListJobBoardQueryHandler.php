@@ -1,10 +1,10 @@
 <?php
 
-namespace Medzoner\QueryHandler;
+namespace Medzoner\Domain\QueryHandler;
 
-use Medzoner\GlobalBundle\Model\JobBoard\JobBoard;
+use Medzoner\GlobalBundle\Model\ModelCollection;
 use Medzoner\GlobalBundle\Services\JobBoardServiceInterface;
-use Medzoner\Query\ListJobBoardQuery;
+use Medzoner\Domain\Query\ListJobBoardQuery;
 
 /**
  * Class ListJobBoardQueryHandler
@@ -29,7 +29,7 @@ class ListJobBoardQueryHandler
     /**
      * @param ListJobBoardQuery $jobBoardQuery
      *
-     * @return JobBoard
+     * @return ModelCollection
      */
     public function handle(ListJobBoardQuery $jobBoardQuery)
     {

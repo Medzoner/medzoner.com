@@ -1,6 +1,6 @@
 <?php
 
-namespace Medzoner\Query;
+namespace Medzoner\Domain\Query;
 
 /**
  * Class BaseQuery

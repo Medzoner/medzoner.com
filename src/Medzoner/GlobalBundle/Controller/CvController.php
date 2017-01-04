@@ -2,8 +2,8 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Medzoner\QueryHandler\ListJobBoardQueryHandler;
-use Medzoner\Query\ListJobBoardQuery;
+use Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler;
+use Medzoner\Domain\Query\ListJobBoardQuery;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,7 +42,9 @@ class CvController
     )
     {
         $this->request = $request->getMasterRequest();
+
         $this->templating = $templating;
+
         $this->jobBoardQueryHandler = $jobBoardQueryHandler;
     }
 

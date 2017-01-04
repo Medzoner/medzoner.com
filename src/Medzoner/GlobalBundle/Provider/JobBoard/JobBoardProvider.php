@@ -106,11 +106,15 @@ class JobBoardProvider
                 ],
                 [
                     'sub_title' => 'Versionning',
-                    'sub_content' => 'Git, svn',
+                    'sub_content' => 'GIT: Github, Bitbucket',
+                ],
+                [
+                    'sub_title' => 'Deploy',
+                    'sub_content' => 'Capistrano',
                 ],
                 [
                     'sub_title' => 'Test, intégration continue et déploiement continu',
-                    'sub_content' => 'PhpUnit, Behat, Moka, Jenkins, Capistrano',
+                    'sub_content' => 'PhpUnit, Behat, Moka, Jenkins, Capistrano, Codeship',
                 ],
                 [
                     'sub_title' => 'OS',
@@ -122,8 +126,9 @@ class JobBoardProvider
                     'sub_title' => '2015 à maintenant',
                     'sub_content' => 'LEADERSLEAGUE - Développeur Backend',
                     'sub_description' => [
-                        'Microservices: Api, Json, HateOAS',
-                        'Méthode: SCRUM',
+                        'Microservices: Api RESTful, HATEOAS',
+                        'Méthodes: SCRUM (JIRA), Intégration continue',
+                        'Réalisation de projets: Sites web (Editorial, Notation, Evénementiel), CRM',
                     ],
                 ],
                 [

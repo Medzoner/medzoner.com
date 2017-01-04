@@ -1,52 +1,8 @@
-/* 
-    Document   : global
-    Created on : 9 juil. 2012, 18:37:47
-    Author     : medz
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-*:visited {
-    color: #b20000;
-}
-*:link {
-    color: #b20000
-}
-
-h3
-{
-    color: #999999;	
-    font-size: 18px;
-    font-weight: normal;
-    border-bottom: 1px solid #b20000;
-    padding: 0.5em;
-    margin: 0 0 0.5em 0;
-}
-
-
-body { 
-    /*width: 100%;*/
-    /*height: 100%;*/
+body {
     margin: 0;
-    background: url('/images/background.jpg') no-repeat;
-    /*background-size: 100% 100%;*/
-    background-attachment:fixed;
+    background: url('/images/background.jpg') no-repeat fixed;
     background-size: cover;
 
-}
-
-#wrapper { 
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-}
-
-#wrapper-bckgrd { 
-    display: block;
-    float: left;
-    width: 100%;
-    margin: 10px 0 10px 0;
-    border-radius: 5px;
 }
 
 header { 
@@ -56,7 +12,6 @@ header {
     color: #ffffff;
 }
 
-
 #logo { 
     display: block;
     float: left;
@@ -65,59 +20,12 @@ header {
     padding: 0;
     margin: 0 15px 0 5px;
 }
+
 #logo p { 
     padding: 0;
     margin: 0 0 0 5px;
     font-size: 22px;
     color: #ffffff;
-}
-#logo img { 
-    display: block;
-    float: left;
-    width: 50%;
-    padding: 0;
-    margin: 0 0 0 0;
-}
-
-#menu { 
-    display: block;
-    float: left;
-    margin: 0 0 0 0;
-}
-
-#menu ul { 
-    display: block;
-    list-style: none;
-    width: 100%;
-    padding: 0;
-    margin: 2px 0 2px 0;
-}
-#menu li { 
-    display: inline-block;
-    list-style: none;
-    margin: 0 0 0 5px;
-    width: 130px;
-    border-top: 1px solid white;
-}
-#menu li a{ 
-    color: #ffffff;
-    font-size: 14px;
-    line-height:30px;
-    width:auto;
-    text-align:left;
-    white-space:nowrap;
-    text-decoration: none;
-}
-#menu li a* {
-    color: #ffffff;
-}
-
-#page { 
-    min-height: 200px;
-    display: block;
-    width: 980px;
-    margin: 10px 0 0 276px;
-    padding: 0;
 }
 
 footer { 
@@ -128,254 +36,18 @@ footer {
     bottom: 0;
 }
 
-footer .row { 
-    height: 30px;
+footer .row {
+    height: 50px;
     background:black;
     color: #b2b2b2;
     bottom: 0;
-}
-/* ------------------------------------STRUCTURE--------------------------------- */
-
-
-
-
-
-
-
-
-
-/* ------------------------------------BLOCKS--------------------------------- */
-
-/* HOME */
-#block_home
-{
-    display: block;
-    
-    width: 740px;
-    margin: 0 0 0 10px;
+    padding: 5px 0 5px 0;
 }
 
-#block_home #introduction
-{
-    text-align: justify;
-    margin: 0 0 0 0;
-    font-size: 14px;
+footer .row img {
+    height: 40px;
+    margin: 0 5px 0 5px;
 }
-
-#block_home #technologies
-{
-    display: block;
-    
-    width: 229px;
-    margin: 30px 26px 0 0;
-}
-
-#block_home #technologies li
-{
-    list-style-type: square;
-    margin: 10px 0 0 20px;
-}
-
-#block_home #contact
-{
-    display: block;
-    
-    width: 229px;
-    margin: 30px 0px 0 0;
-}
-
-#block_home #contact ul
-{
-    display: block;
-    
-    margin: 0 0 0 0;
-    width: 229px;
-    border: 1px solid #ff9d2a;
-}
-
-#block_home #contact li
-{
-    list-style-type: none;
-    margin: 10px 0 10px 20px;
-}
-
-#block_home #portfolio
-{
-    display: block;
-    
-    width: 229px;
-    margin: 30px 26px 0 0;
-}
-
-#block_home #portfolio img
-{
-    display: block;
-    
-    width: 229px;
-    border: 0;
-}
-
-/* PORTFOLIO */
-#block_portfolio
-{
-    display: block;
-    
-    width: 740px;
-    margin: 0 0 0 10px;
-}
-
-#carousel1
-{
-    width: 650px;
-    height: 488px;
-    background: url(./../img/g.jpg) no-repeat scroll 0% 0% transparent;
-    overflow: hidden;
-    position: relative;
-    margin: auto;
-}
-
-img.cloudcarousel
-{
-    border: 0;
-}
-
-#title-text
-{
-    position: absolute;
-    bottom: 0;
-    color: #ffffff;	
-    width: 650px;
-    text-align: center;
-
-}
-
-.carouselLeft
-{
-    display: inline;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background:url(./../img/rotate-left.png);	
-    width:40px;
-    height:40px;
-    background-position: 0px 0px;
-}
-.carouselLeft:hover
-{
-    background-position: 0px 40px;
-    cursor:auto;
-}
-.carouselRight
-{
-    display: inline;
-    position: absolute;
-    top: 0;
-    left: 50px;
-    background:url(./../img/rotate-right.png);	
-    width:40px;
-    height:40px;
-    background-position: 0px 0px;
-}
-.carouselRight:hover
-{
-    background-position: 0px 40px;
-}
-
-
-/* CONTACT */
-#block_contact
-{
-    display: block;
-    
-    width: 740px;
-    margin: 0 0 0 10px;
-}
-
-#block_contact .button_large
-{
-    display: block;
-    
-    margin: 10px 0 0 148px;
-}
-
-#chat_skype
-{
-    display: block;
-    
-    margin: 40px 0 0 150px;
-}
-#skypedetectionswf
-{
-    display: none;
-}
-
-#chat_google
-{
-    display: block;
-    
-    margin: 40px 0 0 10px;
-    padding: 2px 8px 2px 5px;
-    background: #ffffff;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-}
-
-#chat_google a, #chat_google p
-{
-    display:inline;
-    color: #b20000;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-#chat_google img#chaticon
-{
-    padding: 0 2px 0 0;
-    margin: 0;
-    border: none;
-    height:13px;
-    width:15px;
-}
-#chat_google img#status
-{
-    padding: 0 2px 0 0;
-    margin: 0;
-    border: none;
-    height:10px;
-    width:10px;
-}
-
-#block_contact form
-{
-    display: block;
-    
-    width:100%;
-    margin: 20px 0 0 0;
-}
-
-/* COMPETENCES */
-#block_competences
-{
-    display: block;
-    
-    width: 740px;
-    margin: 0 0 0 10px;
-}
-
-#block_competences li
-{
-    margin: 0 0 0 20px;
-}
-
-#block_competences p
-{
-    text-align: justify;
-    margin: 10px 0 0 0;
-}
-
-
 
 section.content
 {
@@ -393,18 +65,11 @@ section.content2
     float: left;
     padding: 1%;
     width: 100%;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 40px 0;
     border: 0;
     background: #ffffff;
     color: #000;
     opacity: 0.9;
-}
-
-
-
-.top-bar-section .not-click > a {
-   pointer-events: none;
-   cursor: default;
 }
 
 textarea {
