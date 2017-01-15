@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "Medzoner",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Website medzoner.com",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -35,11 +35,7 @@
 
         "friendsofsymfony/jsrouting-bundle": "dev-master",
 
-        "knplabs/knp-menu-bundle": "~2.0",
-
-        "fancybox/fancybox": "dev-master",
-        "fontawesome/fontawesome": "dev-master",
-        "kenwheeler/slick": "dev-master"
+        "knplabs/knp-menu-bundle": "~2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
