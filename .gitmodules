@@ -1,0 +1,3 @@
+[submodule "base-docker"]
+	path = base-docker
+	url = git@bitbucket.org:MEdzoner/base-docker.git

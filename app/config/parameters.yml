@@ -1,11 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
     database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: null
+    database_host: mysql
+    database_port: 3306
     database_name: medzoner
     database_user: root
-    database_password: pode7676
+    database_password: toor
     mailer_transport: gmail
     mailer_host: null
     mailer_user: medzux@gmail.com
@@ -16,5 +16,5 @@ parameters:
     monolog_mail: medzux@gmail.com
     node_path: /usr/bin/node
     java_path: /usr/bin/java
-    monolog_redis_dns: 'redis://127.0.0.1'
+    monolog_redis_dns: 'redis://redis'
     elasticsearch_host: elastic.medzoner.com
