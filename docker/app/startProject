@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p docker-origami-${PROJECT_UID}"
+BUILDFLAGS="-f ./docker-compose.yml -p docker-medzoner-${PROJECT_UID}"
 SF_ENV="-e dev"
 PHP_USER_CMD="/usr/local/bin/gosu www-data"
 
