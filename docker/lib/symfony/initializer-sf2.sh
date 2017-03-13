@@ -9,7 +9,7 @@ function symfonyInit() {
         echo "********************************************[${PROJECT}]***********************************************";
 
         touch "${PATH_PROJECT}/app/config/dev_ip.ini"
-        cd "${PATH_PROJECTS}"
+        cd "${PATH_PROJECT}/docker"
         PROJECT_UID=${INDEX}
         source "${PATHBASE}/app/startProject"
         echo -n "ips[] = $(docker-container-ip-gateway "nginx-${INDEX}")" > "${PATH_PROJECT}/app/config/dev_ip.ini"
