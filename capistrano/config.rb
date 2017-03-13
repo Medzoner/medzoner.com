@@ -11,6 +11,19 @@ set :log_level, :debug
 
 set :keep_releases, 3
 
+set :linked_files, %w{docker/.env}
 set :linked_dirs, %w{vendor web/uploads}
 
 
+desc "Start composer install"
+task :composer_install do
+    on '93.113.206.134' do
+      within "/var/www/medzoner/current/docker/" do
+        execute "./run.sh"
+      end
+    end
+end
+
+namespace :deploy do
+  after :finished, 'composer_install'
+end

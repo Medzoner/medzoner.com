@@ -12,7 +12,6 @@ function symfonyInit() {
         cd "${PATH_PROJECT}/docker"
         PROJECT_UID=${INDEX}
         source "${PATHBASE}/app/startProject"
-        echo -n "ips[] = $(docker-container-ip-gateway "nginx-${INDEX}")" > "${PATH_PROJECT}/app/config/dev_ip.ini"
 
         parametersYaml ${PROJECT} ${PATH_PROJECT}
     done
