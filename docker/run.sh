@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p docker-lemp"
+BUILDFLAGS="-f ./docker-compose.yml -p docker-medzoner"
 
 #is ssh agent set ?
 if [ -z "$SSH_AUTH_SOCK" ] ; then

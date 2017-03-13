@@ -11,5 +11,6 @@ set :log_level, :debug
 
 set :keep_releases, 3
 
+set :linked_dirs, %w{vendor web/uploads}
 
 
