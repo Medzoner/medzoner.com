@@ -8,10 +8,5 @@
 /app/cache/
 /app/logs/
 /node_modules/
-/web/images
-/web/css
-/web/js
-/web/assetic
-/web/bundles
 /build
 /docker/.env
