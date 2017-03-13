@@ -5,7 +5,6 @@ function symfonyInit() {
     for PROJECT in ${PROJECTS[*]}
     do
         INDEX=$((INDEX + 1))
-        PATH_PROJECT="${PATH_PROJECTS}/${PROJECT}/current"
         echo "********************************************[${PROJECT}]***********************************************";
 
         touch "${PATH_PROJECT}/app/config/dev_ip.ini"
