@@ -5,7 +5,7 @@ services:
   composer:
     build: "./docker-files/docker-composer"
     container_name: "composer-${PROJECT_UID}"
-    working_dir: "/var/www/medzoner"
+    working_dir: "/var/www/medzoner/current"
     volumes:
       - "/var/www:/var/www"
       # ssh git auth

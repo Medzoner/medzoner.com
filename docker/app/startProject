@@ -7,22 +7,3 @@ PHP_USER_CMD="/usr/local/bin/gosu www-data"
 
 printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run composer ${PHP_USER_CMD} composer install"
 ${DOCKER} ${BUILDFLAGS} run composer ${PHP_USER_CMD} composer install
-
-#cache
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} rm -Rf app/cache/*"
-${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} rm -Rf app/cache/*
-
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} php app/console cache:clear ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} php app/console cache:clear ${SF_ENV}
-
-#database init if not exists
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php /usr/local/bin/gosu www-data  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} php app/console doctrine:database:create --if-not-exists ${SF_ENV}
-
-#database schema
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php /usr/local/bin/gosu www-data  php app/console doctrine:schema:update --force ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} php app/console doctrine:schema:update --force ${SF_ENV}
-
-#database fixtures
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php /usr/local/bin/gosu www-data  php app/console doctrine:fixtures:load ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
