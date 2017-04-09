@@ -10,6 +10,7 @@ CONTAINER_HOME_PATH=/home/www-data
 COMPOSE_PATH=$PATHBASE'/docker-compose.yml'
 DOCKER="docker-compose"
 BUILDFLAGS="-f ${COMPOSE_PATH} -p medzoner.com"
+PHP_USER_CMD="/usr/local/bin/gosu www-data"
 
 PROJECT_NAME=
 APP_PATH=
