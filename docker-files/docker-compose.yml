@@ -27,7 +27,7 @@ services:
     nginx:
         build: "./docker-nginx/symfony-1.11"
         container_name: "nginx-${PROJECT_UID}"
-        working_dir: "/var/www"
+        working_dir: "${PATHBASE}"
         restart: "always"
         ports:
             - "${HTTP_PORT}:80"
@@ -37,7 +37,7 @@ services:
         environment:
           NGINX_HOST: "${NGINX_HOST}"
           NGINX_PATH: "${NGINX_PATH}"
-          MYSQL_USERNAME: "root"
+          MYSQL_USERNAME: "${MYSQL_USER}"
           MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
         networks:
             - "default"
