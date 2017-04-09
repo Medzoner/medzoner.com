@@ -1,12 +1,9 @@
 FROM nginx:1.11
 
-ENV STAGING_ENV prod
-
 COPY nginx.conf /etc/nginx/nginx.conf
 
 #vhost
 COPY ./conf.d/*.conf /etc/nginx/conf.d/
-COPY ./default.${STAGING_ENV}.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /var/www/symfony
 
