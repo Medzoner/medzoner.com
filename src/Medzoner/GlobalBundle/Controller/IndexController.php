@@ -15,10 +15,10 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@MedzonerGlobal/Index/index.html.twig', array(
+        return $this->render('@MedzonerGlobal/Index/index.html.twig', [
                     'blogs' => [],
                     'pagination' => [],
-        ));
+        ]);
     }
 
     /**

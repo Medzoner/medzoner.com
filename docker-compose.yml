@@ -1,41 +1,11 @@
 version: '2'
-
 services:
-
-  redis:
-    extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
-      service: redis
-
-  mysql:
-    extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
-      service: mysql
-  #php
   php:
     extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
+      file: "./docker-files/docker-compose.yml"
       service: php
-    links:
-        - "mysql:mysql"
-        - "redis"
 
   nginx:
     extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
+      file: "./docker-files/docker-compose.yml"
       service: nginx
-    links:
-      - "php"
-
-  #composer
-  composer:
-    extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
-      service: composer
-
-  phpmyadmin:
-    extends:
-      file: "./base-docker/compose-symfony/docker-compose-sf.yml"
-      service: phpmyadmin
-    links:
-      - "mysql:db"

@@ -39,6 +39,13 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
+
+        "squizlabs/php_codesniffer": "2.*",
+        "phpmd/phpmd": "2.1.*",
+        "sebastian/phpcpd": "2.0.*",
+        "pdepend/pdepend": "2.0.*",
+        "phploc/phploc": "2.0.*",
+        "phpunit/phpunit": "4.8.*",
         "symfony/phpunit-bridge": "^3.0",
 
         "behat/behat": "~3.0",
