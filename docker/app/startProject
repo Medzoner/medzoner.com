@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p docker-medzoner-${PROJECT_UID}"
-SF_ENV="-e dev"
-PHP_USER_CMD="/usr/local/bin/gosu www-data"
-
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run composer ${PHP_USER_CMD} composer install"
-${DOCKER} ${BUILDFLAGS} run composer ${PHP_USER_CMD} composer install
