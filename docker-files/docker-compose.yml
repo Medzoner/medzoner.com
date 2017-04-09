@@ -33,7 +33,6 @@ services:
             - "${HTTP_PORT}:80"
         volumes:
             - "${PATH_PROJECTS}:/var/www"
-            - "${PATHBASE}:/var/www/medzoner"
         environment:
           NGINX_HOST: "${NGINX_HOST}"
           NGINX_PATH: "${NGINX_PATH}"
