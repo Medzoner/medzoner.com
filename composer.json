@@ -45,7 +45,7 @@
         "sebastian/phpcpd": "2.0.*",
         "pdepend/pdepend": "2.0.*",
         "phploc/phploc": "2.0.*",
-        "phpunit/phpunit": "4.8.*",
+        "phpunit/phpunit": "5.0.*",
         "symfony/phpunit-bridge": "^3.0",
 
         "behat/behat": "~3.0",

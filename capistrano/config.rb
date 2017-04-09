@@ -21,7 +21,7 @@ task :composer_install do
       within "/var/www" do
         execute "./run.sh"
       end
-      within "/var/www/medzoner/current/docker/" do
+      within "/var/www/medzoner/current/" do
         execute "./run.sh"
       end
     end
