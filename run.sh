@@ -33,3 +33,7 @@ ${DOCKER} ${BUILDFLAGS} pull
 ${DOCKER} ${BUILDFLAGS} build
 
 ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
+
+##vendors
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
+${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install
