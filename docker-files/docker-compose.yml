@@ -5,7 +5,7 @@ services:
     php:
         build: "./docker-php/7.0${STAGING_ENV}"
         container_name: "php-${PROJECT_UID}"
-        working_dir: "/var/www/medzoner"
+        working_dir: "${PATHBASE}"
         restart: "always"
         environment:
           USER_UID: "${USER_UID}"
@@ -33,7 +33,7 @@ services:
             - "${HTTP_PORT}:80"
         volumes:
             - "${PATH_PROJECTS}:/var/www"
-            - "${PATH_PROJECTS}/medzoner/current:/var/www/medzoner"
+            - "${PATHBASE}:/var/www/medzoner"
         environment:
           NGINX_HOST: "${NGINX_HOST}"
           NGINX_PATH: "${NGINX_PATH}"
