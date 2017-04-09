@@ -1,11 +1,13 @@
 version: '2'
 services:
-  php:
+  php-medzoner:
     extends:
       file: "./docker-files/docker-compose.yml"
       service: php
 
-  nginx:
+  nginx-medzoner:
     extends:
       file: "./docker-files/docker-compose.yml"
       service: nginx
+    links:
+        - "php-medzoner"

@@ -44,6 +44,10 @@ services:
 networks:
     default:
         driver: "bridge"
+
+
+networks:
+    default:
         ipam:
             driver: default
             config:

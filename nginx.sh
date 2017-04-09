@@ -10,4 +10,4 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 #docker
-${DOCKER} ${BUILDFLAGS} run nginx bash
+${DOCKER} ${BUILDFLAGS} run nginx-medzoner bash

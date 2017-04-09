@@ -11,4 +11,4 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 #docker
-${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} bash
+${DOCKER} ${BUILDFLAGS} run php-medzoner ${PHP_USER_CMD} bash
