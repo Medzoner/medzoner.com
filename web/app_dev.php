@@ -4,9 +4,22 @@ use Symfony\Component\Debug\Debug;
 
 //umask(0000);
 
-if (isset($_SERVER['HTTP_CLIENT_IP'])
-    || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-    || !(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '172.19.0.1', 'fe80::1', '::1']) || php_sapi_name() === 'cli-server')
+//load allowed ips
+$ips = ['127.0.0.1', 'fe80::1', '::1'];
+$confIps = __DIR__.'/../app/config/dev_ip.ini';
+if (file_exists($confIps)) {
+    $parsed = parse_ini_file($confIps);
+    if (array_key_exists('ips', $parsed)) {
+        //remove null values
+        $closure =  function ($value) {
+            return $value != null;
+        };
+        $ips = array_merge($ips, array_filter((array)$parsed['ips'], $closure));
+    }
+}
+
+if (!in_array(@$_SERVER['HTTP_X_REAL_IP'], $ips)
+    &&  !(in_array(@$_SERVER['REMOTE_ADDR'], $ips) || php_sapi_name() === 'cli-server')
 ) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file: '.$_SERVER['REMOTE_ADDR'].'. Check '.basename(__FILE__).' for more information.');
