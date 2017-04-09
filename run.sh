@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p medzoner.com"
 
 BASE_PROJECT_UID=0
 
@@ -10,6 +8,8 @@ source "./.env"
 CONTAINER_HOME_PATH=/home/www-data
 
 COMPOSE_PATH=$PATHBASE'/docker-compose.yml'
+DOCKER="docker-compose"
+BUILDFLAGS="-f ${COMPOSE_PATH} -p medzoner.com"
 
 PROJECT_NAME=
 APP_PATH=
