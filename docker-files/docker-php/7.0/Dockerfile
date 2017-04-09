@@ -1,5 +1,7 @@
 FROM php:7.0-fpm
 
+ENV STAGING_ENV prod
+
 ENV USER_UID 1000
 ENV USER_GID 1000
 ENV SSH_AUTH_SOCK /ssh-agent
@@ -53,7 +55,7 @@ RUN docker-php-ext-install mcrypt bcmath intl pdo_mysql \
     && chmod +x /usr/local/bin/composer
 
 ##php conf
-COPY ./*.ini /usr/local/etc/php/conf.d/
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/
 
 ###xdebug
 ENV XDEBUG_VERSION 2.4.1

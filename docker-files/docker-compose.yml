@@ -3,7 +3,7 @@ version: '2'
 services:
     #php
     php:
-        build: "./docker-php/7.0${STAGING_ENV}"
+        build: "./docker-php/7.0"
         container_name: "php-${PROJECT_UID}"
         working_dir: "${PATHBASE}"
         restart: "always"
@@ -20,6 +20,8 @@ services:
             # bitbucket auth
             - "${HOME_PATH}/.ssh:/home/www-data/.ssh"
             - "${HOME_PATH}/.composer:/home/www-data/.composer"
+            # php conf by env
+            - "./docker-php/7.0/php.${STAGING_ENV}.ini:/usr/local/etc/php/conf.d/php.ini"
         networks:
             - "default"
 
