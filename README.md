@@ -1,4 +1,4 @@
-[ ![Codeship Status for MEdzoner/medzoner](https://app.codeship.com/projects/f0eee150-36df-0134-3f56-36dc468776c7/status?branch=master)](https://app.codeship.com/projects/165642)
+[ ![Codeship Status for Medzoner/medzoner.com](https://app.codeship.com/projects/05f1d030-03fc-0135-8611-06c378083785/status?branch=master)](https://app.codeship.com/projects/213396)
 
 # Init project instance (use external mysql db)
 
