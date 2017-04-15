@@ -37,4 +37,4 @@ ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
 
 ##vendors
 printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
-${DOCKER} ${BUILDFLAGS} run php-medzoner ${PHP_USER_CMD} composer install
+${DOCKER} ${BUILDFLAGS} run --user www-data php-medzoner composer install
