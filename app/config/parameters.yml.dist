@@ -16,10 +16,6 @@ parameters:
 
 
     branch: prod
-    monolog_mail: medzoner@gmail.com
+    monolog_mail: xxxxxx@gmail.com
 
-    node_path: /usr/local/bin/node
-    java_path: /usr/bin/java
-
-    monolog_redis_dns: redis://pode7676@elastic.medzoner.com
-    elasticsearch_host: elastic.medzoner.com
+    monolog_redis_dns: redis://pass@elastic.com

@@ -21,9 +21,9 @@ services:
             - "${HOME_PATH}/.ssh:/home/www-data/.ssh"
             - "${HOME_PATH}/.composer:/home/www-data/.composer"
             # php conf by env
-            - "./docker-php/7.0/php.${STAGING_ENV}.ini:/usr/local/etc/php/conf.d/php.ini"
-        networks:
-            - "default"
+            - "../etc/php/7.0/php.${STAGING_ENV}.ini:/usr/local/etc/php/conf.d/php.ini"
+            - "../etc/php/7.0/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+            - "../etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
 
     #nginx
     nginx:
@@ -36,7 +36,8 @@ services:
         volumes:
             - "${PATH_PROJECTS}:/var/www"
             # nginx vhost by env
-            - "./docker-nginx/symfony-1.11/default.${STAGING_ENV}.conf:/etc/nginx/conf.d/default.conf"
+            - "../etc/nginx/conf.d/default.${STAGING_ENV}.conf:/etc/nginx/conf.d/default.conf"
+            - "../etc/nginx/nginx.conf:/etc/nginx/nginx.conf"
         networks:
             - "default"
 

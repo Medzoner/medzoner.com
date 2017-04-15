@@ -14,7 +14,4 @@ parameters:
     secret: asdBHwmI1hsjKjanJK2WD@wdnak
     branch: master
     monolog_mail: medzux@gmail.com
-    node_path: /usr/bin/node
-    java_path: /usr/bin/java
     monolog_redis_dns: 'redis://redis'
-    elasticsearch_host: elastic.medzoner.com

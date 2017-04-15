@@ -54,16 +54,9 @@ RUN docker-php-ext-install mcrypt bcmath intl pdo_mysql \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer
 
-##php conf
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/
-
 ###xdebug
 ENV XDEBUG_VERSION 2.4.1
 RUN pecl install channel://pecl.php.net/xdebug-${XDEBUG_VERSION}
-
-
-#fix error log in no root user
-COPY ./php-fpm.d/docker.conf /usr/local/etc/php-fpm.d/docker.conf
 
 # Grab gosu for easy step-down from root
 #https://github.com/tianon/gosu
