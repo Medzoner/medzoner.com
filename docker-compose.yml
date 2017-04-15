@@ -43,6 +43,16 @@ services:
         links:
             - "php-medzoner"
 
+    #capistrano
+    capistrano-medzoner:
+        image: "medzoner/medzoner_capistrano"
+        container_name: "capistrano-${PROJECT_UID}"
+        working_dir: "${PATHBASE}"
+        restart: "always"
+        volumes:
+            - "${PATHBASE}:/var/www/medzoner"
+            - "${HOME_PATH}/.ssh:/root/.ssh"
+
 ##networks (better than links)
 networks:
     default:

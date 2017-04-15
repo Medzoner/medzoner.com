@@ -17,7 +17,7 @@ set :linked_dirs, %w{vendor web/uploads}
 
 desc "Start docker with composer install"
 task :composer_install do
-    on '93.113.206.134' do
+    on 'medzoner@93.113.206.134' do
       within "/var/www/medzoner/current/" do
         execute "./run.sh"
       end

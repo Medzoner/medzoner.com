@@ -50,5 +50,6 @@ printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php ap
 ${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:schema:update --force ${SF_ENV}
 
 #database fixtures
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
+#printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
+#${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
+
