@@ -1,12 +1,11 @@
 <?php
 
-namespace Medzoner\GlobalBundle\Entity;
+namespace Medzoner\GlobalBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
 /**
  * Class ContactRepository
- * @package Medzoner\GlobalBundle\Entity
  */
 class ContactRepository extends EntityRepository
 {

@@ -2,13 +2,14 @@
 
 namespace Medzoner\GlobalBundle\Entity;
 
+use Medzoner\GlobalBundle\Repository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Contact
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Medzoner\GlobalBundle\Entity\ContactRepository")
+ * @ORM\Table(name="Contact")
+ * @ORM\Entity(repositoryClass="Medzoner\GlobalBundle\Repository\ContactRepository")
  */
 class Contact
 {

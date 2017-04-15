@@ -15,6 +15,7 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
+        $this->blogPagination(1);
         return $this->render('@MedzonerGlobal/Index/index.html.twig', [
                     'blogs' => [],
                     'pagination' => [],
@@ -28,16 +29,15 @@ class IndexController extends Controller
      */
     public function blogPagination($page)
     {
-        $maxArticles = $this->container
-                ->getParameter('site_blog.blog.max_articles_per_page');
+        $maxArticles = 10;
         $em = $this->getDoctrine()
                 ->getManager();
-        $articles_count = $em->getRepository('SiteBlogBundle:Blog')
-                ->countPublishedTotal();
+        $articles_count = $em->getRepository('MedzonerGlobalBundle:Contact')
+                ->findAll();
         return array(
             'page' => $page,
             'route' => 'site_blog_page',
-            'pages_count' => ceil($articles_count / $maxArticles),
+            'pages_count' => 1,
             'route_params' => array()
         );
     }

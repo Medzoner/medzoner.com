@@ -18,6 +18,8 @@ APP_PATH=
 NGINX_HOST=localhost
 NGINX_PATH=
 
+SF_ENV=--env=prod
+
 cd ${PATHBASE}
 
 #is ssh agent set ?
@@ -38,3 +40,15 @@ ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
 ##vendors
 printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
 ${DOCKER} ${BUILDFLAGS} run --user www-data php-medzoner composer install
+
+#database init if not exists
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
+${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:database:create --if-not-exists ${SF_ENV}
+
+#database schema
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:schema:update --force ${SF_ENV}"
+${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:schema:update --force ${SF_ENV}
+
+#database fixtures
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
+${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
