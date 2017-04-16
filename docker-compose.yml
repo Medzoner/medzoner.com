@@ -4,7 +4,7 @@ services:
     #php
     php-medzoner:
         image: "medzoner/medzoner_php"
-        container_name: "php-${PROJECT_UID}"
+        container_name: "php-medzoner"
         working_dir: "${PATHBASE}"
         restart: "always"
         environment:
@@ -31,7 +31,7 @@ services:
     #nginx
     nginx-medzoner:
         image: "medzoner/medzoner_nginx"
-        container_name: "nginx-${PROJECT_UID}"
+        container_name: "nginx-medzoner"
         working_dir: "${PATHBASE}"
         restart: "always"
         ports:
@@ -48,19 +48,6 @@ services:
         networks:
           mynet:
             ipv4_address: 172.22.0.3
-
-    #capistrano
-    capistrano-medzoner:
-        image: "medzoner/medzoner_capistrano"
-        container_name: "capistrano-${PROJECT_UID}"
-        working_dir: "${PATHBASE}"
-        restart: "always"
-        volumes:
-            - "${PATHBASE}:/var/www/medzoner"
-            - "${HOME_PATH}/.ssh:/root/.ssh"
-        networks:
-          mynet:
-            ipv4_address: 172.22.0.4
 
 ##networks (better than links)
 networks:

@@ -39,7 +39,7 @@ ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
 
 ##vendors
 printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
-${DOCKER} ${BUILDFLAGS} run --user www-data php-medzoner composer install
+${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner composer install
 
 #database init if not exists
 printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"

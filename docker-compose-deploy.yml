@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+
+    #capistrano
+    capistrano-medzoner:
+        image: "medzoner/medzoner_capistrano"
+        container_name: "capistrano-medzoner"
+        working_dir: "/source"
+        restart: "always"
+        volumes:
+            - "${PATHBASE}:/source"
+            - "${HOME_PATH}/.ssh:/root/.ssh"
+        networks:
+          mynet:
+            ipv4_address: 172.22.0.4
+        command: 'cap -v'
+
+##networks (better than links)
+networks:
+    mynet:
+        driver: "bridge"
+        ipam:
+            driver: default
+            config:
+                - subnet: "172.22.0.0/24"
+                  gateway: "172.22.0.1"
+volumes:
+    db: {}
