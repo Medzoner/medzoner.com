@@ -24,6 +24,9 @@ services:
             - "./etc/php/7.0/php.${STAGING_ENV}.ini:/usr/local/etc/php/conf.d/php.ini"
             - "./etc/php/7.0/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
             - "./etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
+        networks:
+          mynet:
+            ipv4_address: 172.22.0.2
 
     #nginx
     nginx-medzoner:
@@ -42,6 +45,9 @@ services:
             - "default"
         links:
             - "php-medzoner"
+        networks:
+          mynet:
+            ipv4_address: 172.22.0.3
 
     #capistrano
     capistrano-medzoner:
@@ -52,15 +58,18 @@ services:
         volumes:
             - "${PATHBASE}:/var/www/medzoner"
             - "${HOME_PATH}/.ssh:/root/.ssh"
+        networks:
+          mynet:
+            ipv4_address: 172.22.0.4
 
 ##networks (better than links)
 networks:
-    default:
+    mynet:
         driver: "bridge"
         ipam:
             driver: default
             config:
-                - subnet: "${NETWORK_SUBNET}"
-                  gateway: "${NETWORK_GATEWAY}"
+                - subnet: "172.22.0.0/24"
+                  gateway: "172.22.0.1"
 volumes:
     db: {}
