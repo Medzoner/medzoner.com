@@ -9,5 +9,9 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   ssh-add
 fi
 
+${DOCKER} ${BUILDFLAGS} stop capistrano-medzoner
+${DOCKER} ${BUILDFLAGS} rm -f capistrano-medzoner
+${DOCKER} ${BUILDFLAGS} pull
+
 #docker
 ${DOCKER} ${BUILDFLAGS} run capistrano-medzoner cap production deploy

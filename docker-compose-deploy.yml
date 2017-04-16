@@ -7,7 +7,6 @@ services:
         image: "medzoner/medzoner_capistrano"
         container_name: "capistrano-medzoner"
         working_dir: "/source"
-        restart: "always"
         volumes:
             - "${PATHBASE}:/source"
             - "${HOME_PATH}/.ssh:/root/.ssh"
