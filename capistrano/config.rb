@@ -1,9 +1,6 @@
 set :application, 'medzoner'
 set :repo_url,  "git@github.com:Medzoner/medzoner.com.git"
 
-set :ssh_user, 'medzoner'
-server '93.113.206.134', user: fetch(:ssh_user), roles: %w{}
-
 set :scm, :git
 
 set :format, :pretty
