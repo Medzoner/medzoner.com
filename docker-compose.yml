@@ -26,10 +26,10 @@ services:
             - "./etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
         networks:
           mynet:
-            ipv4_address: 172.22.0.2
+            ipv4_address: "172.22.0.2"
         extra_hosts:
          - "mysql.local:172.19.0.1"
-         - "${PHP_IDE_CONFIG}:172.19.0.1"
+         - "${PHP_IDE_CONFIG}:172.22.0.1"
 
     #nginx
     nginx-medzoner:
@@ -50,14 +50,14 @@ services:
             - "php-medzoner"
         networks:
           mynet:
-            ipv4_address: 172.22.0.3
+            ipv4_address: "172.22.0.3"
 
 ##networks (better than links)
 networks:
     mynet:
         driver: "bridge"
         ipam:
-            driver: default
+            driver: "default"
             config:
                 - subnet: "172.22.0.0/24"
                   gateway: "172.22.0.1"
