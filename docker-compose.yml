@@ -10,8 +10,8 @@ services:
         environment:
           USER_UID: "${USER_UID}"
           USER_GID: "${USER_GID}"
-          XDEBUG_CONFIG: "${XDEBUG_CONFIG}"
-          PHP_IDE_CONFIG: "${PHP_IDE_CONFIG}"
+          XDEBUG_CONFIG: "remote_host=${XDEBUG_CONFIG_HOST} remote_port=${XDEBUG_CONFIG_PORT}"
+          PHP_IDE_CONFIG: "serverName=${PHP_IDE_CONFIG}"
         volumes:
             - "${PATH_PROJECTS}:/var/www"
             # ssh git auth
@@ -29,7 +29,7 @@ services:
             ipv4_address: 172.22.0.2
         extra_hosts:
          - "mysql.local:172.19.0.1"
-         - "medzoner.dev:172.22.0.3"
+         - "${PHP_IDE_CONFIG}:172.19.0.1"
 
     #nginx
     nginx-medzoner:
