@@ -28,8 +28,8 @@ services:
           mynet:
             ipv4_address: 172.22.0.2
         extra_hosts:
-         - "mysql:172.19.0.1"
-         - "nginx:172.22.0.3"
+         - "mysql.local:172.19.0.1"
+         - "medzoner.dev:172.22.0.3"
 
     #nginx
     nginx-medzoner:

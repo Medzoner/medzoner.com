@@ -13,7 +13,7 @@ default:
                 - behatch:json
                 - behatch:rest
                 - FeatureContext:
-                    baseUrl : 'http://nginx/app_test.php'
+                    baseUrl : 'http://medzoner.dev/app_test.php'
                 - Behat\MinkExtension\Context\MinkContext
 
     # Authorized extensions
@@ -21,7 +21,7 @@ default:
         Behat\Symfony2Extension: ~
         Sanpi\Behatch\Extension: ~
         Behat\MinkExtension:
-            base_url: 'http://nginx/app_test.php'
+            base_url: 'http://medzoner.dev/app_test.php'
             files_path: '%paths.base%/features'
             sessions:
                 default:

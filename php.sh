@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p medzoner.com"
-PHP_USER_CMD="/usr/local/bin/gosu www-data"
+DOCKER="docker-compose -f ./docker-compose.yml -p medzoner.com"
 
 #is ssh agent set ?
 if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -11,4 +9,4 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 #docker
-${DOCKER} ${BUILDFLAGS} run --user www-data php-medzoner ${PHP_USER_CMD} bash
+${DOCKER} exec --user www-data php-medzoner bash

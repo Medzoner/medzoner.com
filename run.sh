@@ -7,9 +7,7 @@ source "./.env"
 
 CONTAINER_HOME_PATH=/home/www-data
 
-COMPOSE_PATH=$PATHBASE'/docker-compose.yml'
-DOCKER="docker-compose"
-BUILDFLAGS="-f ${COMPOSE_PATH} -p medzoner.com"
+DOCKER="docker-compose -f ./docker-compose.yml -p medzoner.com"
 
 PROJECT_NAME=
 APP_PATH=
@@ -28,27 +26,27 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 #force recreate to
-${DOCKER} ${BUILDFLAGS} rm -f
-${DOCKER} ${BUILDFLAGS} pull
+${DOCKER} rm -f
+${DOCKER} pull
 
 #build and run
-${DOCKER} ${BUILDFLAGS} build
+${DOCKER} build
 
-${DOCKER} ${BUILDFLAGS} up -d --force-recreate
+${DOCKER} up -d --force-recreate
 
 ##vendors
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
-${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner composer install
+printf "[CMD] %s\n" "${DOCKER} run --user www-data php composer install"
+${DOCKER} exec -T --user www-data php-medzoner composer install
 
 #database init if not exists
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T --user www-data php  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner php app/console doctrine:database:create --if-not-exists ${SF_ENV}
+printf "[CMD] %s\n" "${DOCKER} exec -T --user www-data php  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
+${DOCKER} exec -T --user www-data php-medzoner php app/console doctrine:database:create --if-not-exists ${SF_ENV}
 
 #database schema
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T --user www-data php  php app/console doctrine:schema:update --force ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner php app/console doctrine:schema:update --force ${SF_ENV}
+printf "[CMD] %s\n" "${DOCKER} exec -T --user www-data php  php app/console doctrine:schema:update --force ${SF_ENV}"
+${DOCKER} exec -T --user www-data php-medzoner php app/console doctrine:schema:update --force ${SF_ENV}
 
 #database fixtures
-#printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
-#${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
+#printf "[CMD] %s\n" "${DOCKER} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
+#${DOCKER} exec -T --user www-data php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
 
