@@ -10,7 +10,6 @@ CONTAINER_HOME_PATH=/home/www-data
 COMPOSE_PATH=$PATHBASE'/docker-compose.yml'
 DOCKER="docker-compose"
 BUILDFLAGS="-f ${COMPOSE_PATH} -p medzoner.com"
-PHP_USER_CMD="/usr/local/bin/gosu www-data"
 
 PROJECT_NAME=
 APP_PATH=
@@ -27,5 +26,5 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 ##vendors
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer install"
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php --user www-data composer install"
 ${DOCKER} ${BUILDFLAGS} run --user www-data php-medzoner composer install

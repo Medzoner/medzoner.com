@@ -10,7 +10,6 @@ CONTAINER_HOME_PATH=/home/www-data
 COMPOSE_PATH=$PATHBASE'/docker-compose.yml'
 DOCKER="docker-compose"
 BUILDFLAGS="-f ${COMPOSE_PATH} -p medzoner.com"
-PHP_USER_CMD="/usr/local/bin/gosu www-data"
 
 PROJECT_NAME=
 APP_PATH=
@@ -42,14 +41,14 @@ printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} run php ${PHP_USER_CMD} composer in
 ${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner composer install
 
 #database init if not exists
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:database:create --if-not-exists ${SF_ENV}
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T --user www-data php  php app/console doctrine:database:create --if-not-exists ${SF_ENV}"
+${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner php app/console doctrine:database:create --if-not-exists ${SF_ENV}
 
 #database schema
-printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:schema:update --force ${SF_ENV}"
-${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:schema:update --force ${SF_ENV}
+printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T --user www-data php  php app/console doctrine:schema:update --force ${SF_ENV}"
+${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner php app/console doctrine:schema:update --force ${SF_ENV}
 
 #database fixtures
 #printf "[CMD] %s\n" "${DOCKER} ${BUILDFLAGS} exec -T php ${PHP_USER_CMD}  php app/console doctrine:fixtures:load ${SF_ENV}"
-#${DOCKER} ${BUILDFLAGS} exec -T php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
+#${DOCKER} ${BUILDFLAGS} exec -T --user www-data php-medzoner ${PHP_USER_CMD} php app/console doctrine:fixtures:load ${SF_ENV}
 
