@@ -19,3 +19,5 @@ parameters:
     monolog_mail: xxxxxx@gmail.com
 
     monolog_redis_dns: redis://pass@elastic.com
+
+    cdn_server: 'http://cdn.eu.medzoner.com'
