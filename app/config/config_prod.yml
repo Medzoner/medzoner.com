@@ -3,13 +3,9 @@ imports:
     # Framework - monolog
     - { resource: framework/monolog.yml }
 
-framework:
+#framework:
 #    validation:
 #        cache: apc
-    templating:
-        engines: ['twig']
-        assets_base_urls:
-            http: ["%cdn_server%"]
 
 #doctrine:
 #    orm:
