@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOCKER="docker-compose -f ./docker-compose-deploy.yml -p medzoner.com"
+DOCKER="docker-compose -f ./docker-compose.yml -p medzoner.com"
 
 source "./.env"
 
