@@ -12,7 +12,7 @@ services:
             - "${HOME_PATH}/.ssh:/root/.ssh"
         networks:
           mynet:
-            ipv4_address: "172.01.0.4"
+            ipv4_address: "172.61.0.4"
         command: 'cap -v'
 
 ##networks (better than links)
@@ -22,7 +22,7 @@ networks:
         ipam:
             driver: "default"
             config:
-                - subnet: "172.01.0.0/24"
-                  gateway: "172.01.0.1"
+                - subnet: "172.61.0.0/24"
+                  gateway: "172.61.0.1"
 volumes:
     db: {}
