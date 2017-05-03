@@ -20,4 +20,5 @@ parameters:
 
     monolog_redis_dns: redis://pass@elastic.com
 
-    medzoner.cdn.url: 'http://cdn.eu.medzoner.com'
+    medzoner_cdn_host: 'medzoner.com'
+    medzoner_cdn_scheme: 'https'

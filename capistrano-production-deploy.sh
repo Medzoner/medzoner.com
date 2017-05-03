@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose-deploy.yml -p medzoner.com"
+DOCKER="docker-compose -f ./docker-compose-deploy.yml -p medzoner.com"
+
+source "./.env"
 
 #is ssh agent set ?
 if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -9,9 +10,9 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   ssh-add
 fi
 
-${DOCKER} ${BUILDFLAGS} stop capistrano-medzoner
-${DOCKER} ${BUILDFLAGS} rm -f capistrano-medzoner
-${DOCKER} ${BUILDFLAGS} pull
+${DOCKER} stop capistrano-medzoner
+${DOCKER} rm -f capistrano-medzoner
+${DOCKER} pull
 
 #docker
-${DOCKER} ${BUILDFLAGS} run --user www-data capistrano-medzoner cap production deploy
+${DOCKER} run --user www-data capistrano-medzoner cap production deploy
