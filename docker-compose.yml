@@ -1,11 +1,11 @@
-version: '2'
+version: '3'
 
 services:
     #php
     php-medzoner:
         image: "medzoner/medzoner_php:7.0"
         container_name: "php-medzoner"
-        working_dir: "${PATHBASE}"
+        working_dir: "${PATH_PROJECT}"
         restart: "always"
         environment:
           USER_UID: "${USER_UID}"
@@ -13,7 +13,7 @@ services:
           XDEBUG_CONFIG: "remote_host=${XDEBUG_CONFIG_HOST} remote_port=${XDEBUG_CONFIG_PORT}"
           PHP_IDE_CONFIG: "serverName=${PHP_IDE_CONFIG}"
         volumes:
-            - "${PATH_PROJECTS}:/var/www"
+            - "${PATH_PROJECT}:/var/www/medzoner"
             # ssh git auth
             - "$SSH_AUTH_SOCK:/ssh-agent"
             - "~/.ssh/id_rsa:/home/www-data/private_key"
@@ -26,46 +26,54 @@ services:
             - "./etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
         networks:
           medzoner:
-            ipv4_address: "172.61.0.2"
+            aliases:
+              - "php-medzoner"
         extra_hosts:
-         - "mysql.local:172.19.0.1"
-         - "${PHP_IDE_CONFIG}:172.61.0.1"
-         - "redis:172.19.0.1"
          - "medzoner.dev:172.19.0.1"
 
     #nginx
     nginx-medzoner:
         image: "medzoner/medzoner_nginx"
         container_name: "nginx-medzoner"
-        working_dir: "${PATHBASE}"
+        working_dir: "${PATH_PROJECT}"
         restart: "always"
         ports:
             - "${HTTP_PORT}:80"
         volumes:
-            - "${PATH_PROJECTS}:/var/www"
+            - "${PATH_PROJECT}:/var/www/medzoner"
             # nginx vhost by env
             - "./etc/nginx/conf.d/default.${STAGING_ENV}.conf:/etc/nginx/conf.d/default.conf"
             - "./etc/nginx/nginx.conf:/etc/nginx/nginx.conf"
-        links:
-            - "php-medzoner"
         networks:
           medzoner:
-            ipv4_address: "172.61.0.3"
+            aliases:
+              - "nginx-medzoner"
 
-    #capistrano
-    capistrano-medzoner:
-        image: "medzoner/medzoner_capistrano"
-        container_name: "capistrano-medzoner"
-        working_dir: "/source"
+    #mysql
+    mysql-medzoner:
+        image: "mariadb"
+        container_name: "mysql-medzoner"
+        restart: "always"
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
         volumes:
-            - "${PATHBASE}:/source"
-            - "${HOME_PATH}/.ssh:/root/.ssh"
-            # bitbucket auth
-            - "${HOME_PATH}/.ssh:/home/www-data/.ssh"
+            - "${MYSQL_PATH}:/var/lib/mysql"
+        ports:
+            - "3361:3306"
         networks:
           medzoner:
-            ipv4_address: "172.61.0.4"
-        command: 'cap -v'
+            aliases:
+              - "mysql-medzoner"
+
+    #redis
+    redis-medzoner:
+        image: "redis:alpine"
+        container_name: "redis-medzoner"
+        restart: "always"
+        networks:
+          medzoner:
+            aliases:
+              - "redis-medzoner"
 
 networks:
     medzoner:
@@ -74,6 +82,5 @@ networks:
             driver: "default"
             config:
                 - subnet: "172.61.0.0/24"
-                  gateway: "172.61.0.1"
 volumes:
     db: {}

@@ -8,15 +8,9 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-
-use Doctrine\ORM\Tools\ToolsException;
-use Doctrine\DBAL\Schema\SchemaException;
-
-use Leadersleague\EventBundle\DataFixtures\Test\EventSpecificFixtureData;
 
 /**
  * Defines application features from the specific context.
