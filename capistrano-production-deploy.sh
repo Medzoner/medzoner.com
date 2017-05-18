@@ -13,4 +13,4 @@ ${DOCKER} rm -f capistrano-medzoner
 ${DOCKER} pull
 
 #docker
-${DOCKER} ${BUILDFLAGS} run capistrano-medzoner cap production deploy
+${DOCKER} run capistrano-medzoner cap production deploy
