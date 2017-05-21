@@ -5,7 +5,7 @@ services:
     php-medzoner:
         image: "medzoner/medzoner_php:7.0"
         container_name: "php-medzoner"
-        working_dir: "${PATH_PROJECT}"
+        working_dir: "${PATHBASE}"
         restart: "always"
         environment:
           USER_UID: "${USER_UID}"
@@ -35,7 +35,7 @@ services:
     nginx-medzoner:
         image: "medzoner/medzoner_nginx"
         container_name: "nginx-medzoner"
-        working_dir: "${PATH_PROJECT}"
+        working_dir: "${PATHBASE}"
         restart: "always"
         ports:
             - "${HTTP_PORT}:80"
