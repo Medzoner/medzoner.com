@@ -2,3 +2,6 @@
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+
+    globals:
+        medzoner_cdn_url: '%medzoner_cdn_url%'
