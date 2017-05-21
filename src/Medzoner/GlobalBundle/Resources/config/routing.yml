@@ -1,7 +1,7 @@
 # Base
 medzoner.cdn.url:
     path:  /
-    host: '%medzoner_cdn_url%'
+    host: '%medzoner_cdn_host%'
     schemes:  ['%medzoner_cdn_scheme%']
 
 # Home
