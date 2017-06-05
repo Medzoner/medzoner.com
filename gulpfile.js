@@ -5,13 +5,14 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
 var connect = require('gulp-connect');
+var sass = require('gulp-sass');
 
 gulp.task('webserver', function() {
     connect.server({
-            livereload: true,
-            root: 'web',
-            port: 8182
-        });
+        livereload: true,
+        root: 'web',
+        port: 8182
+    });
 });
 
 var paths = {
@@ -22,8 +23,8 @@ var paths = {
         'bower_components/foundation/js/foundation/foundation.alert.js'
     ],
     styles: [
-        'bower_components/foundation/css/foundation.css',
-        'assets/css/**/*'
+        'bower_components/foundation/scss/foundation.scss',
+        'assets/sass/**/*'
     ],
     images: [
         'assets/images/**/*'
@@ -44,19 +45,24 @@ gulp.task('javascripts', function() {
 
 gulp.task('styles', function() {
     gulp.src(paths.styles)
+        .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(concat('app.min.css'))
+        .pipe(minify())
         .pipe(gulp.dest('web/css'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream())
+    ;
 
     return gulp.src(paths.styles)
-        .pipe(concat('app.min.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('app.css'))
         .pipe(gulp.dest('web/css'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream())
+        ;
 });
 
 gulp.task('images', function() {
     return gulp.src(paths.images)
-        //.pipe(imagemin({optimizationLevel: 5}))
+    //.pipe(imagemin({optimizationLevel: 5}))
         .pipe(gulp.dest('web/images'))
         .pipe(browserSync.stream());
 });
