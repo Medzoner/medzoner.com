@@ -6,6 +6,10 @@ var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
+var rev = require('gulp-rev');
+
+var dest = './web';
+var src = './assets';
 
 gulp.task('webserver', function() {
     connect.server({
@@ -33,14 +37,26 @@ var paths = {
     ]
 };
 
+var versioning = {
+    manifestCss: src + '/rev-manifest-css.json',
+    manifestJS: src + '/rev-manifest-js.json',
+};
+
 gulp.task('javascripts', function() {
-    return gulp.src(paths.javascripts)
+    gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
         .pipe(gulp.dest('web/js'))
-        .pipe(uglify())
+    ;
+
+    return gulp.src(paths.javascripts)
         .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(rev())
         .pipe(gulp.dest('web/js'))
-        .pipe(browserSync.stream());
+        .pipe(rev.manifest(versioning.manifestJS, {base : dest}))
+        .pipe(gulp.dest(src))
+        .pipe(browserSync.stream())
+        ;
 });
 
 gulp.task('styles', function() {
@@ -48,7 +64,10 @@ gulp.task('styles', function() {
         .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(concat('app.min.css'))
         .pipe(minify())
+        .pipe(rev())
         .pipe(gulp.dest('web/css'))
+        .pipe(rev.manifest(versioning.manifestCss, {base : dest}))
+        .pipe(gulp.dest(src))
         .pipe(browserSync.stream())
     ;
 
