@@ -22,3 +22,4 @@ parameters:
 
     medzoner_cdn_url: https://medzoner.com
 
+    advert_script: 'http://advert.medzoner.com/client/js/sharadserver.min.js'

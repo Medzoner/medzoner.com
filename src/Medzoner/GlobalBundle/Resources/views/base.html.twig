@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('/css/app.min.css'|asset_css_version) }}" />
     <link rel="icon" href="{{ asset('/favicon.png') }}" sizes="32x32">
-    <script type="text/javascript" src="{{ asset('http://sharadserver.dev/client/js/sharadserver.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset(advert_script) }}"></script>
 
 </head>
 <body>
@@ -21,7 +21,7 @@
 
 {% include '@MedzonerGlobal/footer.html.twig' %}
 
-<script type="text/javascript" src="/js/app.min.js"></script>
+<script type="text/javascript" src="{{ asset('/js/app.min.js'|asset_js_version) }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).foundation({

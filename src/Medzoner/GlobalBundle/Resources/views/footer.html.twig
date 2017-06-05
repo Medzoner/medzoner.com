@@ -2,10 +2,11 @@
     <div class="row">
         <div class="large-12 columns">
             Mehdi Youb - {{ 'now' | date("Y") }} - Développeur Web |
-            <img src="{{ medzoner_cdn_url }}/images/php/elephpant_50_35.png" alt="PHP"/>
-            <img src="{{ medzoner_cdn_url }}/images/symfony/symfony.png" alt="SYMFONY"/>
-            <img src="{{ medzoner_cdn_url }}/images/nodejs/nodejs.png" alt="NODEJS"/>
-            <img src="{{ medzoner_cdn_url }}/images/angular/angular.png" alt="ANGULARJS" />
+            <img src="{{ asset(medzoner_cdn_url ~ '/images/php/elephpant_50_35.png') }}" alt="PHP"/>
+            <img src="{{ asset(medzoner_cdn_url ~ '/images/symfony/symfony.png') }}" alt="SYMFONY"/>
+            <img src="{{ asset(medzoner_cdn_url ~ '/images/nodejs/nodejs.png') }}" alt="NODEJS"/>
+            <img src="{{ asset(medzoner_cdn_url ~ '/images/angular/angular.png') }}" alt="ANGULARJS" />
+            <img src="{{ asset(medzoner_cdn_url ~ '/images/docker/docker.png') }}" alt="DOCKER" />
         </div>
     </div>
 </footer>

@@ -2,7 +2,7 @@ version: '2'
 
 services:
     site:
-        build: ./docker/
+        image: "medzoner/medzoner_node"
         ports:
         - "3000:3000"
         volumes:

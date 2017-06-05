@@ -5,3 +5,4 @@ twig:
 
     globals:
         medzoner_cdn_url: '%medzoner_cdn_url%'
+        advert_script: '%advert_script%'

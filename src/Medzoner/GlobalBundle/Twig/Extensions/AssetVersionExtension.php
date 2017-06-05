@@ -2,6 +2,9 @@
 
 namespace Medzoner\GlobalBundle\Twig\Extensions;
 
+/**
+ * Class AssetVersionExtension
+ */
 class AssetVersionExtension extends \Twig_Extension
 {
     /**
@@ -14,10 +17,22 @@ class AssetVersionExtension extends \Twig_Extension
      */
     private $env;
 
-    public function __construct($appDir, $env)
+    /**
+     * @var null
+     */
+    private $url;
+
+    /**
+     * AssetVersionExtension constructor.
+     * @param $appDir
+     * @param $env
+     * @param null $url
+     */
+    public function __construct($appDir, $env, $url = null)
     {
         $this->appDir = $appDir;
         $this->env = $env;
+        $this->url = rtrim($url, '/');
     }
 
     public function getFilters()
@@ -83,9 +98,12 @@ class AssetVersionExtension extends \Twig_Extension
             throw new \Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
         }
 
-        return 'css/'.$paths[basename($filename)];
+        return $this->url.'/css/'.$paths[basename($filename)];
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'asset_version';
