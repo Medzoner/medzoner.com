@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    site:
+        build: ./docker/
+        ports:
+        - "3000:3000"
+        volumes:
+        - ./:/project
+        user: "1000:1000"

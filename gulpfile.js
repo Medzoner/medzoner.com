@@ -90,7 +90,8 @@ gulp.task('watch', ['webserver'], function () {
     }
 
     browserSync.init({
-        proxy: "localhost:8182"
+        proxy: "localhost:8182",
+        open: false
     });
 });
 
