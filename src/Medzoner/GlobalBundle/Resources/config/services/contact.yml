@@ -1,0 +1,16 @@
+services:
+    medzoner.contact.controller:
+        class: 'Medzoner\GlobalBundle\Controller\ContactController'
+        arguments:
+            - '@request_stack'
+            - '@templating'
+            - '@form.factory'
+            - '@mailer'
+            - '@session'
+            - '@router'
+
+    medzoner.contact.form:
+        class: 'Medzoner\GlobalBundle\Form\RegistrationType'
+        public: 'false'
+        tags:
+            - { name: 'form.type', alias: 'contact' }

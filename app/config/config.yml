@@ -19,4 +19,5 @@ imports:
     - { resource: bundles/knp_menu.yml }
     # Bundles - Liip Imagine
     - { resource: bundles/liip_imagine.yml }
-
+    # Bundles - redis
+    - { resource: bundles/redis.yml }

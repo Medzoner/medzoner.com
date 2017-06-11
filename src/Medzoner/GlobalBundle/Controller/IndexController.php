@@ -2,43 +2,44 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 /**
  * Class IndexController
- * @package Medzoner\GlobalBundle\Controller
  */
-class IndexController extends Controller
+class IndexController
 {
+    /**
+     * @var RequestStack
+     */
+    private $request;
+
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    /**
+     * IndexController constructor.
+     * @param RequestStack $request
+     * @param EngineInterface $templating
+     */
+    public function __construct(
+        RequestStack $request,
+        EngineInterface $templating
+    )
+    {
+        $this->request = $request->getMasterRequest();
+        $this->templating = $templating;
+    }
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
-        $this->blogPagination(1);
-        return $this->render('@MedzonerGlobal/Index/index.html.twig', [
-                    'blogs' => [],
-                    'pagination' => [],
+        return  $this->templating->renderResponse('@MedzonerGlobal/Index/index.html.twig', [
         ]);
-    }
-
-    /**
-     * @param $page
-     *
-     * @return array
-     */
-    public function blogPagination($page)
-    {
-        $maxArticles = 10;
-        $em = $this->getDoctrine()
-                ->getManager();
-        $articles_count = $em->getRepository('MedzonerGlobalBundle:Contact')
-                ->findAll();
-        return array(
-            'page' => $page,
-            'route' => 'site_blog_page',
-            'pages_count' => 1,
-            'route_params' => array()
-        );
     }
 }

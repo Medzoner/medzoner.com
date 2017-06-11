@@ -1,16 +1,16 @@
 # Home
 site:
     path:  /
-    defaults: { _controller: 'MedzonerGlobalBundle:Index:index' }
+    defaults: { _controller: 'medzoner.home.controller:indexAction' }
 
 site_home:
     path:  /home
-    defaults: { _controller: 'MedzonerGlobalBundle:Index:index' }
+    defaults: { _controller: 'medzoner.home.controller:indexAction' }
 
 # Contact
 site_contact:
     path:  /contact
-    defaults: { _controller: 'MedzonerGlobalBundle:Contact:contact' }
+    defaults: { _controller: 'medzoner.contact.controller:contactAction' }
 
 # Portfolio
 site_book:

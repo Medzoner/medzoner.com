@@ -1,0 +1,6 @@
+services:
+  medzoner.home.controller:
+    class: 'Medzoner\GlobalBundle\Controller\IndexController'
+    arguments:
+        - '@request_stack'
+        - '@templating'

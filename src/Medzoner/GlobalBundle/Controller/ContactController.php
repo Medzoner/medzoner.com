@@ -2,36 +2,88 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Medzoner\GlobalBundle\Form\RegistrationType;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Medzoner\GlobalBundle\Entity\Contact;
 
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Router;
+
 /**
  * Class ContactController
- * @package Medzoner\GlobalBundle\Controller
  */
-class ContactController extends Controller
+class ContactController
 {
     /**
+     * @var RequestStack
+     */
+    private $request;
+
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    /**
+     * @var FormFactory
+     */
+    private $formFactory;
+
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+
+    /**
+     * @var Session
+     */
+    private $session;
+    /**
+     * @var Router
+     */
+    private $router;
+
+    /**
+     * IndexController constructor.
+     * @param RequestStack $request
+     * @param EngineInterface $templating
+     * @param FormFactory $formFactory
+     * @param \Swift_Mailer $mailer
+     * @param Session $session
+     * @param Router $router
+     */
+    public function __construct(
+        RequestStack $request,
+        EngineInterface $templating,
+        FormFactory $formFactory,
+        \Swift_Mailer $mailer,
+        Session $session,
+        Router $router
+    )
+    {
+        $this->request = $request->getMasterRequest();
+        $this->templating = $templating;
+        $this->formFactory = $formFactory;
+        $this->mailer = $mailer;
+        $this->session = $session;
+        $this->router = $router;
+    }
+
+    /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function contactAction(Request $request)
     {
-        $Contact = new Contact();
+        $contact = new Contact();
 
-        $form = $this->createFormBuilder($Contact)
-                ->add('name', TextType::class)
-                ->add('email', EmailType::class)
-                ->add('message', TextareaType::class)
-                ->add('Envoyer', SubmitType::class)
-                ->getForm();
+        $form = $this->formFactory->create(RegistrationType::class, $contact, ['method' => 'POST']);
 
         $form->handleRequest($request);
 
@@ -40,21 +92,21 @@ class ContactController extends Controller
                     ->setSubject('Contact site')
                     ->setFrom('medzux@gmail.com')
                     ->setTo('medzux@gmail.com')
-                    ->setBody($this->renderView(
-                        'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', array('enquiry' => $Contact))
+                    ->setBody($this->templating->render(
+                        'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', ['enquiry' => $contact])
                     );
 
-            $this->get('mailer')->send($message);
+            $this->mailer->send($message);
 
-            $this->get('session')->getFlashBag()->set('blogger-notice', 'Votre message a bien été envoyé. Merci!');
+            $this->session->getFlashBag()->set('blogger-notice', 'Votre message a bien été envoyé. Merci!');
 
             // Redirect - This is important to prevent users re-posting
             // the form if they refresh the page
-            return $this->redirect($this->generateUrl('site_contact'));
+            return new RedirectResponse($this->router->generate('site_contact'));
         }
 
-        return $this->render('@MedzonerGlobal/Contact/contact.html.twig', array(
-                    'form' => $form->createView(),)
+        return $this->templating->renderResponse('@MedzonerGlobal/Contact/contact.html.twig', [
+                    'form' => $form->createView(),]
         );
     }
 }

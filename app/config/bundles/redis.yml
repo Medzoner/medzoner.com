@@ -1,0 +1,12 @@
+# Redis
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: cache
+            dsn: '%redis_client_default_dsn%'
+            options:
+                prefix : "medzoner:cache:"
+                profile: 3.2
+                connection_timeout: '%redis_connection_timeout%'
+                read_write_timeout: '%redis_read_write_timeout%'

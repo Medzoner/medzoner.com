@@ -1,34 +1,13 @@
 services:
-  medzoner.jobboard.service:
-    class: 'Medzoner\GlobalBundle\Services\JobBoardService'
-    arguments:
-        - '@medzoner.jobboard.provider'
-
-  medzoner.jobboard.controller:
-    class: 'Medzoner\GlobalBundle\Controller\CvController'
-    arguments:
-        - '@request_stack'
-        - '@templating'
-        - '@medzoner.jobboard.queryhandler'
-
-  medzoner.jobboard.model:
-    class: 'Medzoner\GlobalBundle\Model\JobBoard'
-
-  medzoner.jobboard.queryhandler:
-    class: 'Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler'
-    arguments:
-        - '@medzoner.jobboard.service'
-
-  medzoner.jobboard.content.model:
-    class: 'Medzoner\GlobalBundle\Model\JobBoardContent'
-
-  medzoner.jobboard.provider:
-    class: 'Medzoner\GlobalBundle\Provider\JobBoard\JobBoardProvider'
-
 
   #Service - TWIG Extension - Asset version
   leaders.general.twig.asset_version_extension:
       class: 'Medzoner\GlobalBundle\Twig\Extensions\AssetVersionExtension'
       arguments: ['%kernel.root_dir%', '%kernel.environment%', '%medzoner_cdn_url%']
       tags:
-          - { name: twig.extension }
+          - { name: "twig.extension" }
+
+imports:
+    - { resource: "services/home.yml" }
+    - { resource: "services/jobboard.yml" }
+    - { resource: "services/contact.yml" }

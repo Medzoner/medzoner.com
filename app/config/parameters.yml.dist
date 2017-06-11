@@ -23,3 +23,7 @@ parameters:
     medzoner_cdn_url: https://medzoner.com
 
     advert_script: 'http://advert.medzoner.com/client/js/sharadserver.min.js'
+
+    redis_client_default_dsn: 'redis://redis'
+    redis_connection_timeout: 30
+    redis_read_write_timeout: 30
