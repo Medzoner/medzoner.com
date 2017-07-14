@@ -32,6 +32,12 @@ class AppKernel extends Kernel {
 
             new Snc\RedisBundle\SncRedisBundle(),
 
+            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
+
+            new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+            new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
+            //new SimpleBus\SymfonyBridge\DoctrineOrmBridgeBundle(),
+
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
         );

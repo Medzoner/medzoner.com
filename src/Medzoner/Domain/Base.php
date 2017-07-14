@@ -1,11 +1,11 @@
 <?php
 
-namespace Medzoner\Domain\Query;
+namespace Medzoner\Domain;
 
 /**
- * Class BaseQuery
+ * Class Base
  */
-class BaseQuery
+class Base
 {
     /**
      * @var

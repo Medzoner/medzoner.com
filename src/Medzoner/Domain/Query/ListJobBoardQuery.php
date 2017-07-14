@@ -2,10 +2,12 @@
 
 namespace Medzoner\Domain\Query;
 
+use Medzoner\Domain\Base;
+
 /**
  * Class ListJobBoardQuery
  */
-class ListJobBoardQuery extends BaseQuery
+class ListJobBoardQuery extends Base
 {
     /**
      * ListJobBoardQuery constructor.

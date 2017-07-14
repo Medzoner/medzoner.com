@@ -11,3 +11,4 @@ imports:
     - { resource: "services/home.yml" }
     - { resource: "services/jobboard.yml" }
     - { resource: "services/contact.yml" }
+    - { resource: "services/cache.yml" }

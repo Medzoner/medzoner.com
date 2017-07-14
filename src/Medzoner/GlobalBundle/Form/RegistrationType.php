@@ -37,7 +37,7 @@ class RegistrationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Medzoner\GlobalBundle\Entity\Contact',
+            'data_class' => 'Medzoner\Domain\Command\RegisterContactCommand',
             'csrf_protection' => false,
             'csrf_field_name' => '_token',
         ]);

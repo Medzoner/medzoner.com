@@ -4,13 +4,12 @@ FROM        ubuntu:16.04
 RUN apt-get update -qq && \
   apt-get upgrade -yqq && \
   apt-get -yqq install varnish && \
+  apt-get -yqq install iputils-ping && \
   apt-get -yqq clean
 
 # Make our custom VCLs available on the container
 ADD default.vcl /etc/varnish/default.vcl
 
-ENV VARNISH_BACKEND_PORT 80
-ENV VARNISH_BACKEND_IP 172.17.42.1
 ENV VARNISH_PORT 80
 
 # Expose port 80

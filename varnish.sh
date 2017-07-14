@@ -9,4 +9,4 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 #docker
-${DOCKER} exec varnish-medzoner bash
+${DOCKER} exec varnish-medzoner varnishlog

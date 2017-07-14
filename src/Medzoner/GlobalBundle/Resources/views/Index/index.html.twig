@@ -3,13 +3,5 @@
 {% set page_title = 'Home' %}
 
 {% block content %}
-    <div class="row">
-        <div class="large-12 columns">
-            <div id="advert-1" class="advert">
-                <script type="text/javascript">
-                    sharadserver('c1a1278a-6633-4b8c-a7a6-559933a71311', "advert-1")
-                </script>
-            </div>
-        </div>
-    </div>
+    {{ render_esi(controller('medzoner.home.controller:index')) }}
 {% endblock %}

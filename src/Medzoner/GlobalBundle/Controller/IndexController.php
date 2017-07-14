@@ -2,8 +2,13 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
+use FOS\HttpCache\Handler\TagHandler;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
+
+use FOS\HttpCacheBundle\Http\SymfonyResponseTagger;
+use FOS\HttpCacheBundle\CacheManager;
 
 /**
  * Class IndexController
@@ -21,25 +26,50 @@ class IndexController
     private $templating;
 
     /**
+     * @var SymfonyResponseTagger
+     */
+    private $symfonyResponseTagger;
+
+    /**
+     * @var CacheManager
+     */
+    private $cacheManager;
+
+    /**
      * IndexController constructor.
      * @param RequestStack $request
      * @param EngineInterface $templating
+     * @param TagHandler $symfonyResponseTagger
+     * @param CacheManager $cacheManager
      */
     public function __construct(
         RequestStack $request,
-        EngineInterface $templating
+        EngineInterface $templating,
+        TagHandler $symfonyResponseTagger,
+        CacheManager $cacheManager
     )
     {
         $this->request = $request->getMasterRequest();
         $this->templating = $templating;
+        $this->symfonyResponseTagger = $symfonyResponseTagger;
+        $this->cacheManager = $cacheManager;
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction()
     {
-        return  $this->templating->renderResponse('@MedzonerGlobal/Index/index.html.twig', [
-        ]);
+        return  $this->templating->renderResponse('@MedzonerGlobal/Index/index.html.twig', []);
+    }
+
+    /**
+     * @return Response
+     */
+    public function index()
+    {
+        $this->symfonyResponseTagger->addTags(['homepage']);
+
+        return  $this->templating->renderResponse('@MedzonerGlobal/Index/home.html.twig', []);
     }
 }

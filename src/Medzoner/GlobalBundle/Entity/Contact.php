@@ -2,6 +2,7 @@
 
 namespace Medzoner\GlobalBundle\Entity;
 
+use Medzoner\Domain\Model\ContactModel;
 use Medzoner\GlobalBundle\Repository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Contact")
  * @ORM\Entity(repositoryClass="Medzoner\GlobalBundle\Repository\ContactRepository")
  */
-class Contact
+class Contact extends ContactModel
 {
     /**
      * @var integer

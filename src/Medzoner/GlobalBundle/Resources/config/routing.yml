@@ -35,3 +35,10 @@ site_pages_proxy:
 site_pages_proxy_url:
     path:  /proxy/{url}
     defaults: { _controller: 'MedzonerGlobalBundle:Proxy:index' }
+
+
+
+#=============================== Cache ===============================
+site_cache:
+    path:     "/cache"
+    defaults: { _controller: "medzoner.cache.query.controller:indexAction" }

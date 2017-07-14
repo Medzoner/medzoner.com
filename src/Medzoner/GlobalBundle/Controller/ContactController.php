@@ -2,13 +2,15 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
+use Medzoner\Domain\Command\RegisterContactCommand;
+use Medzoner\Domain\Command\SendContactCommand;
+use Medzoner\Domain\CommandHandler\SendContactCommandHandler;
 use Medzoner\GlobalBundle\Form\RegistrationType;
+use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use Medzoner\GlobalBundle\Entity\Contact;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -36,43 +38,45 @@ class ContactController
     private $formFactory;
 
     /**
-     * @var \Swift_Mailer
-     */
-    private $mailer;
-
-    /**
      * @var Session
      */
     private $session;
+
     /**
      * @var Router
      */
     private $router;
 
     /**
+     * @var MessageBus
+     */
+    private $messageBus;
+
+    /**
      * IndexController constructor.
+     *
      * @param RequestStack $request
      * @param EngineInterface $templating
      * @param FormFactory $formFactory
-     * @param \Swift_Mailer $mailer
      * @param Session $session
      * @param Router $router
+     * @param MessageBus $messageBus
      */
     public function __construct(
         RequestStack $request,
         EngineInterface $templating,
         FormFactory $formFactory,
-        \Swift_Mailer $mailer,
         Session $session,
-        Router $router
+        Router $router,
+        MessageBus $messageBus
     )
     {
         $this->request = $request->getMasterRequest();
         $this->templating = $templating;
         $this->formFactory = $formFactory;
-        $this->mailer = $mailer;
         $this->session = $session;
         $this->router = $router;
+        $this->messageBus = $messageBus;
     }
 
     /**
@@ -81,32 +85,23 @@ class ContactController
      */
     public function contactAction(Request $request)
     {
-        $contact = new Contact();
+        $registerContactCommand = new RegisterContactCommand();
 
-        $form = $this->formFactory->create(RegistrationType::class, $contact, ['method' => 'POST']);
+        $form = $this->formFactory->create(RegistrationType::class, $registerContactCommand, ['method' => 'POST']);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $message = \Swift_Message::newInstance()
-                    ->setSubject('Contact site')
-                    ->setFrom('medzux@gmail.com')
-                    ->setTo('medzux@gmail.com')
-                    ->setBody($this->templating->render(
-                        'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', ['enquiry' => $contact])
-                    );
-
-            $this->mailer->send($message);
+            $this->messageBus->handle($registerContactCommand);
 
             $this->session->getFlashBag()->set('blogger-notice', 'Votre message a bien été envoyé. Merci!');
 
-            // Redirect - This is important to prevent users re-posting
-            // the form if they refresh the page
             return new RedirectResponse($this->router->generate('site_contact'));
         }
 
         return $this->templating->renderResponse('@MedzonerGlobal/Contact/contact.html.twig', [
-                    'form' => $form->createView(),]
-        );
+            'form' => $form->createView(),
+            'message' => $this->session->getFlashBag()->get('blogger-notice')
+        ]);
     }
 }

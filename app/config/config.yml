@@ -21,3 +21,12 @@ imports:
     - { resource: bundles/liip_imagine.yml }
     # Bundles - redis
     - { resource: bundles/redis.yml }
+    # Bundles - fos
+    - { resource: bundles/fos.yml }
+
+
+command_bus:
+    logging: ~
+
+event_bus:
+    logging: ~

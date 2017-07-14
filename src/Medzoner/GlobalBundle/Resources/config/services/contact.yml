@@ -1,16 +1,50 @@
 services:
     medzoner.contact.controller:
         class: 'Medzoner\GlobalBundle\Controller\ContactController'
+        public: 'false'
         arguments:
             - '@request_stack'
             - '@templating'
             - '@form.factory'
-            - '@mailer'
             - '@session'
             - '@router'
+            - '@command_bus'
 
     medzoner.contact.form:
         class: 'Medzoner\GlobalBundle\Form\RegistrationType'
         public: 'false'
         tags:
             - { name: 'form.type', alias: 'contact' }
+
+    medzoner.contact.repository:
+        class: 'Medzoner\GlobalBundle\Repository\ContactRepository'
+        public: 'false'
+        factory: ['@doctrine', 'getRepository']
+        arguments:
+            - 'Medzoner\GlobalBundle\Entity\Contact'
+
+    Handler:
+        class: 'Medzoner\Domain\CommandHandler\SendContactCommandHandler'
+        public: 'false'
+        arguments:
+            - '@templating'
+            - '@mailer'
+        tags:
+            - { name: 'command_handler', handles: 'Medzoner\Domain\Command\SendContactCommand' }
+
+    medzoner.contact.register_contact.commandhandler:
+        class: 'Medzoner\Domain\CommandHandler\RegisterContactCommandHandler'
+        public: 'false'
+        arguments:
+            - '@medzoner.contact.repository'
+            - '@event_bus'
+        tags:
+            - { name: 'command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
+
+    medzoner.contact.registered_contact.eventhandler:
+        class: 'Medzoner\Domain\EventHandler\RegisteredContactEventHandler'
+        public: 'false'
+        arguments:
+            - '@command_bus'
+        tags:
+            - { name: 'event_subscriber', subscribes_to: 'Medzoner\Domain\Event\RegisteredContactEvent' }

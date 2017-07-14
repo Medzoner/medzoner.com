@@ -17,5 +17,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
-    fragments:       ~
     http_method_override: true
+
+    esi:       { enabled: true }
+    fragments: { path: /_fragment }
