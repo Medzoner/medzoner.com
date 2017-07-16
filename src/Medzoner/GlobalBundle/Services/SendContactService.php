@@ -1,14 +1,14 @@
 <?php
 
-namespace Medzoner\Domain\CommandHandler;
+namespace Medzoner\GlobalBundle\Services;
 
-use Medzoner\Domain\Command\SendContactCommand;
+use \Medzoner\Domain\ModelRead\SendContactModelRead;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
- * Class SendContactCommandHandler
+ * Class SendContactService
  */
-class SendContactCommandHandler
+class SendContactService
 {
     /**
      * @var \Swift_Mailer
@@ -36,19 +36,20 @@ class SendContactCommandHandler
     }
 
     /**
-     * @param SendContactCommand $sendContactCommand
+     * @param SendContactModelRead $sendContact
      * @return \Swift_Message
      */
-    public function handle(SendContactCommand $sendContactCommand) {
+    public function send(SendContactModelRead $sendContact) {
         $message = \Swift_Message::newInstance()
             ->setSubject('Contact site')
             ->setFrom('medzux@gmail.com')
             ->setTo('medzux@gmail.com')
-            ->setBody($this->templating->render(
-                'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', ['enquiry' =>
-                    $sendContactCommand
-                ]
-            )
+            ->setBody(
+                $this->templating->render(
+                    'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', ['enquiry' =>
+                        $sendContact
+                    ]
+                )
             );
 
         $this->mailer->send($message);

@@ -6,3 +6,13 @@ cp ./.env.dist ./.env #and edit it
 
 ./run.sh
 
+# Tools
+
+RabbitMq
+http://127.0.0.1:15672
+
+Portainer
+http://127.0.0.1:9999
+
+Phpmyadmin
+http://phpmyadmin.dev

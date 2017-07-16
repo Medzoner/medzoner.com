@@ -8,7 +8,6 @@
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
-
         "php": ">=5.5.9",
         "symfony/symfony": "3.0.*",
         "doctrine/orm": "^2.5",
@@ -22,7 +21,6 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "snc/redis-bundle": "2.x-dev",
         "predis/predis": "^1.0",
-
 
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/migrations": "1.3",
@@ -38,7 +36,16 @@
         "friendsofsymfony/jsrouting-bundle": "dev-master",
 
         "knplabs/knp-menu-bundle": "~2.0",
-        "friendsofsymfony/http-cache-bundle": "1.3.*"
+        "friendsofsymfony/http-cache-bundle": "1.3.*",
+
+        "simple-bus/doctrine-orm-bridge": "^4.0",
+        "simple-bus/symfony-bridge": "^4.1",
+        "simple-bus/rabbitmq-bundle-bridge": "^3.1",
+        "simple-bus/asynchronous-bundle": "^2.3",
+        "simple-bus/jms-serializer-bundle-bridge": "^2.0",
+        "alcaeus/mongo-php-adapter": "^1.1",
+        "doctrine/mongodb-odm": "^1.1",
+        "doctrine/mongodb-odm-bundle": "^3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

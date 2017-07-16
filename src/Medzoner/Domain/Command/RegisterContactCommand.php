@@ -2,12 +2,12 @@
 
 namespace Medzoner\Domain\Command;
 
-use Medzoner\Domain\Base;
+use SimpleBus\Message\Name\NamedMessage;
 
 /**
  * Class RegisterContactCommand
  */
-class RegisterContactCommand extends Base
+class RegisterContactCommand implements NamedMessage
 {
     /**
      * @var
@@ -96,5 +96,13 @@ class RegisterContactCommand extends Base
      */
     public function getDateAdd() {
         return $this->dateAdd;
+    }
+
+    /**
+     * @return string
+     */
+    public static function messageName()
+    {
+        return 'register_contact_command';
     }
 }

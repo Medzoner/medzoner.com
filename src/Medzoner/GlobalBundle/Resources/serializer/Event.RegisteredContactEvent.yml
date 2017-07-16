@@ -1,0 +1,6 @@
+Medzoner\Domain\Event\RegisteredContactEvent:
+    exclusion_policy: 'ALL'
+
+    properties:
+        contact:
+            expose: false

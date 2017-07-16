@@ -1,29 +1,32 @@
 imports:
     # Framework - framework
-    - { resource: framework/framework.yml }
+    - { resource: 'framework/framework.yml' }
     # Framework - twig
-    - { resource: framework/twig.yml }
+    - { resource: 'framework/twig.yml' }
     # Framework - doctrine
-    - { resource: framework/doctrine.yml }
+    - { resource: 'framework/doctrine.yml' }
     # Framework - swiftmailer
-    - { resource: framework/swiftmailer.yml }
+    - { resource: 'framework/swiftmailer.yml' }
     # Framework - monolog
-    - { resource: framework/monolog.yml }
+    - { resource: 'framework/monolog.yml' }
 
     # Parameters
-    - { resource: parameters.yml }
+    - { resource: 'parameters.yml' }
     # Security
-    - { resource: security.yml }
+    - { resource: 'security.yml' }
 
     # Bundles - Knp Menu
-    - { resource: bundles/knp_menu.yml }
+    - { resource: 'bundles/knp_menu.yml' }
     # Bundles - Liip Imagine
-    - { resource: bundles/liip_imagine.yml }
+    - { resource: 'bundles/liip_imagine.yml' }
     # Bundles - redis
-    - { resource: bundles/redis.yml }
+    - { resource: 'bundles/redis.yml' }
     # Bundles - fos
-    - { resource: bundles/fos.yml }
-
+    - { resource: 'bundles/fos.yml' }
+    # Bundles - simplebus
+    - { resource: 'bundles/simplebus.yml' }
+    # BUNDLES - JMS
+    - { resource: 'bundles/jms.yml' }
 
 command_bus:
     logging: ~

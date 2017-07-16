@@ -3,7 +3,7 @@ version: '2'
 services:
     #php
     php-medzoner:
-        image: "medzoner/medzoner_php:7.0"
+        build: "./docker/php"
         container_name: "php-medzoner"
         working_dir: "${PATHBASE}"
         restart: "always"
@@ -74,6 +74,46 @@ services:
           medzoner:
             aliases:
               - "redis-medzoner"
+
+    #mongo
+    mongo-medzoner:
+        image: "mongo"
+        container_name: "mongo-medzoner"
+        restart: "always"
+        networks:
+          medzoner:
+            aliases:
+              - "mongo-medzoner"
+
+    #mongo admin
+    mongo-express-medzoner:
+        image: "mongo-express"
+        container_name: "mongo-express-medzoner"
+        restart: "always"
+        networks:
+          medzoner:
+            aliases:
+              - "mongo-express-medzoner"
+        ports:
+            - "9998:8081"
+        environment:
+          ME_CONFIG_MONGODB_SERVER: "mongo-medzoner"
+
+    #rabbitmq
+    rabbitmq-medzoner:
+        build: "./docker/rabbitmq"
+        container_name: "rabbitmq-medzoner"
+        restart: "always"
+        networks:
+          medzoner:
+            aliases:
+              - "rabbitmq-medzoner"
+        ports:
+            - "15671:15671"
+            - "15672:15672"
+        environment:
+          RABBITMQ_DEFAULT_USER: "rabbitmq"
+          RABBITMQ_DEFAULT_PASS: "rabbitmq"
 
     #varnish
     varnish-medzoner:

@@ -24,12 +24,12 @@ doctrine_migrations:
     name: Application Migrations
 
 # Doctrine Mongodb Configuration
-#doctrine_mongodb:
-#    connections:
-#        default:
-#            server: mongodb://localhost:27017
-#            options: {}
-#    default_database: medzoner
-#    document_managers:
-#        default:
-#            auto_mapping: true
+doctrine_mongodb:
+    connections:
+        default:
+            server: '%mongo_database_dsn%'
+            options: {}
+    default_database: 'medzoner'
+    document_managers:
+        default:
+           auto_mapping: true

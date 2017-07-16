@@ -6,9 +6,9 @@ use Doctrine\ORM\EntityRepository;
 use Medzoner\GlobalBundle\Entity\Contact;
 
 /**
- * Class ContactRepository
+ * Class ContactRepositoryORM
  */
-class ContactRepository extends EntityRepository
+class ContactRepositoryORM extends EntityRepository
 {
     /**
      * @param Contact $contact

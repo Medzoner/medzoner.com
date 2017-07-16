@@ -8,4 +8,6 @@ swiftmailer:
     #port:       "587"
     #encryption: "%mailer_encryption%"
     #port:       "%mailer_port%"
-    spool:      { type: memory }
+    spool:
+        type: 'file'
+        path: '%kernel.root_dir%/spool'

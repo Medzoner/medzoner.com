@@ -23,5 +23,9 @@ class MedzonerGlobalExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if ($container->getParameter('kernel.environment') == 'dev') {
+            $loader->load('./services/contact-dev.yml');
+        }
     }
 }

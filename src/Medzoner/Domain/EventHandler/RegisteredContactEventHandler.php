@@ -2,9 +2,11 @@
 
 namespace Medzoner\Domain\EventHandler;
 
-use Medzoner\Domain\Command\SendContactCommand;
 use Medzoner\Domain\Event\RegisteredContactEvent;
-use SimpleBus\Message\Bus\MessageBus;
+use Medzoner\GlobalBundle\Document\ContactDocument;
+use Medzoner\GlobalBundle\Repository\ContactRepositoryODM;
+use Medzoner\GlobalBundle\Services\SendContactService;
+use \Medzoner\Domain\ModelRead\SendContactModelRead;
 
 /**
  * Class RegisteredContactEventHandler
@@ -12,19 +14,27 @@ use SimpleBus\Message\Bus\MessageBus;
 class RegisteredContactEventHandler
 {
     /**
-     * @var MessageBus
+     * @var SendContactService
      */
-    private $messageBus;
+    private $sendContactService;
+    /**
+     * @var ContactRepositoryODM
+     */
+    private $contactRepositoryODM;
 
     /**
      * RegisteredContactEventHandler constructor.
-     * @param MessageBus $messageBus
+     *
+     * @param SendContactService $sendContactService
+     * @param ContactRepositoryODM $contactRepositoryODM
      */
     public function __construct(
-        MessageBus $messageBus
+        SendContactService $sendContactService,
+        ContactRepositoryODM $contactRepositoryODM
     )
     {
-        $this->messageBus = $messageBus;
+        $this->sendContactService = $sendContactService;
+        $this->contactRepositoryODM = $contactRepositoryODM;
     }
 
     /**
@@ -34,14 +44,23 @@ class RegisteredContactEventHandler
     {
         $contact = $event->getContact();
 
-        $sendContactCommand = new SendContactCommand();
-        $sendContactCommand
+        $contactDocument = new ContactDocument();
+        $contactDocument
+            ->setName($contact->getName())
+            ->setMessage($contact->getMessage())
+            ->setEmail($contact->getEmail())
+            ->setDateAdd(new \DateTime('now'))
+        ;
+        $this->contactRepositoryODM->save($contactDocument);
+
+        $sendContact = new SendContactModelRead();
+        $sendContact
             ->setName($contact->getName())
             ->setMessage($contact->getMessage())
             ->setEmail($contact->getEmail())
             ->setDateAdd(new \DateTime('now'))
         ;
 
-        $this->messageBus->handle($sendContactCommand);
+        $this->sendContactService->send($sendContact);
     }
 }

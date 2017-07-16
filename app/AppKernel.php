@@ -20,6 +20,7 @@ class AppKernel extends Kernel {
 
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
 
             //Knp
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -36,7 +37,11 @@ class AppKernel extends Kernel {
 
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
-            //new SimpleBus\SymfonyBridge\DoctrineOrmBridgeBundle(),
+            new SimpleBus\AsynchronousBundle\SimpleBusAsynchronousBundle(),
+            new SimpleBus\RabbitMQBundleBridge\SimpleBusRabbitMQBundleBridgeBundle(),
+            new SimpleBus\JMSSerializerBundleBridge\SimpleBusJMSSerializerBundleBridgeBundle(),
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             //Medzoner
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),

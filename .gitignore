@@ -12,3 +12,4 @@
 /docker/.env
 /.env
 /tmp/
+/app/spool/

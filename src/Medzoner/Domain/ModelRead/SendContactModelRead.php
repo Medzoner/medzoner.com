@@ -1,13 +1,11 @@
 <?php
 
-namespace Medzoner\Domain\Command;
-
-use Medzoner\Domain\Base;
+namespace Medzoner\Domain\ModelRead;
 
 /**
  * Class SendContactCommand
  */
-class SendContactCommand extends Base
+class SendContactModelRead
 {
     /**
      * @var

@@ -1,4 +1,5 @@
 services:
+# WRITE
     medzoner.contact.controller:
         class: 'Medzoner\GlobalBundle\Controller\ContactController'
         public: 'false'
@@ -16,35 +17,44 @@ services:
         tags:
             - { name: 'form.type', alias: 'contact' }
 
-    medzoner.contact.repository:
-        class: 'Medzoner\GlobalBundle\Repository\ContactRepository'
+    medzoner.contact.odm.repository:
+        class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryODM'
+        public: 'false'
+        arguments:
+            - '@doctrine_mongodb.odm.document_manager'
+
+    medzoner.contact.orm.repository:
+        class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryORM'
         public: 'false'
         factory: ['@doctrine', 'getRepository']
         arguments:
             - 'Medzoner\GlobalBundle\Entity\Contact'
 
-    Handler:
-        class: 'Medzoner\Domain\CommandHandler\SendContactCommandHandler'
-        public: 'false'
-        arguments:
-            - '@templating'
-            - '@mailer'
-        tags:
-            - { name: 'command_handler', handles: 'Medzoner\Domain\Command\SendContactCommand' }
-
     medzoner.contact.register_contact.commandhandler:
         class: 'Medzoner\Domain\CommandHandler\RegisterContactCommandHandler'
         public: 'false'
         arguments:
-            - '@medzoner.contact.repository'
+            - '@medzoner.contact.orm.repository'
             - '@event_bus'
+            - '@jms_serializer'
         tags:
             - { name: 'command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
 
+# READ
     medzoner.contact.registered_contact.eventhandler:
         class: 'Medzoner\Domain\EventHandler\RegisteredContactEventHandler'
         public: 'false'
         arguments:
-            - '@command_bus'
+            - '@medzoner.contact.send_contact.service'
+            - '@medzoner.contact.odm.repository'
         tags:
-            - { name: 'event_subscriber', subscribes_to: 'Medzoner\Domain\Event\RegisteredContactEvent' }
+            - { name: 'event_subscriber', subscribes_to: 'registered_contact_event' }
+            # dev env:
+            #- { name: 'asynchronous_event_subscriber', subscribes_to: 'registered_contact_event' }
+
+    medzoner.contact.send_contact.service:
+        class: 'Medzoner\GlobalBundle\Services\SendContactService'
+        public: 'false'
+        arguments:
+            - '@templating'
+            - '@mailer'

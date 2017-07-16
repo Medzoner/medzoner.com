@@ -1,14 +1,14 @@
 <?php
 
 namespace Medzoner\Domain\CommandHandler;
+
+use JMS\Serializer\Serializer;
 use Medzoner\Domain\Command\RegisterContactCommand;
-use Medzoner\Domain\Command\SendContactCommand;
 use Medzoner\Domain\Event\RegisteredContactEvent;
 use Medzoner\GlobalBundle\Entity\Contact;
-use Medzoner\GlobalBundle\Event\RegisterContactEvent;
-use Medzoner\GlobalBundle\Repository\ContactRepository;
+use Medzoner\GlobalBundle\Repository\ContactRepositoryORM;
 use SimpleBus\Message\Bus\MessageBus;
-use Symfony\Component\Templating\EngineInterface;
+use SimpleBus\Message\Recorder\RecordsMessages;
 
 /**
  * Class RegisterContactCommandHandler
@@ -16,28 +16,31 @@ use Symfony\Component\Templating\EngineInterface;
 class RegisterContactCommandHandler
 {
     /**
-     * @var ContactRepository
+     * @var ContactRepositoryORM
      */
     private $contactRepository;
 
     /**
-     * @var MessageBus
+     * @var RecordsMessages
      */
     private $eventBus;
+    private $serializer;
 
     /**
-     * SendContactCommand constructor.
-     *
-     * @param ContactRepository $contactRepository
+     * RegisterContactCommandHandler constructor.
+     * @param ContactRepositoryORM $contactRepository
      * @param MessageBus $eventBus
+     * @param $serializer
      */
     public function __construct(
-        ContactRepository $contactRepository,
-        MessageBus $eventBus
+        ContactRepositoryORM $contactRepository,
+        MessageBus $eventBus,
+        Serializer $serializer
     )
     {
         $this->contactRepository = $contactRepository;
         $this->eventBus = $eventBus;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -57,6 +60,7 @@ class RegisterContactCommandHandler
 
         $event = new RegisteredContactEvent();
         $event->setContact($contact);
+
         $this->eventBus->handle($event);
 
         return $contact;

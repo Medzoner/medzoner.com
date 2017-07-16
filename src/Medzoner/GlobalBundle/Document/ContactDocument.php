@@ -1,40 +1,64 @@
 <?php
 
-namespace Medzoner\Domain\Model;
-use JMS\Serializer\Annotation\Type;
+namespace Medzoner\GlobalBundle\Document;
+
+use Medzoner\Domain\Model\ContactModel;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
- * Class ContactModel
+ * Contact
+ *
+ * @MongoDB\Document(collection="league", repositoryClass="Medzoner\GlobalBundle\Repository\ContactRepositoryODM")
+ * @MongoDB\Document
  */
-class ContactModel
+class ContactDocument extends ContactModel
 {
     /**
-     * @Type("string")
-     * @var
+     * @var integer
+     *
+     * @MongoDB\Id
+     */
+    private $id;
+
+    /**
+     *
+     * @MongoDB\Field(type="string")
      */
     private $name;
 
     /**
-     * @Type("string")
-     * @var
+     *
+     * @MongoDB\Field(type="string")
      */
     private $email;
 
     /**
-     * @Type("string")
-     * @var
+     *
+     * @MongoDB\Field(type="string")
      */
     private $message;
 
     /**
-     * @Type("DateTime")
-     * @var
+     * @var \DateTime
+     *
+     * @MongoDB\Field(type="date")
      */
     private $dateAdd;
 
     /**
-     * @param $name
-     * @return $this
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ContactDocument
      */
     public function setName($name) {
         $this->name = $name;
@@ -43,15 +67,19 @@ class ContactModel
     }
 
     /**
-     * @return mixed
+     * Get name
+     *
+     * @return string
      */
     public function getName() {
         return $this->name;
     }
 
     /**
-     * @param $email
-     * @return $this
+     * Set email
+     *
+     * @param string $email
+     * @return ContactDocument
      */
     public function setEmail($email) {
         $this->email = $email;
@@ -90,8 +118,10 @@ class ContactModel
     }
 
     /**
-     * @param $dateAdd
-     * @return $this
+     * Set dateAdd
+     *
+     * @param \DateTime $dateAdd
+     * @return ContactDocument
      */
     public function setDateAdd($dateAdd) {
         $this->dateAdd = $dateAdd;

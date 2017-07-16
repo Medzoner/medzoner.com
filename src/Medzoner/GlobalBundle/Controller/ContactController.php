@@ -3,8 +3,6 @@
 namespace Medzoner\GlobalBundle\Controller;
 
 use Medzoner\Domain\Command\RegisterContactCommand;
-use Medzoner\Domain\Command\SendContactCommand;
-use Medzoner\Domain\CommandHandler\SendContactCommandHandler;
 use Medzoner\GlobalBundle\Form\RegistrationType;
 use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Form\FormFactory;
