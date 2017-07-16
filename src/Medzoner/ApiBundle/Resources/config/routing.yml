@@ -1,0 +1,9 @@
+# Home
+api:
+    path:  /
+    defaults: { _controller: 'medzoner.api.home.controller:indexAction' }
+
+# Contact
+api_contact:
+    path:  /contact
+    defaults: { _controller: 'medzoner.api.contact.controller:contactAction' }

@@ -1,6 +1,10 @@
 medzoner_global_index:
     resource: "@MedzonerGlobalBundle/Resources/config/routing.yml"
     prefix:   /
+
+medzoner_api_index:
+    resource: "@MedzonerApiBundle/Resources/config/routing.yml"
+    prefix:   /admin
     
 ################################################################################
 

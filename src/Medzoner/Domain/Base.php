@@ -10,7 +10,7 @@ class Base
     /**
      * @var
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * @param string $name
@@ -24,5 +24,13 @@ class Base
         }
 
         return $this->options[$name];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParams()
+    {
+        return $this->options;
     }
 }

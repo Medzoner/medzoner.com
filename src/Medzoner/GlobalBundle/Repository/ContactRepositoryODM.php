@@ -33,4 +33,13 @@ class ContactRepositoryODM
         $this->documentManager->persist($contact);
         $this->documentManager->flush();
     }
+
+    /**
+     * @param array $getParams
+     * @return array
+     */
+    public function getContacts(array $getParams)
+    {
+        return $this->documentManager->getUnitOfWork()->getDocumentPersister(ContactDocument::class)->loadAll($getParams)->toArray(false);
+    }
 }

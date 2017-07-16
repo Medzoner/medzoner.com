@@ -34,6 +34,7 @@ class AppKernel extends Kernel {
             new Snc\RedisBundle\SncRedisBundle(),
 
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
 
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
@@ -44,6 +45,7 @@ class AppKernel extends Kernel {
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
             //Medzoner
+            new Medzoner\ApiBundle\MedzonerApiBundle(),
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
         );
 

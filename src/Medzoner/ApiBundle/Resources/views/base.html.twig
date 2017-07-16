@@ -1,0 +1,19 @@
+<!doctype html>
+<html class="no-js" lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page_title is defined %}{{ page_title }} | {% endif %}MedZoner.com</title>
+</head>
+<body>
+
+{% include '@MedzonerApi/header.html.twig' %}
+
+<div class="container">
+    {% block body %}{% endblock %}
+    {% block content %}{% endblock %}
+</div>
+
+{% include '@MedzonerApi/footer.html.twig' %}
+</body>
+</html>

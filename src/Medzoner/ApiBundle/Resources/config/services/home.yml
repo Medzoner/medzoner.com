@@ -1,0 +1,8 @@
+services:
+  medzoner.api.home.controller:
+    class: 'Medzoner\ApiBundle\Controller\IndexController'
+    arguments:
+        - '@request_stack'
+        - '@templating'
+        - '@fos_http_cache.handler.tag_handler'
+        - '@fos_http_cache.cache_manager'
