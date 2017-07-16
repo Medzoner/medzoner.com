@@ -9,11 +9,9 @@
 
 {% include '@MedzonerApi/header.html.twig' %}
 
-<div class="container">
-    {% block body %}{% endblock %}
     {% block content %}{% endblock %}
-</div>
 
 {% include '@MedzonerApi/footer.html.twig' %}
+<script type="text/javascript" src="{{ asset('/js/backendjs.js'|asset_js_version) }}"></script>
 </body>
 </html>

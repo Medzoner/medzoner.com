@@ -5,7 +5,9 @@
   "scripts": {
     "init": "npm install && bower install && gulp"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vue": "^2.4.1"
+  },
   "devDependencies": {
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",

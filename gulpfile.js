@@ -20,6 +20,10 @@ gulp.task('webserver', function() {
 });
 
 var paths = {
+    backendjs: [
+        'node_modules/vue/dist/vue.js',
+        'assets/backend/**/*'
+    ],
     javascripts: [
         'bower_components/foundation/js/vendor/modernizr.js',
         'bower_components/foundation/js/vendor/jquery.js',
@@ -50,6 +54,23 @@ gulp.task('javascripts', function() {
 
     return gulp.src(paths.javascripts)
         .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(rev())
+        .pipe(gulp.dest('web/js'))
+        .pipe(rev.manifest(versioning.manifestJS, {base : dest}))
+        .pipe(gulp.dest(src))
+        .pipe(browserSync.stream())
+        ;
+});
+
+gulp.task('backend-js', function() {
+    gulp.src(paths.backendjs)
+        .pipe(concat('backendjs.js'))
+        .pipe(gulp.dest('web/js'))
+    ;
+
+    return gulp.src(paths.javascripts)
+        .pipe(concat('backendjs.min.js'))
         .pipe(uglify())
         .pipe(rev())
         .pipe(gulp.dest('web/js'))
@@ -120,4 +141,4 @@ gulp.task('watch', ['webserver'], function () {
     });
 });
 
-gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts']);
+gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts', 'backend-js']);
