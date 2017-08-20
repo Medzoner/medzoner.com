@@ -141,4 +141,4 @@ gulp.task('watch', ['webserver'], function () {
     });
 });
 
-gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts', 'backend-js']);
+gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts']);
