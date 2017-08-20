@@ -10068,7 +10068,6 @@ var app = new Vue({
             .then(function(response) {
                 return response.json()
                     .then(function(json) {
-                        console.log("JSON", json);
                         vm.contacts = json
                     })
                     .catch(function(error) {

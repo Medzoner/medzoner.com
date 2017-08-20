@@ -1,6 +1,7 @@
 <?php
 
 namespace Medzoner\Domain\Model;
+
 use JMS\Serializer\Annotation\Type;
 
 /**
