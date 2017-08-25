@@ -24,6 +24,9 @@ sub vcl_recv {
         if ((req.url ~ "^/cache")) {
             return(pass);
         }
+        if ((req.url ~ "^/contact")) {
+            return(pass);
+        }
 
         if (req.http.X-Forwarded-Proto == "https" ) {
             set req.http.X-Forwarded-Port = "443";
