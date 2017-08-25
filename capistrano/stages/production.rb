@@ -11,7 +11,7 @@ desc "Start docker with composer install"
 task :composer_install do
     on 'medzoner@medzoner.com' do
       within "/var/www/medzoner/current/" do
-        execute "./run.sh"
+        execute "./run-prod.sh"
       end
     end
 end
