@@ -18,10 +18,10 @@ simple_bus_asynchronous:
 old_sound_rabbit_mq:
   connections:
     default:
-      host:     "rabbitmq-medzoner"
-      port:     5672
-      user:     'rabbitmq'
-      password: 'rabbitmq'
+      host:     '%rabbitmq_host%'
+      port:     '%rabbitmq_port%'
+      user:     '%rabbitmq_user%'
+      password: '%rabbitmq_password%'
       vhost:    '/'
       lazy:     false
       connection_timeout: 3

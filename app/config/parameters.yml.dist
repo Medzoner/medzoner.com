@@ -28,3 +28,8 @@ parameters:
     redis_client_default_dsn: 'redis://redis'
     redis_connection_timeout: 30
     redis_read_write_timeout: 30
+
+    rabbitmq_host:     "rabbitmq-medzoner"
+    rabbitmq_port:     5672
+    rabbitmq_user:     'rabbitmq'
+    rabbitmq_password: 'rabbitmq'
