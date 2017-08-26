@@ -10,3 +10,12 @@ set :keep_releases, 3
 
 set :linked_files, %w{./.env app/config/parameters.yml}
 set :linked_dirs, %w{vendor web/uploads}
+
+namespace :deploy do
+    desc "install crontab"
+    task :install_crontab do
+      run "crontab #{latest_release}/#{crontab_file}"
+    end
+end
+
+after "deploy:cleanup", "deploy:install_crontab"

@@ -6,6 +6,7 @@ set :branch, "master"
 set :rails_env, :production
 
 set :deploy_to,   "/var/www/medzoner"
+set :crontab_file, 'crontab_prod.txt'
 
 desc "Start docker with composer install"
 task :composer_install do
