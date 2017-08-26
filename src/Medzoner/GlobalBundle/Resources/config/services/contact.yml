@@ -48,7 +48,7 @@ services:
             - '@medzoner.contact.send_contact.service'
             - '@medzoner.contact.odm.repository'
         tags:
-            - { name: 'event_subscriber', subscribes_to: 'registered_contact_event' }
+            - { name: 'asynchronous_event_subscriber', subscribes_to: 'registered_contact_event' }
             # dev env:
             #- { name: 'asynchronous_event_subscriber', subscribes_to: 'registered_contact_event' }
 
