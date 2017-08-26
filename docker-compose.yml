@@ -59,7 +59,7 @@ services:
         volumes:
             - "${MYSQL_PATH}:/var/lib/mysql"
         ports:
-            - "3361:3306"
+            - "3360:3306"
         networks:
           medzoner:
             aliases:

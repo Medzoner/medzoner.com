@@ -49,6 +49,22 @@ services:
             aliases:
               - "nginx-medzoner"
 
+    #mysql
+    mysql-medzoner:
+        image: "mariadb"
+        container_name: "mysql-medzoner"
+        restart: "always"
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+        volumes:
+            - "${MYSQL_PATH}:/var/lib/mysql"
+        ports:
+            - "3361:3306"
+        networks:
+          medzoner:
+            aliases:
+              - "mysql-medzoner"
+
 networks:
     medzoner:
         driver: "bridge"
