@@ -25,7 +25,7 @@ services:
             - "./etc/php/7.0/xdebug.prod.ini:/usr/local/etc/php/conf.d/xdebug.ini"
             - "./etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
         networks:
-          lempnet:
+          medzoner:
             aliases:
               - "php-medzoner"
         extra_hosts:
@@ -45,9 +45,16 @@ services:
             - "./etc/nginx/conf.d/default.prod.conf:/etc/nginx/conf.d/default.conf"
             - "./etc/nginx/nginx.conf:/etc/nginx/nginx.conf"
         networks:
-          lempnet:
+          medzoner:
             aliases:
               - "nginx-medzoner"
 
+networks:
+    medzoner:
+        driver: "bridge"
+        ipam:
+            driver: "default"
+            config:
+                - subnet: "172.61.0.0/24"
 volumes:
     db: {}
