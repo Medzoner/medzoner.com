@@ -18,4 +18,4 @@ namespace :deploy do
     end
 end
 
-after "deploy:cleanup", "deploy:install_crontab"
+#after "deploy:cleanup", "deploy:install_crontab"
