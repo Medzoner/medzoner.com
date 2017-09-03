@@ -44,6 +44,7 @@ services:
             # nginx vhost by env
             - "./etc/nginx/conf.d/default.${STAGING_ENV}.conf:/etc/nginx/conf.d/default.conf"
             - "./etc/nginx/nginx.conf:/etc/nginx/nginx.conf"
+            - "./etc/nginx/conf.d/gzip.conf:/etc/nginx/conf.d/gzip.conf"
         networks:
           medzoner:
             aliases:
