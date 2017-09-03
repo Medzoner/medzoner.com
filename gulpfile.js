@@ -7,6 +7,7 @@ var browserSync = require('browser-sync').create();
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var rev = require('gulp-rev');
+var symlink = require('gulp-symlink');
 
 var dest = './web';
 var src = './assets';
@@ -32,12 +33,17 @@ var paths = {
     ],
     styles: [
         'bower_components/foundation/scss/foundation.scss',
-        'assets/sass/**/*'
+        'assets/sass/**/*',
+        'node_modules/font-mfizz/dist/font-mfizz.css'
     ],
     images: [
         'assets/images/**/*'
     ],
     copyfonts: [
+        'node_modules/font-mfizz/dist/font-mfizz.eot',
+        'node_modules/font-mfizz/dist/font-mfizz.svg',
+        'node_modules/font-mfizz/dist/font-mfizz.woff',
+        'node_modules/font-mfizz/dist/font-mfizz.ttf'
     ]
 };
 
@@ -47,6 +53,9 @@ var versioning = {
 };
 
 gulp.task('javascripts', function() {
+    gulp.src(paths.javascripts)
+        .pipe(gulp.dest('assets/vendors/js'))
+    ;
     gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
         .pipe(gulp.dest('web/js'))
@@ -64,6 +73,9 @@ gulp.task('javascripts', function() {
 });
 
 gulp.task('backend-js', function() {
+    gulp.src(paths.backendjs)
+        .pipe(gulp.dest('assets/vendor/js'))
+    ;
     gulp.src(paths.backendjs)
         .pipe(concat('backendjs.js'))
         .pipe(gulp.dest('web/js'))
@@ -116,6 +128,11 @@ gulp.task('copyfonts', function() {
         .pipe(browserSync.stream());
 });
 
+gulp.task('symlink', function () {
+    return gulp.src('./assets')
+        .pipe(symlink('./web/dev', {force: true}))
+    ;
+});
 
 gulp.task('watch', ['webserver'], function () {
 
@@ -141,4 +158,4 @@ gulp.task('watch', ['webserver'], function () {
     });
 });
 
-gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts']);
+gulp.task('default', ['images', 'javascripts', 'styles', 'copyfonts', 'backend-js', 'symlink']);

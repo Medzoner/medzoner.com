@@ -6,6 +6,12 @@
     "init": "npm install && bower install && gulp"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "font-awesome": "^4.7.0",
+    "font-mfizz": "github:fizzed/font-mfizz",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5",
+    "techno-font": "0.0.5",
     "vue": "^2.4.1"
   },
   "devDependencies": {
@@ -22,6 +28,7 @@
     "gulp-rev": "^7.1.2",
     "gulp-sass": "^3.1.0",
     "gulp-server-livereload": "^1.7.3",
+    "gulp-symlink": "^2.1.4",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.1",
@@ -30,6 +37,6 @@
     "webpage": "^0.3.0"
   },
   "engines": {
-    "node": "7"
+    "node": ">=7"
   }
 }

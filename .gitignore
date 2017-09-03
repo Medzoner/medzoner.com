@@ -13,3 +13,5 @@
 /.env
 /tmp/
 /app/spool/
+/log
+/web/dev
