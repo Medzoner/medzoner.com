@@ -75,3 +75,25 @@ section.content2
 textarea {
     height: 100px;
 }
+
+i.tf-96, i.fa {
+    font-size: 10em;
+}
+
+@media screen and (max-width: 299px) {
+    i.tf-96, i.fa {
+        font-size: 2em;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 799px) {
+    i.tf-96, i.fa {
+        font-size: 5em;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    i.tf-96, i.fa {
+        font-size: 10em;
+    }
+}
