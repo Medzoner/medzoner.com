@@ -30,6 +30,13 @@ services:
         arguments:
             - 'Medzoner\GlobalBundle\Entity\Contact'
 
+    medzoner.contact.elastica.repository:
+        class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryElastica'
+        public: 'false'
+        factory: ['@fos_elastica.manager.orm', 'getRepository']
+        arguments:
+            - 'Medzoner\GlobalBundle\Entity\Contact'
+
     medzoner.contact.register_contact.commandhandler:
         class: 'Medzoner\Domain\CommandHandler\RegisterContactCommandHandler'
         public: 'false'

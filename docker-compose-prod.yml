@@ -49,6 +49,21 @@ services:
             aliases:
               - "nginx-medzoner"
 
+    #elasticsearch
+    elasticsearch-medzoner:
+        image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.2"
+        container_name: "elasticsearch-medzoner"
+        restart: "always"
+        ports:
+        - "9200:9200"
+        networks:
+          medzoner:
+            aliases:
+              - "elasticsearch-medzoner"
+        environment:
+          http.host: "0.0.0.0"
+          transport.host: "127.0.0.1"
+
 networks:
     medzoner:
         driver: "bridge"

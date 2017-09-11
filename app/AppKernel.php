@@ -27,14 +27,14 @@ class AppKernel extends Kernel {
 
             //Fos
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
 
             //Liip
             new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Snc\RedisBundle\SncRedisBundle(),
-
-            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
 
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),

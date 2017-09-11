@@ -24,6 +24,7 @@ services:
             - "./etc/php/7.0/php.${STAGING_ENV}.ini:/usr/local/etc/php/conf.d/php.ini"
             - "./etc/php/7.0/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
             - "./etc/php/7.0/php-fpm.d/docker.conf:/usr/local/etc/php-fpm.d/docker.conf"
+            - "./etc/supervisor/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf"
         networks:
           medzoner:
             aliases:
@@ -129,6 +130,21 @@ services:
               - "varnish-medzoner"
         volumes:
           - "./etc/varnish/default.vcl:/etc/varnish/default.vcl:ro"
+
+    #elasticsearch
+    elasticsearch-medzoner:
+        image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.2"
+        container_name: "elasticsearch-medzoner"
+        restart: "always"
+        ports:
+        - "9200:9200"
+        networks:
+          medzoner:
+            aliases:
+              - "elasticsearch-medzoner"
+        environment:
+          http.host: "0.0.0.0"
+          transport.host: "127.0.0.1"
 
 
 networks:

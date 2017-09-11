@@ -7,6 +7,7 @@ services:
             - '@request_stack'
             - '@fos_rest.view_handler'
             - '@medzoner.api.contact.queryhandler'
+            - '@medzoner.contact.elastica.repository'
 
     medzoner.api.contact.queryhandler:
       class: 'Medzoner\Domain\QueryHandler\ListContactQueryHandler'
