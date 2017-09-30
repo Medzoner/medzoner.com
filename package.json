@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
+    "download": "^6.2.5",
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
     "jquery": "^3.2.1",
@@ -25,6 +26,7 @@
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.0",
     "gulp-minify-css": "^1.2.4",
+    "gulp-remote-src": "^0.4.3",
     "gulp-rev": "^7.1.2",
     "gulp-sass": "^3.1.0",
     "gulp-server-livereload": "^1.7.3",

