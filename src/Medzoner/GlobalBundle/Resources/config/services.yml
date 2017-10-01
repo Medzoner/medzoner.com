@@ -7,6 +7,12 @@ services:
       tags:
           - { name: "twig.extension" }
 
+  coinhive_captcha.true:
+      class: 'Medzoner\GlobalBundle\Validator\IsTrueValidator'
+      tags:
+          - { name: 'validator.constraint_validator', alias: 'coinhive_captcha.true' }
+
+
 imports:
     - { resource: "services/home.yml" }
     - { resource: "services/jobboard.yml" }

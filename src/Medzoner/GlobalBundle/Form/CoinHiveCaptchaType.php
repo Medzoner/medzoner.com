@@ -2,7 +2,6 @@
 
 namespace Medzoner\GlobalBundle\Form;
 
-use Medzoner\GlobalBundle\Validator\IsTrue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -12,9 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RegistrationType.
+ * Class CoinHiveCaptchaType.
  */
-class RegistrationType extends AbstractType
+class CoinHiveCaptchaType extends AbstractType
 {
     /**
      * Build the registration form.
@@ -25,16 +24,7 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('message', TextareaType::class)
-            ->add('captcha', CoinHiveCaptchaType::class, [
-                'mapped'      => false,
-                'constraints' => [
-                    new IsTrue()
-                ]
-            ])
-            ->add('Envoyer', SubmitType::class)
+            ->add('captcha', TextType::class)
         ;
     }
 
@@ -44,10 +34,22 @@ class RegistrationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Medzoner\Domain\Command\RegisterContactCommand',
-            'csrf_protection' => false,
-            'csrf_field_name' => '_token',
+            'compound' => true,
         ]);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return TextType::class;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'coinhive_captcha';
     }
 
     /**
@@ -57,6 +59,6 @@ class RegistrationType extends AbstractType
      */
     public function getName()
     {
-        return 'contact';
+        return 'coinhive_captcha';
     }
 }

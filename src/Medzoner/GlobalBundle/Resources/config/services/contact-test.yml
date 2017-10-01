@@ -1,0 +1,9 @@
+services:
+    medzoner.contact.registered_contact.eventhandler:
+        class: 'Medzoner\Domain\EventHandler\RegisteredContactEventHandler'
+        public: 'false'
+        arguments:
+            - '@medzoner.contact.send_contact.service'
+            - '@medzoner.contact.odm.repository'
+        tags:
+            - { name: 'event_subscriber', subscribes_to: 'registered_contact_event' }
