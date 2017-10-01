@@ -2,7 +2,8 @@
 
 namespace Medzoner\GlobalBundle\Form;
 
-use Medzoner\GlobalBundle\Validator\IsTrue;
+use CoinhiveBundle\Form\CoinHiveCaptchaType;
+use CoinhiveBundle\Validator\IsTrue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

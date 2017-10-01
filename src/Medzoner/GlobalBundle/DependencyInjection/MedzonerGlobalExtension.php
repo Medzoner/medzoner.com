@@ -31,28 +31,5 @@ class MedzonerGlobalExtension extends Extension
         if ($container->getParameter('kernel.environment') == 'test') {
             $loader->load('./services/contact-test.yml');
         }
-
-        $this->registerWidget($container);
-    }
-    /**
-     * Registers the form widget.
-     */
-    protected function registerWidget(ContainerBuilder $container)
-    {
-        $templatingEngines = $container->getParameter('templating.engines');
-        if (in_array('php', $templatingEngines)) {
-            $formRessource = 'EWZRecaptchaBundle:Form';
-            $container->setParameter('templating.helper.form.resources', array_merge(
-                $container->getParameter('templating.helper.form.resources'),
-                array($formRessource)
-            ));
-        }
-        if (in_array('twig', $templatingEngines)) {
-            $formRessource = 'MedzonerGlobalBundle:Form:coinhive_captcha_widget.html.twig';
-            $container->setParameter('twig.form.resources', array_merge(
-                $container->getParameter('twig.form.resources'),
-                array($formRessource)
-            ));
-        }
     }
 }

@@ -46,7 +46,8 @@
         "alcaeus/mongo-php-adapter": "^1.1",
         "doctrine/mongodb-odm": "^1.1",
         "doctrine/mongodb-odm-bundle": "^3.3",
-        "friendsofsymfony/rest-bundle": "^2.2"
+        "friendsofsymfony/rest-bundle": "^2.2",
+        "medzoner/coinhive-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -44,6 +44,8 @@ class AppKernel extends Kernel {
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
+            new CoinhiveBundle\CoinhiveBundle(),
+
             //Medzoner
             new Medzoner\ApiBundle\MedzonerApiBundle(),
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
