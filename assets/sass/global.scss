@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+}
+
 body {
     margin: 0;
     background: url('/images/background.jpg') no-repeat fixed;
@@ -8,6 +15,13 @@ header {
     display: block;
     width: 100%;
     color: #ffffff;
+
+    .top-bar-section li {
+        border-left: 1px solid grey;
+        a {
+            font-weight: bold;
+        }
+    }
 
     .name {
         display: block;
@@ -33,13 +47,14 @@ header {
         margin: 0 0 0 0;
         padding: 5px;
         color: #b2b2b2;
-        background: #000000;
+        background: #333;
 
         span {
             display: inline-block;
             width: 50%;
             height: 48px;
             line-height: 40px;
+            font-weight: bold;
         }
         position: relative;
         height: 48px;
