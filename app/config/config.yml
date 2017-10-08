@@ -14,9 +14,6 @@ imports:
     - { resource: 'parameters.yml' }
     # Security
     - { resource: 'security.yml' }
-
-    # Bundles - Knp Menu
-    - { resource: 'bundles/knp_menu.yml' }
     # Bundles - redis
     - { resource: 'bundles/redis.yml' }
     # Bundles - fos

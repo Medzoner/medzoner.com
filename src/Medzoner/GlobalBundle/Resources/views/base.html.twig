@@ -12,14 +12,14 @@
 </head>
 <body>
 
-{% include '@MedzonerGlobal/header.html.twig' %}
 
 <div class="container">
+    {% include '@MedzonerGlobal/header.html.twig' %}
     {% block body %}{% endblock %}
     {% block content %}{% endblock %}
+    {% include '@MedzonerGlobal/footer.html.twig' %}
 </div>
 
-{% include '@MedzonerGlobal/footer.html.twig' %}
 <script src="https://use.fontawesome.com/14bb74bd50.js"></script>
 {% if 'dev' == app.environment %}
     <script type="text/javascript" src="{{ asset('/dev/js/advert.js') }}"></script>

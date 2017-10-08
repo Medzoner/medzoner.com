@@ -1,12 +1,16 @@
-<footer class="zurb-footer-bottom">
-    <div class="row">
-        <div class="large-12 columns">
-            Mehdi Youb - {{ 'now' | date("Y") }} - Développeur Web |
-            <img src="{{ asset(medzoner_cdn_url ~ '/images/php/elephpant_50_35.png') }}" alt="PHP"/>
-            <img src="{{ asset(medzoner_cdn_url ~ '/images/symfony/symfony.png') }}" alt="SYMFONY"/>
-            <img src="{{ asset(medzoner_cdn_url ~ '/images/nodejs/nodejs.png') }}" alt="NODEJS"/>
-            <img src="{{ asset(medzoner_cdn_url ~ '/images/angular/angular.png') }}" alt="ANGULARJS" />
-            <img src="{{ asset(medzoner_cdn_url ~ '/images/docker/docker.png') }}" alt="DOCKER" />
+<section class="large-12 columns section--footer">
+    <footer>
+        <span>Mehdi Youb - {{ 'now' | date("Y") }} - Développeur Web</span>
+        <div class="social-footer">
+            <a href="https://github.com/Medzoner">
+                <i class="tf-github tf-32"></i>
+            </a>
+            <a href="https://hub.docker.com/r/medzoner">
+                <i class="tf-docker tf-32"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mehdi-youb-53905210">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
         </div>
-    </div>
-</footer>
+    </footer>
+</section>
