@@ -1,13 +1,12 @@
     <section class="large-12 columns">
         <header>
-            <div id="logo">
-                <p>WWW.MEDZONER.COM</p>
-            </div>
-        </header>
 
         <nav class="top-bar" data-topbar="">
             <ul class="title-area">
                 <li class="name">
+
+                    <a href="{{ path('site') }}"><img src="{{ asset(medzoner_cdn_url ~ '/images/logo.png') }}" alt="WWW.MEDZONER.COM"/></a>
+
                 </li>
                 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -15,10 +14,7 @@
 
             <section class="top-bar-section">
                 <ul>
-                    <li class="active first">
-                        <a href="{{ path('site') }}">HOME</a>
-                    </li>
-                    <li>
+                    <li class="first">
                         <a href="{{ path('site_cv') }}">CV</a>
                     </li>
                     <li class="last">
@@ -38,4 +34,5 @@
                 </section>
             {% endif %}
         </nav>
+        </header>
     </section>
