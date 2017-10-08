@@ -27,12 +27,12 @@ class AppKernel extends Kernel {
 
             //Fos
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            //new FOS\ElasticaBundle\FOSElasticaBundle(),
             new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
             new FOS\RestBundle\FOSRestBundle(),
 
             //Liip
-            new Liip\ImagineBundle\LiipImagineBundle(),
+            //new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Snc\RedisBundle\SncRedisBundle(),
 

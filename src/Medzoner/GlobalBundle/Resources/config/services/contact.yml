@@ -17,23 +17,11 @@ services:
         tags:
             - { name: 'form.type', alias: 'contact' }
 
-    medzoner.contact.odm.repository:
-        class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryODM'
-        public: 'false'
-        arguments:
-            - '@doctrine_mongodb.odm.document_manager'
 
     medzoner.contact.orm.repository:
         class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryORM'
         public: 'false'
         factory: ['@doctrine', 'getRepository']
-        arguments:
-            - 'Medzoner\GlobalBundle\Entity\Contact'
-
-    medzoner.contact.elastica.repository:
-        class: 'Medzoner\GlobalBundle\Repository\ContactRepositoryElastica'
-        public: 'false'
-        factory: ['@fos_elastica.manager.orm', 'getRepository']
         arguments:
             - 'Medzoner\GlobalBundle\Entity\Contact'
 
@@ -47,17 +35,6 @@ services:
         tags:
             - { name: 'command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
 
-# READ
-    medzoner.contact.registered_contact.eventhandler:
-        class: 'Medzoner\Domain\EventHandler\RegisteredContactEventHandler'
-        public: 'false'
-        arguments:
-            - '@medzoner.contact.send_contact.service'
-            - '@medzoner.contact.odm.repository'
-        tags:
-            - { name: 'asynchronous_event_subscriber', subscribes_to: 'registered_contact_event' }
-            # dev env:
-            #- { name: 'asynchronous_event_subscriber', subscribes_to: 'registered_contact_event' }
 
     medzoner.contact.send_contact.service:
         class: 'Medzoner\GlobalBundle\Services\SendContactService'

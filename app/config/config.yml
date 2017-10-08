@@ -17,12 +17,12 @@ imports:
 
     # Bundles - Knp Menu
     - { resource: 'bundles/knp_menu.yml' }
-    # Bundles - Liip Imagine
-    - { resource: 'bundles/liip_imagine.yml' }
     # Bundles - redis
     - { resource: 'bundles/redis.yml' }
     # Bundles - fos
-    - { resource: 'bundles/fos.yml' }
+    #- { resource: 'bundles/fos_elastica.yml' }
+    - { resource: 'bundles/fos_http_cache.yml' }
+    - { resource: 'bundles/fos_rest.yml' }
     # Bundles - simplebus
     - { resource: 'bundles/simplebus.yml' }
     # BUNDLES - JMS
@@ -33,3 +33,8 @@ command_bus:
 
 event_bus:
     logging: ~
+
+
+coinhive:
+    config:
+        site_key: '%coinhive.site_key%'

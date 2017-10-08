@@ -1,15 +1,1 @@
 services:
-# WRITE
-    medzoner.api.contact.controller:
-        class: 'Medzoner\ApiBundle\Controller\ContactController'
-        public: 'false'
-        arguments:
-            - '@request_stack'
-            - '@fos_rest.view_handler'
-            - '@medzoner.api.contact.queryhandler'
-            - '@medzoner.contact.elastica.repository'
-
-    medzoner.api.contact.queryhandler:
-      class: 'Medzoner\Domain\QueryHandler\ListContactQueryHandler'
-      arguments:
-          - '@medzoner.contact.odm.repository'

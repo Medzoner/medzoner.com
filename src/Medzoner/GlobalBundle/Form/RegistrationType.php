@@ -29,7 +29,7 @@ class RegistrationType extends AbstractType
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class)
-            ->add('captcha', CoinHiveCaptchaType::class, [
+            ->add('coinhive-captcha-token', CoinHiveCaptchaType::class, [
                 'mapped'      => false,
                 'constraints' => [
                     new IsTrue()

@@ -32,10 +32,6 @@ var paths = {
         'bower_components/foundation/js//foundation.min.js',
         'bower_components/foundation/js/foundation/foundation.alert.js'
     ],
-    javascriptsOpt: [
-        'assets/js/coinhive.min.js',
-        'assets/js/mine.js'
-    ],
     styles: [
         'bower_components/foundation/scss/foundation.scss',
         'assets/sass/**/*',
@@ -58,21 +54,12 @@ var versioning = {
 };
 
 gulp.task('javascripts', function() {
-    remoteSrc(['coinhive.min.js'], {
-        base: 'https://coinhive.com/lib/'
-    })
-        .pipe(gulp.dest('./assets/js/'))
-    ;
 
     gulp.src(paths.javascripts)
         .pipe(gulp.dest('assets/vendors/js'))
     ;
     gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('web/js'))
-    ;
-    gulp.src(paths.javascriptsOpt)
-        .pipe(concat('opt.js'))
         .pipe(gulp.dest('web/js'))
     ;
 

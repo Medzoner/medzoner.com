@@ -5,18 +5,7 @@ use Symfony\Component\Debug\Debug;
 //umask(0000);
 
 //load allowed ips
-$ips = ['127.0.0.1', 'fe80::1', '::1'];
-$confIps = __DIR__.'/../app/config/dev_ip.ini';
-if (file_exists($confIps)) {
-    $parsed = parse_ini_file($confIps);
-    if (array_key_exists('ips', $parsed)) {
-        //remove null values
-        $closure =  function ($value) {
-            return $value != null;
-        };
-        $ips = array_merge($ips, array_filter((array)$parsed['ips'], $closure));
-    }
-}
+$ips = ['127.0.0.1', 'fe80::1', '::1', '172.61.0.9', '172.61.0.1'];
 
 if (!in_array(@$_SERVER['HTTP_X_REAL_IP'], $ips)
     &&  !(in_array(@$_SERVER['REMOTE_ADDR'], $ips) || php_sapi_name() === 'cli-server')

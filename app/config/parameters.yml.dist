@@ -36,3 +36,8 @@ parameters:
 
     elastica_host: 'elastic:changeme@172.61.0.1'
     elastica_port: '9200'
+
+    coinhive.site_key: 'NyzJaDRELrFtg4PNvkU4Wbo8hNNN2bVF'
+    cache_key_front:
+          homepage:
+            - homepage

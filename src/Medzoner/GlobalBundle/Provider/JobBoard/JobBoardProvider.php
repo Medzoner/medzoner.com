@@ -58,6 +58,11 @@ class JobBoardProvider
         $this->jobBoard->setContents($this->getJobBoardContents(4));
         $collection->add($this->jobBoard);
 
+        $this->jobBoard = new JobBoard();
+        $this->jobBoard->setTitle('GITHUB');
+        $this->jobBoard->setContents($this->getJobBoardContents(5));
+        $collection->add($this->jobBoard);
+
         return $collection;
     }
 
@@ -94,7 +99,7 @@ class JobBoardProvider
                 ],
                 [
                     'sub_title' => 'Base de données/stockage',
-                    'sub_content' => 'MySQL, Sqlite, MongoDB, Redis',
+                    'sub_content' => 'MySQL, Sqlite, MongoDB, Redis, Elasticsearch',
                 ],
                 [
                     'sub_title' => 'Frameworks',
@@ -114,11 +119,11 @@ class JobBoardProvider
                 ],
                 [
                     'sub_title' => 'Test, intégration continue et déploiement continu',
-                    'sub_content' => 'PhpUnit, Behat, Moka, Jenkins, Capistrano, Codeship',
+                    'sub_content' => 'PhpUnit, Behat, Moka, Jenkins, Capistrano, Codeship, Travis',
                 ],
                 [
                     'sub_title' => 'OS',
-                    'sub_content' => 'GNU/LINUX (Debian/Ubuntu)',
+                    'sub_content' => 'GNU/LINUX (Debian/Ubuntu), Docker',
                 ],
             ],
             [
@@ -128,7 +133,6 @@ class JobBoardProvider
                     'sub_description' => [
                         'Microservices: Api RESTful, HATEOAS',
                         'Méthodes: SCRUM (JIRA), Intégration continue',
-                        'Réalisation de projets: Sites web (Editorial, Notation, Evénementiel), CRM',
                     ],
                 ],
                 [
@@ -180,6 +184,12 @@ class JobBoardProvider
                 [
                     'sub_title' => 'Internet',
                     'sub_content' => 'Local and online',
+                ],
+            ],
+            [
+                [
+                    'sub_title' => 'CoinhiveBundle',
+                    'sub_content' => 'https://github.com/Medzoner/CoinhiveBundle',
                 ],
             ],
         ];
