@@ -6525,13 +6525,25 @@ section.content2 {
   section.content2 .row {
     background: #ffffff; }
 
+section.content3 {
+  float: left;
+  padding: 1%;
+  width: 100%;
+  margin: 0px 0 40px 0;
+  border: 0;
+  color: #000;
+  opacity: 0.9; }
+  section.content3 .row {
+    background: transparent; }
+
 .job-logos.row {
   height: 50px;
   bottom: 0;
   padding: 5px 0 5px 0; }
   .job-logos.row img {
     height: 40px;
-    margin: 0 5px 0 5px; }
+    margin: 30px auto;
+    display: block; }
 
 .s11 {
   border-left: 2px dotted #000;

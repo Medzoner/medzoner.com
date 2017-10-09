@@ -2,7 +2,7 @@
 {% set page_title = "CV" %}
 
 {% block content %}
-    <section class="content2">
+    <section class="content3">
         <div class="row job-logos">
             <div class="large-12 columns">
                 <img src="{{ asset(medzoner_cdn_url ~ '/images/php/elephpant_50_35.png') }}" alt="PHP"/>
@@ -12,44 +12,5 @@
                 <img src="{{ asset(medzoner_cdn_url ~ '/images/docker/docker.png') }}" alt="DOCKER" />
             </div>
         </div>
-    </section>
-
-    <section class="content2">
-        {% for part in jobboard %}
-            {% if part is not empty %}
-                <div class="row">
-                    {% if part.title is not empty %}
-                        <br><br>
-                        <div class="s10 large-12 columns">
-                            <h5>{{ part.title }}</h5>
-                        </div>
-                    {% endif %}
-                    {% for subpart in part.contents %}
-                        {% if subpart is not empty %}
-                            <div class="s10 large-12 columns">
-                                <div class="row">
-                                    <div class="small-3 columns">
-                                        <h6>{{ subpart.title }}</h6>
-                                    </div>
-                                    <div class="s11 small-9 columns">
-                                        <h6>{{ subpart.content }}</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if subpart.description is defined and subpart.description is not empty %}
-                            <div class="s10 large-12 columns">
-                                <ul>
-                                    {% for description in subpart.description %}
-                                        <li>{{ description }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endfor %}
     </section>
 {% endblock %}
