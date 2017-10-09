@@ -51,10 +51,16 @@ header {
 
         span {
             display: inline-block;
-            width: 50%;
+            width: 40%;
             height: 48px;
             line-height: 40px;
             font-weight: bold;
+            margin: 0 0 0 15px;
+        }
+        img {
+            margin: 0 auto;
+            height: 20px;
+            width: 10%;
         }
         position: relative;
         height: 48px;
@@ -68,7 +74,11 @@ header {
                 display: inline-block;
                 margin: 0 5px 0 0;
                 height: auto;
-                i.tf-32, i.fa {
+                i.tf-32 {
+                    color: #ffffff;
+                    font-size: 32px;
+                }
+                i.fa {
                     color: #ffffff;
                     font-size: 28px;
                 }

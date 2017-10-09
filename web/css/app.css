@@ -6610,10 +6610,15 @@ header {
     height: 48px; }
     .section--footer footer span {
       display: inline-block;
-      width: 50%;
+      width: 40%;
       height: 48px;
       line-height: 40px;
-      font-weight: bold; }
+      font-weight: bold;
+      margin: 0 0 0 15px; }
+    .section--footer footer img {
+      margin: 0 auto;
+      height: 20px;
+      width: 10%; }
     .section--footer footer .social-footer {
       position: absolute;
       right: 15px;
@@ -6624,7 +6629,10 @@ header {
         display: inline-block;
         margin: 0 5px 0 0;
         height: auto; }
-        .section--footer footer .social-footer a i.tf-32, .section--footer footer .social-footer a i.fa {
+        .section--footer footer .social-footer a i.tf-32 {
+          color: #ffffff;
+          font-size: 32px; }
+        .section--footer footer .social-footer a i.fa {
           color: #ffffff;
           font-size: 28px; }
 
