@@ -9,7 +9,7 @@ set :log_level, :debug
 set :keep_releases, 3
 
 set :linked_files, %w{./.env app/config/parameters.yml}
-set :linked_dirs, %w{vendor web/uploads}
+set :linked_dirs, %w{web/uploads}
 
 namespace :deploy do
     desc "install crontab"

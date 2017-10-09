@@ -33,6 +33,7 @@ var paths = {
         'bower_components/foundation/js/foundation/foundation.alert.js'
     ],
     styles: [
+        'bower_components/foundation/scss/foundation.scss',
         'assets/sass/**/*',
         'node_modules/font-mfizz/dist/font-mfizz.css'
     ],

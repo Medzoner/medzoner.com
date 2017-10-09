@@ -22,6 +22,7 @@
     <!-- End Google Analytics -->
 </head>
 <body>
+
 <div class="container">
     {% include '@MedzonerGlobal/header.html.twig' %}
     {% block body %}{% endblock %}
@@ -40,19 +41,6 @@
 {{ coinhive_miner() }}
 <script type="text/javascript">
     $(document).ready(function () {
-        $(document).foundation({
-            reveal: {
-                animation_speed: 500
-            },
-            tooltip: {
-                disable_for_touch: true
-            },
-            topbar: {
-                custom_back_text: false,
-                is_hover: true,
-                mobile_show_parent_link: true
-            }
-        });
         {% block document_ready %}{% endblock %}
     });
 </script>
