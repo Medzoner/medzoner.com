@@ -1,3 +1,5 @@
+set :ssh_options, keys: ["config/deploy_id_rsa"] if File.exist?("config/deploy_id_rsa")
+
 set :deploy_config_path, "capistrano/config.rb"
 set :stage_config_path, "capistrano/stages/"
 
