@@ -11,3 +11,4 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - composer install
           - bin/phpunit -c app/phpunit.xml.dist
+          - bin/behat
