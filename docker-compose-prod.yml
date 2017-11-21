@@ -13,7 +13,7 @@ services:
           XDEBUG_CONFIG: "remote_host=${XDEBUG_CONFIG_HOST} remote_port=${XDEBUG_CONFIG_PORT}"
           PHP_IDE_CONFIG: "serverName=${PHP_IDE_CONFIG}"
         volumes:
-            - "${PATH_PROJECT}:/var/www"
+            - "${PATH_PROJECT}:/var/www/medzoner"
             # ssh git auth
             - "$SSH_AUTH_SOCK:/ssh-agent"
             - "~/.ssh/id_rsa:/home/www-data/private_key"
