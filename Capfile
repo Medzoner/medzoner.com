@@ -9,6 +9,7 @@ include SSHKit::DSL
 
 require 'capistrano/setup'
 require 'capistrano/deploy'
+require "capistrano/composer"
 
 Dir.glob('capistrano/tasks/*.cap').each { |r| import r }
 

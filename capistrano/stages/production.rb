@@ -1,5 +1,5 @@
 set :ssh_user, 'medzoner'
-server 'medzoner.com', user: fetch(:ssh_user), roles: %w{}
+server "176.31.251.134", user: 'deploy', roles: %w{web app db}, port: 50505
 
 set :stage, :production
 set :branch, "master"
@@ -17,6 +17,19 @@ task :composer_install do
     end
 end
 
-namespace :deploy do
-  after :finished, 'composer_install'
-end
+#namespace :deploy do
+#  after :finished, 'composer_install'
+#end
+
+
+
+######################################################################
+#### SYMFONY environment (enabled) | env=DEV
+######################################################################
+set :symfony_env,  "dev"
+set :composer_install_flags, '--verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader'
+
+##################################
+#### TASK: Composer
+##################################
+SSHKit.config.command_map[:composer] = "php /var/www/medzoner/shared/composer.phar"
