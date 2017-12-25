@@ -11,5 +11,13 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require "capistrano/composer"
 
+# Include symfony tasks
+gem 'capistrano-symfony', github: 'TheBigBrainsCompany/capistrano-symfony', branch: 'parameters'
+require 'capistrano/symfony-doctrine'
+
+# Load the SCM plugin appropriate to your project:
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
+
 Dir.glob('capistrano/tasks/*.cap').each { |r| import r }
 

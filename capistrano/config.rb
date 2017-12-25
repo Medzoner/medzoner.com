@@ -1,5 +1,9 @@
+lock "3.9.0"
+
 set :application, 'medzoner'
 set :repo_url,  "git@github.com:Medzoner/medzoner.com.git"
+
+set :use_sudo, false
 
 set :scm, :git
 
@@ -11,11 +15,4 @@ set :keep_releases, 3
 set :linked_files, %w{app/config/parameters.yml}
 set :linked_dirs, %w{web/uploads}
 
-namespace :deploy do
-    desc "install crontab"
-    task :install_crontab do
-      run "crontab #{latest_release}/#{crontab_file}"
-    end
-end
-
-#after "deploy:cleanup", "deploy:install_crontab"
+after 'deploy:starting', 'composer:install_executable'
