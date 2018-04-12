@@ -1,8 +1,16 @@
 language: php
-php:
-- 7.1
 
-before_install: echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+php:
+    - 7.1
+
+services:
+    - docker
+
+before_install:
+    - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - docker pull medzoner/medzoner.com
+    - docker run -d medzoner/medzoner.com
+    - docker ps -a
 before_script:
     - composer install -n
     - sudo apt-get update > /dev/null
@@ -11,6 +19,12 @@ before_script:
 script:
     - ./bin/phpunit -c app
     #- ./bin/behat
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
 
 env:
   global:
