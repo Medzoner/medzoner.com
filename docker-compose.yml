@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    medzoner:
+        image: "medzoner/medzoner.com"
+        container_name: "medzoner"
+        restart: "no"
+        working_dir: "/var/www"
+        volumes:
+            - "./vendor:/var/www/vendor"
+        ports:
+            - "9000:9000"
+        networks:
+          default:
+            aliases:
+              - "medzoner"
+
+##networks
+networks:
+  default:
+    driver: "bridge"
+
+volumes:
+    db: {}
