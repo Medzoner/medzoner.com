@@ -8,9 +8,7 @@ services:
 
 before_install:
     - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - docker pull medzoner/medzoner_app
-    - docker run -v '/var/www/medzoner:/var/www' -d medzoner/medzoner_app
-    - docker ps -a
+    #- ./build.sh
 
 before_script:
     - composer install -n
