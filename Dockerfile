@@ -11,12 +11,14 @@ COPY composer.json /var/www/
 COPY composer.lock /var/www/
 COPY vendor /var/www/vendor
 
+RUN chown -R www-data:www-data /var/www
+
 VOLUME /data
 
 WORKDIR /var/www
 
 #RUN composer install
 
-#RUN php app/console server:start -p 9000
+RUN php /var/www/app/console server:start -p 9000
 
 EXPOSE 9000
