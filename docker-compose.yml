@@ -6,14 +6,14 @@ services:
         container_name: "medzoner"
         restart: "no"
         working_dir: "/var/www"
-        volumes:
-            - "./vendor:/var/www/vendor"
         ports:
             - "9000:9000"
         networks:
           default:
             aliases:
               - "medzoner"
+        volumes:
+            - "medzoner:/var/www"
 
 ##networks
 networks:
@@ -22,3 +22,4 @@ networks:
 
 volumes:
     db: {}
+    medzoner: {}

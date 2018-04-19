@@ -1,4 +1,7 @@
-FROM medzoner/medzoner_php
+FROM alpine:latest
+
+ENV SSH_AUTH_SOCK /ssh-agent
+ENV SSH_PRIVATE_KEY /home/www-data/private_key
 
 RUN mkdir -p /var/www
 
@@ -11,14 +14,6 @@ COPY composer.json /var/www/
 COPY composer.lock /var/www/
 COPY vendor /var/www/vendor
 
-RUN chown -R www-data:www-data /var/www
-
-VOLUME /data
-
 WORKDIR /var/www
 
-#RUN composer install
-
-RUN php /var/www/app/console server:start -p 9000
-
-EXPOSE 9000
+VOLUME /var/www

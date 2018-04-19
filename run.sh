@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose.yml -p medzoner.com"
-
-source "./.env"
-
-cd ${PATHBASE}
+BUILDFLAGS="-f ./docker-compose-local.yml -p medzoner.com"
 
 #is ssh agent set ?
 if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -21,4 +17,7 @@ ${DOCKER} ${BUILDFLAGS} pull
 ${DOCKER} ${BUILDFLAGS} build
 
 ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
+
+${DOCKER} run --user www-data php composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader
+
 
