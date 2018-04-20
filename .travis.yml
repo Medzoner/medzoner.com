@@ -21,7 +21,7 @@ script:
 
 deploy:
   provider: script
-  script: bash docker_push
+  script: bash build.sh 0.1
   on:
     branch: master
 
