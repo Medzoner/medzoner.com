@@ -21,7 +21,7 @@ parameters:
 
     monolog_redis_dns: redis://pass@elastic.com
 
-    medzoner_cdn_url: https://medzoner.com
+    medzoner_cdn_url: http://medzoner.com
 
     advert_script: 'http://advert.medzoner.com/client/js/sharadserver.min.js'
 
