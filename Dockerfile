@@ -3,6 +3,9 @@ FROM alpine:latest
 ENV SSH_AUTH_SOCK /ssh-agent
 ENV SSH_PRIVATE_KEY /home/www-data/private_key
 
+RUN usermod -u 1000 www-data
+RUN chown -R www-data:www-data /var/www
+
 RUN mkdir -p /var/www
 
 COPY app /var/www/app
