@@ -6,7 +6,7 @@ services:
         container_name: "medzoner-portainer"
         restart: "no"
         ports:
-            - "9999:9000"
+            - "9998:9000"
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "./var/portainer-data:/data"
