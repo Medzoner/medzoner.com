@@ -13,7 +13,7 @@ before_script:
     - composer install -n
     - sudo apt-get update > /dev/null
     - sudo apt-get install -y --force-yes nginx
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin medzoner@medzoner.com
 
 script:
     - ./bin/phpunit -c app
