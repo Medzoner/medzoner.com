@@ -13,14 +13,13 @@ before_script:
     - composer install -n
     - sudo apt-get update > /dev/null
     - sudo apt-get install -y --force-yes nginx
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin medzoner@medzoner.com
 
 script:
     - ./bin/phpunit -c app
 
 deploy:
   provider: script
-  script: bash build.sh 0.1
+  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin medzoner@medzoner.com && bash build.sh 0.1
   on:
     branch: master
 
