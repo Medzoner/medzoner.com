@@ -17,4 +17,4 @@ RUN chown -R www-data:www-data /var/www
 
 WORKDIR /var/www
 
-CMD ['/bin/sh']
+CMD ["/bin/sh"]
