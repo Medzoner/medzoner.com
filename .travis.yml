@@ -3,6 +3,10 @@ language: php
 php:
     - 7.1
 
+env:
+  - NODE_RELEASE=6.x
+  - NOTE_RELEASE=7.x
+
 services:
     - docker
 
@@ -10,9 +14,13 @@ before_install:
     - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 before_script:
-    - composer install -n
+    - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
     - sudo apt-get update > /dev/null
-    - sudo apt-get install -y --force-yes nginx
+    - sudo apt-get install -y --force-yes nginx nodejs
+
+install:
+    - composer install -n
+    - npm install
 
 script:
     - ./bin/phpunit -c app
