@@ -3,6 +3,8 @@ FROM alpine:latest
 RUN mkdir -p /var/www
 
 COPY app /var/www/app
+COPY assets/rev-manifest-css.json /var/www/assets/rev-manifest-css.json
+COPY assets/rev-manifest-js.json /var/www/assets/rev-manifest-js.json
 COPY web /var/www/web
 COPY src /var/www/src
 COPY bin /var/www/bin
@@ -17,4 +19,4 @@ RUN chown -R www-data:www-data /var/www
 
 WORKDIR /var/www
 
-CMD ["/bin/sh"]
+ENTRYPOINT ["pwd"]
