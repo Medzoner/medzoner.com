@@ -23,6 +23,7 @@ install:
     - npm install && npm install -g bower karma gulp
 
 script:
+    - gulp
     - ./bin/phpunit -c app
 
 deploy:
