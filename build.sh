@@ -8,6 +8,11 @@ function build_and_push_images() {
   docker tag  "medzoner/medzoner.com:${VERSION}" "medzoner/medzoner.com"
   docker push "medzoner/medzoner.com:${VERSION}"
   docker push "medzoner/medzoner.com"
+
+  docker build -t "medzoner/cdn.medzoner.com:${VERSION}" -f ./Dockerfile .
+  docker tag  "medzoner/cdn.medzoner.com:${VERSION}" "medzoner/cdn.medzoner.com"
+  docker push "medzoner/cdn.medzoner.com:${VERSION}"
+  docker push "medzoner/cdn.medzoner.com"
 }
 
 # parameter: "platform-architecture"
