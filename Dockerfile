@@ -21,9 +21,6 @@ COPY app/config/parameters.yml.dist /config/parameters.yml
 RUN addgroup -g 1000 www-data && \
     adduser -D -u 1000 -G www-data www-data
 
-RUN chown -R www-data:www-data /data
-RUN chown -R www-data:www-data /config
-
 WORKDIR /var/www
 
 #entry point
