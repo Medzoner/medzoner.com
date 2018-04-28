@@ -1,12 +1,14 @@
-FROM node:9
+FROM nginx:1.11
 
 RUN mkdir -p /var/www
 
-COPY assets/rev-manifest-css.json /var/www/revision/rev-manifest-css.json
-COPY assets/rev-manifest-js.json /var/www/revision/rev-manifest-js.json
-COPY web /var/www/web
+COPY assets/rev-manifest-css.json /usr/share/nginx/html/revision/rev-manifest-css.json
+COPY assets/rev-manifest-js.json /usr/share/nginx/html/revision/rev-manifest-js.json
+COPY web /usr/share/nginx/html
 
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data /usr/share/nginx/html
 
-WORKDIR /var/www
+WORKDIR /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
 

@@ -21,7 +21,6 @@ before_script:
 install:
     - composer install -n
     - npm install
-    - npm run init
 
 script:
     - ./bin/phpunit -c app
