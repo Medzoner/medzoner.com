@@ -1,7 +1,9 @@
 #!/bin/sh
 
-rm -rf /var/www/app/cache/*
-rm -rf /var/www/app/logs/*
+rm -rf /var/www/*
+cp -rf /data/. /var/www/.
+
+chown -R www-data:www-data /var/www
 
 if [ -f /var/www/app/config/parameters.yml ]; then
     rm -f /var/www/app/config/parameters.yml
