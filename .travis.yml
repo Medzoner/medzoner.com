@@ -19,7 +19,7 @@ before_script:
     - sudo apt-get install -y --force-yes nginx nodejs
 
 install:
-    - composer install -n
+    - composer install -n --no-dev --optimize-autoloader --no-progress
     - npm install && npm install -g bower karma gulp
 
 script:
