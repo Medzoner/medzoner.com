@@ -12,7 +12,7 @@ if [ ! -f /var/www/app/config/parameters.yml ]; then
 fi
 
 chown -R www-data:www-data /var/www
-rm -f /var/www/app/cache/*
-rm -f /var/www/app/logs/*
+rm -rf /var/www/app/cache/*
+rm -rf /var/www/app/logs/*
 
 exec "$@"
