@@ -23,15 +23,12 @@ install:
     - npm install && npm install -g bower karma gulp
 
 script:
+    - gulp
     - ./bin/phpunit -c app
 
 deploy:
   provider: script
-  scripts:
-    - gulp
-    - composer install -n --no-dev --optimize-autoloader --no-progress
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - bash build.sh 0.2
+  script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2
   on:
     branch: master
 
