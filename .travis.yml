@@ -20,7 +20,7 @@ before_script:
 
 install:
     - composer install -n
-    - npm install && git reset --hard
+    - npm install && npm install -g bower karma gulp
 
 script:
     - ./bin/phpunit -c app
@@ -28,7 +28,8 @@ script:
 deploy:
   provider: script
   scripts:
-    - ./node_modules/bin/gulp
+    - git reset --hard
+    - gulp
     - composer install -n --no-dev --optimize-autoloader --no-progress
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - bash build.sh 0.2
