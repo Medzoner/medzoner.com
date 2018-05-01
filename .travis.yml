@@ -2,3 +2,36 @@ language: php
 
 php:
     - 7.1
+
+env:
+  - NODE_RELEASE=6.x
+  - NODE_RELEASE=7.x
+
+services:
+    - docker
+
+before_install:
+    - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+before_script:
+    - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
+    - sudo apt-get update > /dev/null
+    - sudo apt-get install -y --force-yes nginx nodejs curl
+
+install:
+    - composer install -n
+
+script:
+    - ./bin/phpunit -c app
+
+deploy:
+  provider: script
+  script:
+    - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 0.2
+
+  on:
+    branch: master
+
+env:
+  global:
+    secure: kkYrOtLfCMc6je5D+P94EswYUCC++VJKEttcjhERUqG2cW1iInkXd3DVzO0ZLo7CV7u9vW2BA8AssfxWstBYFaO2CHQZXQJRAs2OeK3MtiofAhVbX+KrqjtVG55JBxk/f57CnnPFeniwm2LrcLRGyV746jNS4mfT6+4PDejlltf9uIIIhfQeF4gzZK6xmI3ZqhnIe21QtzYyLYIoGHzZ1PU2j1CVCrg1zpvVWfQNi9bCOGRZzzq0kmdP7xD3ua0Nb0wfJj7GKjw9cLxySqbE+tnRCjaR0kPAzCeNc2WIVfgpFrWg9vSuC3bs0hKpKI0wAdrYC+bQWuHsA3HRnisxQcsbWx29USacpW0EUEgMpjRJSh8LFL7syFni9KXpgnEuTlVGD5hQvmFdx0EK/L6frbMFDHXTxyHKb8f546+J5g6yW+xT9/FEMcbWSCFCZcXaN/YXsNKqRdDKEWq18jZqgWkYMY2s87PPfljr9y3+l8JiputLpSkSFJQUWtXlEIQCPYokf5nuq+BG0CGigerN+jdGwkt8TZxQUfkeueHl+C5d6Jq3aTq74NAS/nqoic94tAGfJQo5IL/VFeQH53hOisMTK7xFQzWvkMi72WmzA+rNo8YHhWiLCPS+26j+1O83BO7KUAwBUI1n7pGrB5/k3jJnPLL9YRiYz5S7nsMn1QM=
