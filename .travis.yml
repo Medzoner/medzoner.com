@@ -31,12 +31,12 @@ deploy:
   on:
     branch: master
 
-#deploy_app:
-#  stage: deploy
-#  image: tagip/rancher-cli
-#  script:
-#    - rancher --debug up -d --stack "medzoner"
-#    - rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
+deploy_app:
+  stage: deploy
+  image: tagip/rancher-cli
+  script:
+    - rancher --debug up -d --stack "medzoner"
+    - rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
 
 env:
   global:
