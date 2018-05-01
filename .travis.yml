@@ -26,8 +26,8 @@ script:
 
 deploy:
   provider: script
-  script: npm install && npm install -g bower karma gulp && gulp && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2
-    #- composer install -n --no-dev --optimize-autoloader --no-progress
+  script: npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2 && git reset --hard
+
   on:
     branch: master
 
