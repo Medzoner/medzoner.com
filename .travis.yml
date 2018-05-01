@@ -4,6 +4,7 @@ php:
     - 7.1
 
 env:
+  - NODE_RELEASE=6.x
   - NODE_RELEASE=7.x
 
 services:
@@ -19,7 +20,7 @@ before_script:
 
 install:
     - composer install -n
-    - npm install -g bower karma gulp
+    - npm install && npm install -g bower karma gulp
 
 script:
     - ./bin/phpunit -c app
@@ -33,7 +34,7 @@ deploy:
     - bash build.sh 0.2
   on:
     branch: master
-  skip_cleanup: true
+
 
 env:
   global:
