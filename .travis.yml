@@ -20,7 +20,7 @@ before_script:
 
 install:
     - composer install -n
-    - npm install
+    - npm install && git reset --hard
 
 script:
     - ./bin/phpunit -c app
