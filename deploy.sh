@@ -2,6 +2,8 @@
 
 function deploy() {
   echo "deploy:"
+  /usr/bin/rancher --debug up -d --stack "medzoner"
+  /usr/bin/rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
 }
 
 if [[ $# -ne 1 ]] ; then
