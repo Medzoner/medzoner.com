@@ -19,7 +19,7 @@ before_script:
 
 install:
     - composer install -n
-    - npm install && npm install -g bower karma gulp
+    - npm install -g bower karma gulp
 
 script:
     - ./bin/phpunit -c app
