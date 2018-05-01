@@ -33,6 +33,7 @@ deploy:
     - bash build.sh 0.2
   on:
     branch: master
+  skip_cleanup: true
 
 env:
   global:
