@@ -69,7 +69,7 @@ class AssetVersionExtension extends \Twig_Extension
             throw new \Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
         }
 
-        return 'js/'.$paths[basename($filename)];
+        return $this->url.'js/'.$paths[basename($filename)];
     }
 
     /**
