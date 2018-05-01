@@ -20,18 +20,23 @@ before_script:
 
 install:
     - composer install -n
-    - npm install && npm install -g bower karma gulp && git reset --hard
 
 script:
     - ./bin/phpunit -c app
 
 deploy:
   provider: script
-  script: gulp && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2
+  script: npm install && npm install -g bower karma gulp && gulp && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2
     #- composer install -n --no-dev --optimize-autoloader --no-progress
   on:
     branch: master
 
+#deploy_app:
+#  stage: deploy
+#  image: tagip/rancher-cli
+#  script:
+#    - rancher --debug up -d --stack "medzoner"
+#    - rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
 
 env:
   global:
