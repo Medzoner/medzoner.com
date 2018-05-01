@@ -4,8 +4,7 @@ php:
     - 7.1
 
 env:
-  - NODE_RELEASE=6.x
-  - NOTE_RELEASE=7.x
+  - NODE_RELEASE=7.x
 
 services:
     - docker
