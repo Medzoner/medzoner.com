@@ -6,6 +6,7 @@ php:
 env:
   - NODE_RELEASE=6.x
   - NODE_RELEASE=7.x
+  - RANCHER_CLI_VERSION=v0.6.1
 
 services:
     - docker
@@ -17,6 +18,7 @@ before_script:
     - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
     - sudo apt-get update > /dev/null
     - sudo apt-get install -y --force-yes nginx nodejs
+    - curl -sL https://github.com/rancher/cli/releases/download/${RANCHER_CLI_VERSION}/rancher-linux-amd64-${RANCHER_CLI_VERSION}.tar.gz | tar -zx -C /tmp && mv /tmp/rancher-${RANCHER_CLI_VERSION}/rancher /usr/bin/
 
 install:
     - composer install -n
@@ -26,17 +28,12 @@ script:
 
 deploy:
   provider: script
-  script: npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 0.2
-
+  script:
+    - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 0.2
+    - /usr/bin/rancher --debug up -d --stack "medzoner"
+    - /usr/bin/rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
   on:
     branch: master
-
-deploy_app:
-  stage: deploy
-  image: tagip/rancher-cli
-  script:
-    - rancher --debug up -d --stack "medzoner"
-    - rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade app-medzoner
 
 env:
   global:
