@@ -27,7 +27,12 @@ script:
 
 deploy:
   provider: script
-  script: git reset --hard && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash build.sh 0.2
+  script:
+    - git reset --hard
+    - gulp
+    #- composer install -n --no-dev --optimize-autoloader --no-progress
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - bash build.sh 0.2
   on:
     branch: master
 
