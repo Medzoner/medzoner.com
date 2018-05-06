@@ -21,8 +21,8 @@ services:
             MYSQL_ROOT_PASSWORD: "toor"
         ports:
             - "3306:3306"
-        #volumes:
-        #    - './var/mariadb:/var/lib/mysql'
+        volumes:
+            - './var/mariadb:/var/lib/mysql'
         networks:
             - "default"
 

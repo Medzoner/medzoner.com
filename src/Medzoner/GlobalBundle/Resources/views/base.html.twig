@@ -6,7 +6,7 @@
     <title>{% if page_title is defined %}{{ page_title }} | {% endif %}MedZoner.com</title>
 
     <link rel="icon" href="{{ medzoner_cdn_url ~ asset('/favicon.png') }}" sizes="32x32">
-    <link rel="stylesheet" href="{{ asset('/css/app.min.css'|asset_css_version) }}" />
+    <link rel="stylesheet" href="{{ medzoner_cdn_url ~ asset('/css/app.min.css'|asset_css_version) }}" />
     <link href="https://cdn.rawgit.com/walchko/techno-font/v0.7.3/assets/techno-font.css" rel="stylesheet">
 
     <!-- Google Analytics -->

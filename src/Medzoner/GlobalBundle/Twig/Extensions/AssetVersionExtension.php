@@ -59,10 +59,7 @@ class AssetVersionExtension extends \Twig_Extension
             return $filename;
         }
 
-        $manifestPath = $this->appDir.'/../assets/rev-manifest-js.json';
-        if (!file_exists($manifestPath)) {
-            throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
-        }
+        $manifestPath = $this->url.'/revision/rev-manifest-js.json';
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
@@ -85,13 +82,10 @@ class AssetVersionExtension extends \Twig_Extension
     {
         //no use of versioning in debug mode
         if ($this->env == 'dev') {
-            //return $filename;
+            return $filename;
         }
 
-        $manifestPath = $this->appDir.'/../assets/rev-manifest-css.json';
-        if (!file_exists($manifestPath)) {
-            throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
-        }
+        $manifestPath = $this->url.'/revision/rev-manifest-css.json';
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
