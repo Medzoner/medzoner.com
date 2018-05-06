@@ -4,8 +4,8 @@ function deploy() {
   echo "deploy:"
   curl -sL https://github.com/rancher/cli/releases/download/v0.6.1/rancher-linux-amd64-v0.6.1.tar.gz | tar -zx -C . && mv ./rancher-v0.6.1/rancher .
 
-  ./rancher --debug restart cdn-medzoner
-  ./rancher --debug restart app-medzoner
+  ./rancher --debug --env Production restart cdn-medzoner
+  ./rancher --debug --env Production restart app-medzoner
 }
 
 if [[ $# -ne 1 ]] ; then
