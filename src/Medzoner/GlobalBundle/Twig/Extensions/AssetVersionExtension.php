@@ -63,7 +63,7 @@ class AssetVersionExtension extends \Twig_Extension
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
-            throw new \Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
+            return $filename;
         }
 
         return 'js/'.$paths[basename($filename)];
@@ -89,7 +89,7 @@ class AssetVersionExtension extends \Twig_Extension
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
-            throw new \Exception(sprintf('There is no file "%s" in the version manifest!', $filename));
+            return $filename;
         }
 
         return '/css/'.$paths[basename($filename)];
