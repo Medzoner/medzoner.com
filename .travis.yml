@@ -27,8 +27,9 @@ script:
 deploy:
   provider: script
   script:
-    - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 0.2
-
+    - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 1.0
+    - rancher --debug up -d --stack "medzoner"
+    - rancher --debug up -d --force-upgrade --pull --stack "medzoner" --confirm-upgrade cdn-medzoner
   on:
     branch: master
 
