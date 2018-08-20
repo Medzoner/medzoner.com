@@ -17,9 +17,9 @@ site_book:
     path:  /book
     defaults: { _controller: 'MedzonerGlobalBundle:Portfolio:index', _format: "html" }
 
-# CV
-site_cv:
-    path: /cv
+# Technos
+site_technos:
+    path: /technos
     defaults: { _controller: 'medzoner.jobboard.controller:indexAction', _format: "html" }
 
 # Foundation

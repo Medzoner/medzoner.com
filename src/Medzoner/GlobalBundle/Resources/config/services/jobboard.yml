@@ -5,7 +5,7 @@ services:
         - '@medzoner.jobboard.provider'
 
   medzoner.jobboard.controller:
-    class: 'Medzoner\GlobalBundle\Controller\CvController'
+    class: 'Medzoner\GlobalBundle\Controller\TechnosController'
     arguments:
         - '@request_stack'
         - '@templating'

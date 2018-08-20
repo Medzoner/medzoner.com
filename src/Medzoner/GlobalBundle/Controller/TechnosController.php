@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CvController
+ * Class TechnosController
  */
-class CvController
+class TechnosController
 {
     /**
      * @var RequestStack
@@ -60,7 +60,7 @@ class CvController
         $jobBoard = $this->jobBoardQueryHandler->handle($query);
 
         return $this->templating->renderResponse(
-            'MedzonerGlobalBundle:Cv:index.html.twig',
+            'MedzonerGlobalBundle:Technos:index.html.twig',
             [
                 'jobboard' => $jobBoard
             ]
