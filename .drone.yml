@@ -2,7 +2,9 @@ pipeline:
     cdn:
         image: node
         commands:
-          - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 1.0
+          - npm install
+          - npm install -g bower karma gulp
+          - gulp
 
     app:
         image: php:7.1
@@ -10,9 +12,12 @@ pipeline:
           - apt-get update
           - apt-get install -y --force-yes nginx curl
           - composer install -n --no-dev --optimize-autoloader --no-progress
+          - ./bin/phpunit -c app
+    image:
+        image: php:7.1
+        commands:
           - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           - bash deploy.sh 1.0
-          - ./bin/phpunit -c app
 
     deploy:
         image: quay.io/honestbee/drone-kubernetes
