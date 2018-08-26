@@ -1,0 +1,17 @@
+pipeline:
+    docker:
+        image: plugins/docker
+        repo: php:7.1
+        tags: ${DRONE_COMMIT_SHA:0:8}
+        username: medzoner
+        secrets: [ docker_password ]
+    deploy:
+        image: quay.io/honestbee/drone-kubernetes
+        kubernetes_server: ${KUBERNETES_SERVER}
+        kubernetes_cert: ${KUBERNETES_CERT}
+        kubernetes_token: ${KUBERNETES_TOKEN}
+        deployment: medzoner
+        repo: medzoner/medzoner.com
+        container: medzoner-nginx
+        tag:
+            - ${DRONE_COMMIT_SHA:0:8}
