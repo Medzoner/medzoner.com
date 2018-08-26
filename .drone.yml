@@ -1,10 +1,7 @@
 pipeline:
     docker:
-        image: plugins/docker
-        repo: php:7.1
-        tags: ${DRONE_COMMIT_SHA:0:8}
-        username: medzoner
-        secrets: [ docker_password ]
+        image: php
+        tags: 7.1
     deploy:
         image: quay.io/honestbee/drone-kubernetes
         kubernetes_server: ${KUBERNETES_SERVER}
