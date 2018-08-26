@@ -2,8 +2,8 @@ pipeline:
     docker:
         image: php:7.1
         commands:
-          - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
-          - sudo apt-get install -y --force-yes nginx nodejs curl
+          - rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | -E bash -
+          - apt-get install -y --force-yes nginx nodejs curl
           - ./bin/phpunit -c app
           - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 1.0
 
