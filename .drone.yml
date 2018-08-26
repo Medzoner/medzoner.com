@@ -1,7 +1,6 @@
 pipeline:
     docker:
-        image: php
-        tags: 7.1
+        image: php:7.1
         commands:
           - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
           - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
