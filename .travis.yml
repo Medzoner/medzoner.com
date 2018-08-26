@@ -28,7 +28,8 @@ deploy:
   provider: script
   script:
     - npm install && npm install -g bower karma gulp && gulp && composer install -n --no-dev --optimize-autoloader --no-progress && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && bash deploy.sh 1.0
-    - kubectl --kubeconfig /etc/kubernetes/admin.conf set image deployment medzoner medzoner-nginx=medzoner/medzoner.com:${VERSION}
+    - ssh root@master.medzoner.com "kubectl --kubeconfig /etc/kubernetes/admin.conf set image deployment medzoner medzoner-nginx=medzoner/medzoner.com:${VERSION}"
+    - ssh root@master.medzoner.com "kubectl --kubeconfig /etc/kubernetes/admin.conf set image deployment medzoner-cdn medzoner-cdn=medzoner/cdn.medzoner.com:${VERSION}"
   on:
     branch: master
 
