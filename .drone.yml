@@ -11,8 +11,9 @@ pipeline:
         commands:
           - apt-get update
           - apt-get install -y --force-yes nginx curl
-          - composer install -n --no-dev --optimize-autoloader --no-progress
+          - composer install
           - ./bin/phpunit -c app
+          - composer install -n --no-dev --optimize-autoloader --no-progress
     image:
         image: php:7.1
         commands:
