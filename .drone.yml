@@ -7,7 +7,7 @@ pipeline:
           - gulp
 
     app:
-        image: php:7.1
+        image: medzoner/medzoner_php
         commands:
           - apt-get update
           - apt-get install -y --force-yes nginx curl
