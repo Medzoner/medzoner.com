@@ -1,6 +1,7 @@
 pipeline:
     cdn:
         image: node
+        group: build # parallel
         commands:
           - npm install
           - npm install -g bower karma gulp
@@ -8,17 +9,24 @@ pipeline:
 
     app:
         image: medzoner/medzoner_php
+        group: build # parallel
         commands:
           - apt-get update
           - apt-get install -y --force-yes nginx curl
           - composer install
           - ./bin/phpunit -c app
+          - rm ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
-    image:
-        image: php:7.1
-        commands:
-          - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          - bash deploy.sh 1.0
+
+    cdn-build:
+        image: plugins/docker
+        repo: medzoner/cdn.medzoner.com
+        dockerfile: DockerfileCdn
+
+    app-build:
+        image: plugins/docker
+        repo: medzoner/medzoner.com
+        dockerfile: Dockerfile
 
     deploy:
         image: quay.io/honestbee/drone-kubernetes
