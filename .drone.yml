@@ -20,12 +20,12 @@ pipeline:
 
     cdn-build:
         image: plugins/docker
-        repo: medzoner/cdn.medzoner.com
+        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
         dockerfile: DockerfileCdn
 
     app-build:
         image: plugins/docker
-        repo: medzoner/medzoner.com
+        repo: registry.medzoner.com/medzoner/medzoner.com
         dockerfile: Dockerfile
 
     deploy:
