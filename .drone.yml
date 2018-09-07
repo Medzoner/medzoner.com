@@ -22,6 +22,8 @@ pipeline:
         image: plugins/docker
         repo: registry.medzoner.com/medzoner/cdn.medzoner.com
         dockerfile: DockerfileCdn
+        username: {$DOCKER_USERNAME}
+        password: {$DOCKER_PASSWORD}
 
     app-build:
         image: plugins/docker
