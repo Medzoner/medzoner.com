@@ -1,7 +1,7 @@
 pipeline:
     cdn:
         image: node
-        group: build # parallel
+        group: test # parallel
         commands:
           - npm install
           - npm install -g bower karma gulp
@@ -9,7 +9,7 @@ pipeline:
 
     app:
         image: medzoner/medzoner_php
-        group: build # parallel
+        group: test # parallel
         commands:
           - apt-get update
           - apt-get install -y --force-yes nginx curl
@@ -20,13 +20,16 @@ pipeline:
 
     cdn-build:
         image: plugins/docker
+        group: build # parallel
         repo: registry.medzoner.com/medzoner/cdn.medzoner.com
         dockerfile: DockerfileCdn
         username: {$DOCKER_USERNAME}
         password: {$DOCKER_PASSWORD}
+        registry: registry.medzoner.com
 
     app-build:
         image: plugins/docker
+        group: build # parallel
         repo: registry.medzoner.com/medzoner/medzoner.com
         dockerfile: Dockerfile
         username: {$DOCKER_USERNAME}
