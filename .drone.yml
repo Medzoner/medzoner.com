@@ -18,9 +18,6 @@ pipeline:
         #group: build # parallel
         repo: registry.medzoner.com/medzoner/medzoner.com
         dockerfile: Dockerfile
-        username: ${DOCKER_USERNAME}
-        password: ${DOCKER_PASSWORD}
-        registry: registry.medzoner.com
         debug: true
         tag:
             - ${DRONE_COMMIT_SHA:0:8}
@@ -40,16 +37,13 @@ pipeline:
         #group: build # parallel
         repo: registry.medzoner.com/medzoner/cdn.medzoner.com
         dockerfile: DockerfileCdn
-        username: ${DOCKER_USERNAME}
-        password: ${DOCKER_PASSWORD}
-        registry: registry.medzoner.com
         debug: true
         tag:
             - ${DRONE_COMMIT_SHA:0:8}
 
     app-deploy:
         image: quay.io/honestbee/drone-kubernetes
-        group: deploy # parallel
+        #group: deploy # parallel
         kubernetes_server: ${KUBERNETES_SERVER}
         kubernetes_cert: ${KUBERNETES_CERT}
         kubernetes_token: ${KUBERNETES_TOKEN}
