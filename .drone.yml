@@ -29,6 +29,8 @@ pipeline:
         image: plugins/docker
         repo: registry.medzoner.com/medzoner/medzoner.com
         dockerfile: Dockerfile
+        username: {$DOCKER_USERNAME}
+        password: {$DOCKER_PASSWORD}
 
     deploy:
         image: quay.io/honestbee/drone-kubernetes
