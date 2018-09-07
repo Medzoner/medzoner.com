@@ -26,6 +26,7 @@ pipeline:
         username: {$DOCKER_USERNAME}
         password: {$DOCKER_PASSWORD}
         registry: registry.medzoner.com
+        debug: true
 
     app-build:
         image: plugins/docker
@@ -35,6 +36,7 @@ pipeline:
         username: {$DOCKER_USERNAME}
         password: {$DOCKER_PASSWORD}
         registry: registry.medzoner.com
+        debug: true
 
     deploy:
         image: quay.io/honestbee/drone-kubernetes
