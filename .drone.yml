@@ -10,6 +10,18 @@ pipeline:
           - rm -rf ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
 
+    cdn-build:
+        image: plugins/docker
+        group: build # parallel
+        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
+        dockerfile: DockerfileCdn
+        username: ${DOCKER_USERNAME}
+        password: ${DOCKER_PASSWORD}
+        registry: registry.medzoner.com
+        debug: true
+        tag:
+            - ${DRONE_COMMIT_SHA:0:8}
+
     app-build:
         image: plugins/docker
         group: build # parallel
@@ -17,7 +29,7 @@ pipeline:
         dockerfile: Dockerfile
         username: ${DOCKER_USERNAME}
         password: ${DOCKER_PASSWORD}
-        registry: registry.medzoner.com/v2
+        registry: registry.medzoner.com
         debug: true
         tag:
             - ${DRONE_COMMIT_SHA:0:8}
