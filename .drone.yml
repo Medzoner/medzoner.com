@@ -32,6 +32,7 @@ pipeline:
 
     app-build:
         image: docker
+        privileged: true
         commands:
           - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin  registry.medzoner.com && bash deploy.sh 1.0
         #group: build # parallel
