@@ -1,4 +1,10 @@
 pipeline:
+    test:
+        image: docker
+        privileged: true
+        commands:
+          - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin  registry.medzoner.com
+          - bash deploy.sh 1.0
     #cdn:
     #    image: node
     #    group: test # parallel
@@ -31,19 +37,16 @@ pipeline:
     #        - ${DRONE_COMMIT_SHA:0:8}
 
     app-build:
-        image: docker
-        privileged: true
-        commands:
-          - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin  registry.medzoner.com && bash deploy.sh 1.0
-        #group: build # parallel
-        #repo: registry.medzoner.com/medzoner/medzoner.com
-        #dockerfile: Dockerfile
-        #username: ${DOCKER_USERNAME}
-        #password: ${DOCKER_PASSWORD}
-        #registry: registry.medzoner.com
-        #debug: true
-        #tag:
-        #    - ${DRONE_COMMIT_SHA:0:8}
+        image: plugins/docker
+        group: build # parallel
+        repo: registry.medzoner.com/medzoner/medzoner.com
+        dockerfile: Dockerfile
+        username: ${DOCKER_USERNAME}
+        password: ${DOCKER_PASSWORD}
+        registry: registry.medzoner.com
+        debug: true
+        tag:
+            - ${DRONE_COMMIT_SHA:0:8}
 
     app-deploy:
         image: quay.io/honestbee/drone-kubernetes
