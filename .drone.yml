@@ -14,7 +14,7 @@ pipeline:
 
     app-test:
         image: registry.medzoner.com/medzoner/deployer:${DRONE_COMMIT_SHA:0:8}
-        secrets: [ docker_username, docker_password ]
+        secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
