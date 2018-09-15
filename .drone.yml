@@ -17,7 +17,7 @@ pipeline:
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
-          - export KUBE_CONFIG=$KUBE_CONFIG
+          - export KUBECONFIG=$KUBE_CONFIG
           - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com
 
 
