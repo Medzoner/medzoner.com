@@ -35,8 +35,7 @@ pipeline:
         group: build # parallel
         repo: registry.medzoner.com/medzoner/medzoner.com
         dockerfile: Dockerfile
-        username: ${DOCKER_USERNAME}
-        password: ${DOCKER_PASSWORD}
+        secrets: [ docker_username, docker_password ]
         registry: registry.medzoner.com
         debug: true
         tag:
