@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:latest as build
 
 RUN mkdir -p /var/www
 RUN mkdir -p /data
@@ -31,3 +31,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/bin/sh"]
+
+FROM medzoner:medzoner.com
+COPY --from=build \
+     /var/www \
+     /var/www

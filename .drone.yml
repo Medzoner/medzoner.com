@@ -1,7 +1,20 @@
 pipeline:
 
+    deployer-build:
+        image: plugins/docker
+        group: deploye # parallel
+        repo: registry.medzoner.com/medzoner/deployer
+        dockerfile: DockerfileDeploy
+        secrets: [ docker_username, docker_password ]
+        registry: registry.medzoner.com
+        debug: true
+        tags:
+            - latest
+            - ${DRONE_COMMIT_SHA:0:8}
+
     app-test:
-        image: quay.io/honestbee/drone-kubernetes
+        image: registry.medzoner.com/medzoner/deployer
+        secrets: [ docker_username, docker_password ]
         group: deploy # parallel
         kubernetes_server: https://master.medzoner.com:6443
         kubernetes_token: ${KUBERNETES_TOKEN}
