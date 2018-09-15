@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo ${KUBERNETES_ADMIN_CONF}
 echo ${KUBERNETES_ADMIN_CONF} > admin.conf
 export KUBE_CONFIG=$(pwd)/admin.conf
 
