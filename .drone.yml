@@ -17,9 +17,8 @@ pipeline:
         secrets: [ docker_username, docker_password, kubernetes_token ]
         group: deploy # parallel
         commands:
-          - kubectl config set-credentials default --token=$KUBERNETES_TOKEN
           - echo $KUBE_CONFIG
-          - echo $KUBE_CONFIG > /tmp/admin.conf
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf
           - export KUBECONFIG=/tmp/admin.conf
           - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
 
