@@ -11,6 +11,7 @@ pipeline:
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
         container: medzoner-php
+        tag: ${DRONE_COMMIT_SHA:0:8}
 
 
 
@@ -39,8 +40,7 @@ pipeline:
     #    group: build # parallel
     #    repo: registry.medzoner.com/medzoner/cdn.medzoner.com
     #    dockerfile: DockerfileCdn
-    #    username: ${DOCKER_USERNAME}
-    #    password: ${DOCKER_PASSWORD}
+    #    secrets: [ docker_username, docker_password ]
     #    registry: registry.medzoner.com
     #    debug: true
     #    tag:
@@ -66,3 +66,4 @@ pipeline:
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
         container: medzoner-php
+        tag: ${DRONE_COMMIT_SHA:0:8}
