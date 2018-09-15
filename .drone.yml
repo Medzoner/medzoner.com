@@ -1,8 +1,5 @@
 pipeline:
 
-
-
-
     app-test:
         image: quay.io/honestbee/drone-kubernetes
         group: deploy # parallel
@@ -12,6 +9,7 @@ pipeline:
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
         container: code
+        namespace: default
         tag: ${DRONE_COMMIT_SHA:0:8}
 
 
