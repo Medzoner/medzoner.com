@@ -1,4 +1,20 @@
 pipeline:
+
+
+
+    app-deploy2:
+        image: quay.io/honestbee/drone-kubernetes
+        group: deploy # parallel
+        kubernetes_server: ${KUBERNETES_SERVER}
+        kubernetes_cert: ${KUBERNETES_CERT}
+        kubernetes_token: ${KUBERNETES_TOKEN}
+        deployment: medzoner
+        repo: registry.medzoner.com/medzoner/medzoner.com
+        container: medzoner-php
+
+
+
+
     #cdn:
     #    image: node
     #    group: test # parallel
@@ -48,5 +64,5 @@ pipeline:
         kubernetes_cert: ${KUBERNETES_CERT}
         kubernetes_token: ${KUBERNETES_TOKEN}
         deployment: medzoner
-        repo: medzoner/medzoner.com
-        container: medzoner-nginx
+        repo: registry.medzoner.com/medzoner/medzoner.com
+        container: medzoner-php
