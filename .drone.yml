@@ -1,34 +1,24 @@
 pipeline:
 
-#    deployer-build:
-#        image: plugins/docker
-#        group: deployer # parallel
-#        repo: registry.medzoner.com/medzoner/deployer
-#        dockerfile: DockerfileDeploy
-#        secrets: [ docker_username, docker_password ]
-#        registry: registry.medzoner.com
-#        debug: true
-#        tags:
-#            - latest
-#            - ${DRONE_COMMIT_SHA:0:8}
+    deployer-build:
+        image: plugins/docker
+        group: deployer # parallel
+        repo: registry.medzoner.com/medzoner/deployer
+        dockerfile: DockerfileDeploy
+        secrets: [ docker_username, docker_password ]
+        registry: registry.medzoner.com
+        debug: true
+        tags:
+            - latest
+            - ${DRONE_COMMIT_SHA:0:8}
 
-    app-test:
-        image: registry.medzoner.com/medzoner/deployer
-        secrets: [ docker_username, docker_password, kube_config ]
-        group: deploy # parallel
+    cdn:
+        image: node
+        group: test # parallel
         commands:
-          - echo $KUBE_CONFIG
-          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf
-          - export KUBECONFIG=/tmp/admin.conf
-          - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
-
-    #cdn:
-    #    image: node
-    #    group: test # parallel
-    #    commands:
-    #      - npm install
-    #      - npm install -g bower karma gulp
-    #      - gulp
+          - npm install
+          - npm install -g bower karma gulp
+          - gulp
 
     app:
         image: medzoner/medzoner_php
@@ -41,16 +31,17 @@ pipeline:
           - rm -rf ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
 
-    #cdn-build:
-    #    image: plugins/docker
-    #    group: build # parallel
-    #    repo: registry.medzoner.com/medzoner/cdn.medzoner.com
-    #    dockerfile: DockerfileCdn
-    #    secrets: [ docker_username, docker_password ]
-    #    registry: registry.medzoner.com
-    #    debug: true
-    #    tag:
-    #        - ${DRONE_COMMIT_SHA:0:8}
+    cdn-build:
+        image: plugins/docker
+        group: build # parallel
+        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
+        dockerfile: DockerfileCdn
+        secrets: [ docker_username, docker_password ]
+        registry: registry.medzoner.com
+        debug: true
+        tags:
+            - latest
+            - ${DRONE_COMMIT_SHA:0:8}
 
     app-build:
         image: plugins/docker
@@ -64,14 +55,13 @@ pipeline:
             - latest
             - ${DRONE_COMMIT_SHA:0:8}
 
-
     app-deploy:
-        image: quay.io/honestbee/drone-kubernetes
+        image: registry.medzoner.com/medzoner/deployer
+        secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
-        kubernetes_server: https://master.medzoner.com:6443
-        kubernetes_cert: ${KUBERNETES_CERT}
-        kubernetes_token: ${KUBERNETES_TOKEN}
-        deployment: medzoner
-        repo: registry.medzoner.com/medzoner/medzoner.com
-        container: code
-        tag: ${DRONE_COMMIT_SHA:0:8}
+        commands:
+          - echo $KUBE_CONFIG # Add secret with: cat admin.conf.base64 | base64 -d
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf
+          - export KUBECONFIG=/tmp/admin.conf
+          - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
+
