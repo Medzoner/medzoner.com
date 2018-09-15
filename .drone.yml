@@ -14,7 +14,7 @@ pipeline:
 
     app-test:
         image: registry.medzoner.com/medzoner/deployer
-        secrets: [ docker_username, docker_password, kubernetes_token ]
+        secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
           - echo $KUBE_CONFIG
