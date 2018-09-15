@@ -16,7 +16,7 @@ pipeline:
         image: registry.medzoner.com/medzoner/deployer
         secrets: [ docker_username, docker_password ]
         group: deploy # parallel
-        secrets: [ kubernetes_admin_conf ]
+        secrets: [ kube_config ]
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
         container: medzoner-php
