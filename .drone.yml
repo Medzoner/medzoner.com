@@ -22,7 +22,6 @@ pipeline:
           - export KUBECONFIG=/tmp/admin.conf
           - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
 
-
     #cdn:
     #    image: node
     #    group: test # parallel
