@@ -16,11 +16,7 @@ pipeline:
         image: registry.medzoner.com/medzoner/deployer
         secrets: [ docker_username, docker_password ]
         group: deploy # parallel
-        environment:
-          - KUBERNETES_ADMIN_CONF=${KUBERNETES_ADMIN_CONF}
-        kubernetes_admin_conf: ${KUBERNETES_ADMIN_CONF}
-        kubernetes_server: https://master.medzoner.com:6443
-        kubernetes_token: ${KUBERNETES_TOKEN}
+        secrets: [ kubernetes_admin_conf ]
         deployment: medzoner
         repo: registry.medzoner.com/medzoner/medzoner.com
         container: medzoner-php
