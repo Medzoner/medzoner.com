@@ -18,10 +18,11 @@ COPY assets/rev-manifest-js.json /data/assets/rev-manifest-js.json
 RUN addgroup -g 1000 www-data && \
     adduser -D -u 1000 -G www-data www-data
 
-
 FROM medzoner/medzoner_php
 COPY --from=build \
-     /var/www \
+     /data \
      /var/www/html
+
+RUN rm -rf /var/www/html/app/config/parameters.yml
 
 WORKDIR /var/www

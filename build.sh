@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 function build_and_push_images() {
-  docker build -t "medzoner/cdn.medzoner.com:${VERSION}" -f ./DockerfileCdn .
-  docker tag  "medzoner/cdn.medzoner.com:${VERSION}" "medzoner/cdn.medzoner.com"
-  docker push "medzoner/cdn.medzoner.com:${VERSION}"
-  docker push "medzoner/cdn.medzoner.com"
+  docker build -t "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}" -f ./DockerfileCdn .
+  docker tag  "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}" "medzoner/cdn.medzoner.com"
+  docker push "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}"
+  docker push "registry.medzoner.com/medzoner/cdn.medzoner.com"
 
-  docker build -t "medzoner/medzoner.com:${VERSION}" -f ./Dockerfile .
-  docker tag  "medzoner/medzoner.com:${VERSION}" "medzoner/medzoner.com"
-  docker push "medzoner/medzoner.com:${VERSION}"
-  docker push "medzoner/medzoner.com"
+  docker build -t "registry.medzoner.com/medzoner/medzoner.com:${VERSION}" -f ./Dockerfile .
+  docker tag  "registry.medzoner.com/medzoner/medzoner.com:${VERSION}" "medzoner/medzoner.com"
+  docker push "registry.medzoner.com/medzoner/medzoner.com:${VERSION}"
+  docker push "registry.medzoner.com/medzoner/medzoner.com"
 }
 
 function build_all() {
