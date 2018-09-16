@@ -26,3 +26,4 @@ COPY --from=build \
 RUN rm -rf /var/www/html/app/config/parameters.yml
 
 WORKDIR /var/www
+
