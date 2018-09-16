@@ -32,7 +32,7 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/bin/sh"]
 
-FROM medzoner:medzoner.com
-COPY --from=build \
-     /var/www \
-     /var/www
+#FROM medzoner:medzoner.com
+#COPY --from=build \
+#     /var/www \
+#     /var/www
