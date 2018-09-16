@@ -3,18 +3,18 @@ pipeline:
     deployer-build:
         image: plugins/docker
         group: deployer # parallel
-        repo: registry.medzoner.com/medzoner/deployer
+        #repo: registry.medzoner.com/medzoner/deployer
+        repo: medzoner/deployer
         dockerfile: DockerfileDeploy
-        secrets: [ docker_username, docker_password ]
-        registry: registry.medzoner.com
+        #secrets: [ docker_username, docker_password ]
+        #registry: registry.medzoner.com
         debug: true
         tags:
             - latest
             - ${DRONE_COMMIT_SHA:0:8}
 
     test-deploy:
-        image: registry.medzoner.com/medzoner/deployer
-        registry: registry.medzoner.com
+        image: medzoner/deployer
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
