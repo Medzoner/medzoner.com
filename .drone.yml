@@ -12,7 +12,7 @@ pipeline:
             - latest
             - ${DRONE_COMMIT_SHA:0:8}
 
-    cdn:
+    cdn-test:
         image: node
         group: test # parallel
         commands:
@@ -20,7 +20,7 @@ pipeline:
           - npm install -g bower karma gulp
           - gulp
 
-    app:
+    app-test:
         image: medzoner/medzoner_php
         group: test # parallel
         commands:
@@ -60,7 +60,16 @@ pipeline:
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
-          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf.base64 | base64 -d
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
           - export KUBECONFIG=/tmp/admin.conf
           - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
+
+    cdn-deploy:
+        image: registry.medzoner.com/medzoner/deployer
+        secrets: [ docker_username, docker_password, kube_config ]
+        group: deploy # parallel
+        commands:
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
+          - export KUBECONFIG=/tmp/admin.conf
+          - kubectl -n default set image deployment/medzoner-cdn medzoner-cdn=registry.medzoner.com/medzoner/cdn.medzoner.com:${DRONE_COMMIT_SHA:0:8}
 
