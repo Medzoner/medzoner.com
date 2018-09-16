@@ -14,6 +14,7 @@ pipeline:
 
     test-deploy:
         image: registry.medzoner.com/medzoner/deployer
+        registry: registry.medzoner.com
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
