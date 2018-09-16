@@ -6,7 +6,7 @@ pipeline:
         #repo: registry.medzoner.com/medzoner/deployer
         repo: medzoner/deployer
         dockerfile: DockerfileDeploy
-        #secrets: [ docker_username, docker_password ]
+        secrets: [ docker_username, docker_password ]
         #registry: registry.medzoner.com
         debug: true
         tags:
