@@ -12,13 +12,13 @@ pipeline:
             - latest
             - ${DRONE_COMMIT_SHA:0:8}
 
-    cdn:
-        image: node
-        group: test # parallel
-        commands:
-          - npm install
-          - npm install -g bower karma gulp
-          - gulp
+#    cdn:
+#        image: node
+#        group: test # parallel
+#        commands:
+#          - npm install
+#          - npm install -g bower karma gulp
+#          - gulp
 
     app:
         image: medzoner/medzoner_php
@@ -31,17 +31,17 @@ pipeline:
           - rm -rf ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
 
-    cdn-build:
-        image: plugins/docker
-        group: build # parallel
-        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
-        dockerfile: DockerfileCdn
-        secrets: [ docker_username, docker_password ]
-        registry: registry.medzoner.com
-        debug: true
-        tags:
-            - latest
-            - ${DRONE_COMMIT_SHA:0:8}
+#    cdn-build:
+#        image: plugins/docker
+#        group: build # parallel
+#        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
+#        dockerfile: DockerfileCdn
+#        secrets: [ docker_username, docker_password ]
+#        registry: registry.medzoner.com
+#        debug: true
+#        tags:
+#            - latest
+#            - ${DRONE_COMMIT_SHA:0:8}
 
     app-build:
         image: plugins/docker
