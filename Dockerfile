@@ -15,17 +15,11 @@ COPY web/app.php /data/web/app.php
 COPY assets/rev-manifest-css.json /data/assets/rev-manifest-css.json
 COPY assets/rev-manifest-js.json /data/assets/rev-manifest-js.json
 
-RUN addgroup -g 1000 www-data && \
-    adduser -D -u 1000 -G www-data www-data
-
-######################################################
-FROM medzoner/medzoner_php
-COPY --from=build \
-     /data \
-     /var/www/html
-
 RUN mkdir -p /config
 COPY app/config/parameters.yml.dist /config/parameters.yml
+
+RUN addgroup -g 1000 www-data && \
+    adduser -D -u 1000 -G www-data www-data
 
 WORKDIR /var/www
 
@@ -37,3 +31,8 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/bin/sh"]
+
+#FROM medzoner:medzoner.com
+#COPY --from=build \
+#     /var/www \
+#     /var/www
