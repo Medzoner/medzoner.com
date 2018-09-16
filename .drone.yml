@@ -12,6 +12,15 @@ pipeline:
             - latest
             - ${DRONE_COMMIT_SHA:0:8}
 
+    test-deploy:
+        image: registry.medzoner.com/medzoner/deployer:${DRONE_COMMIT_SHA:0:8}
+        secrets: [ docker_username, docker_password, kube_config ]
+        group: deploy # parallel
+        commands:
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
+          - export KUBECONFIG=/tmp/admin.conf
+          - kubectl -n default set image deployment/medzoner-php medzoner-php=medzoner/medzoner_php:${DRONE_COMMIT_SHA:0:8}
+
     app-test:
         image: medzoner/medzoner_php
         group: test # parallel
@@ -56,13 +65,13 @@ pipeline:
             - ${DRONE_COMMIT_SHA:0:8}
 
     app-deploy:
-        image: registry.medzoner.com/medzoner/deployer
+        image: registry.medzoner.com/medzoner/deployer:
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
           - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
           - export KUBECONFIG=/tmp/admin.conf
-          - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
+          - kubectl -n default set image deployment/medzoner-php medzoner-php=medzoner/medzoner_php:${DRONE_COMMIT_SHA:0:8}
 
     cdn-deploy:
         image: registry.medzoner.com/medzoner/deployer
