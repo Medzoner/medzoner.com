@@ -60,8 +60,7 @@ pipeline:
         secrets: [ docker_username, docker_password, kube_config ]
         group: deploy # parallel
         commands:
-          - echo $KUBE_CONFIG # Add secret with: cat admin.conf.base64 | base64 -d
-          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf
+          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf.base64 | base64 -d
           - export KUBECONFIG=/tmp/admin.conf
           - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner.com:${DRONE_COMMIT_SHA:0:8}
 
