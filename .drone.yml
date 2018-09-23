@@ -63,7 +63,7 @@ pipeline:
         commands:
           - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
           - export KUBECONFIG=/tmp/admin.conf
-          - kubectl -n default set image deployment/medzoner-php medzoner-php=medzoner/medzoner_php:${DRONE_COMMIT_SHA}
+          - kubectl -n default set image deployment/medzoner-php medzoner-php=registry.medzoner.com/medzoner/medzoner_php:${DRONE_COMMIT_SHA}
 
     cdn-deploy:
         image: medzoner/deployer
