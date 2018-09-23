@@ -11,7 +11,7 @@ pipeline:
         debug: true
         tags:
             - latest
-            - ${DRONE_COMMIT_SHA:0:8}
+            - ${DRONE_COMMIT_SHA}
 
     app-test:
         image: medzoner/medzoner_php
@@ -42,7 +42,7 @@ pipeline:
         debug: true
         tags:
             - latest
-            - ${DRONE_COMMIT_SHA:0:8}
+            - ${DRONE_COMMIT_SHA}
 
     cdn-build:
         image: plugins/docker
@@ -54,7 +54,7 @@ pipeline:
         debug: true
         tags:
             - latest
-            - ${DRONE_COMMIT_SHA:0:8}
+            - ${DRONE_COMMIT_SHA}
 
     app-deploy:
         image: medzoner/deployer
