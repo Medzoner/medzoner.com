@@ -15,4 +15,5 @@ chown -R www-data:www-data /var/www
 rm -rf /var/www/app/cache/*
 rm -rf /var/www/app/logs/*
 
+
 exec "$@"
