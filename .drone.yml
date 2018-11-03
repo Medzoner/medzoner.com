@@ -1,5 +1,4 @@
 pipeline:
-
     deployer-build:
         image: plugins/docker
         group: deployer # parallel
