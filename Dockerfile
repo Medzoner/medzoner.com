@@ -1,7 +1,9 @@
-FROM alpine:latest as build
+FROM l24624j7.gra5.container-registry.ovh.net/medzoner/php:v2 AS build
 
 RUN mkdir -p /var/www
 RUN mkdir -p /data
+
+WORKDIR /data
 
 COPY app /data/app
 COPY src /data/src
@@ -22,9 +24,6 @@ COPY web/favicon.png /data/web/assets/favicon.png
 RUN mkdir -p /config
 COPY app/config/parameters.yml.dist /config/parameters.yml
 
-RUN addgroup -g 1000 www-data && \
-    adduser -D -u 1000 -G www-data www-data
-
 WORKDIR /var/www
 
 #entry point
@@ -34,9 +33,5 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Set up the command arguments.
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD ["/bin/sh"]
 
-#FROM medzoner:medzoner.com
-#COPY --from=build \
-#     /var/www \
-#     /var/www
+CMD ["php-fpm"]
