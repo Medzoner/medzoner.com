@@ -30,7 +30,7 @@ pipeline:
         repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
         dockerfile: Dockerfile
         secrets: [ docker_username, docker_password ]
-        registry: registry.medzoner.com
+        registry: l24624j7.gra5.container-registry.ovh.net
         debug: true
         tags:
             - latest

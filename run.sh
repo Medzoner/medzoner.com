@@ -18,6 +18,5 @@ ${DOCKER} ${BUILDFLAGS} build
 
 ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
 
-${DOCKER} run --user www-data php composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader
 
 
