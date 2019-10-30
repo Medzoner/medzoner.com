@@ -10,6 +10,11 @@ pipeline:
           - ./bin/phpunit -c app
           - rm -rf ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
+        when:
+          branch:
+            - master
+            - staging
+            - development
 
 #    cdn-test:
 #        image: node
@@ -30,3 +35,8 @@ pipeline:
         tags:
             - latest
             - ${DRONE_COMMIT_SHA}
+        when:
+          branch:
+            - master
+            - staging
+            - development
