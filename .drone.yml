@@ -11,13 +11,13 @@ pipeline:
           - rm -rf ./vendor
           - composer install -n --no-dev --optimize-autoloader --no-progress
 
-    cdn-test:
-        image: node
-        group: test # parallel
-        commands:
-          - npm install
-          - npm install -g bower karma gulp
-          - gulp
+#    cdn-test:
+#        image: node
+#        group: test # parallel
+#        commands:
+#          - npm install
+#          - npm install -g bower karma gulp
+#          - gulp
 
     app-build:
         image: plugins/docker
