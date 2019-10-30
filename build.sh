@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 
 function build_and_push_images() {
-  docker build -t "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}" -f ./DockerfileCdn .
-  docker tag  "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}" "registry.medzoner.com/medzoner/cdn.medzoner.com"
-  docker push "registry.medzoner.com/medzoner/cdn.medzoner.com:${VERSION}"
-  docker push "registry.medzoner.com/medzoner/cdn.medzoner.com"
-
-  docker build -t "registry.medzoner.com/medzoner/medzoner.com:${VERSION}" -f ./Dockerfile .
-  docker tag  "registry.medzoner.com/medzoner/medzoner.com:${VERSION}" "registry.medzoner.com/medzoner/medzoner.com"
-  docker push "registry.medzoner.com/medzoner/medzoner.com:${VERSION}"
-  docker push "registry.medzoner.com/medzoner/medzoner.com"
+  docker build -t "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}" -f ./Dockerfile .
+  docker tag  "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}" "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com"
+  docker push "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}"
+  docker push "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com"
 }
 
 function build_all() {

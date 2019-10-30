@@ -1,16 +1,4 @@
 pipeline:
-    deployer-build:
-        image: plugins/docker
-        group: deployer # parallel
-        repo: registry.medzoner.com/medzoner/deployer
-        #repo: medzoner/deployer
-        dockerfile: DockerfileDeploy
-        secrets: [ docker_username, docker_password ]
-        registry: registry.medzoner.com
-        debug: true
-        tags:
-            - latest
-            - ${DRONE_COMMIT_SHA}
 
     app-test:
         image: medzoner/medzoner_php
@@ -42,35 +30,3 @@ pipeline:
         tags:
             - latest
             - ${DRONE_COMMIT_SHA}
-
-    cdn-build:
-        image: plugins/docker
-        group: build # parallel
-        repo: registry.medzoner.com/medzoner/cdn.medzoner.com
-        dockerfile: DockerfileCdn
-        secrets: [ docker_username, docker_password ]
-        registry: registry.medzoner.com
-        debug: true
-        tags:
-            - latest
-            - ${DRONE_COMMIT_SHA}
-
-    app-deploy:
-        image: medzoner/deployer
-        secrets: [ docker_username, docker_password, kube_config ]
-        group: deploy # parallel
-        commands:
-          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
-          - export KUBECONFIG=/tmp/admin.conf
-          - kubectl scale --replicas=1 deployment/medzoner-php-deployment
-          - kubectl -n default set image deployment/medzoner-php-deployment medzoner-php=registry.medzoner.com/medzoner/medzoner_php_prod:${DRONE_COMMIT_SHA}
-          - create job --from=job/migrate migrate-${DRONE_COMMIT_SHA}
-
-    cdn-deploy:
-        image: medzoner/deployer
-        secrets: [ docker_username, docker_password, kube_config ]
-        group: deploy # parallel
-        commands:
-          - echo $KUBE_CONFIG | base64 -d > /tmp/admin.conf # Add secret with: cat admin.conf | base64 && cat admin.conf.base64 | base64 -d
-          - export KUBECONFIG=/tmp/admin.conf
-          - kubectl -n default set image deployment/medzoner-cdn medzoner-cdn=registry.medzoner.com/medzoner/cdn.medzoner.com:${DRONE_COMMIT_SHA}
