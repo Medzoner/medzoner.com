@@ -21,7 +21,7 @@ steps:
     commands:
       - npm install
       - npm install -g bower karma gulp
-      - bower install
+      - bower install --allow-root
       - gulp
     when:
       branch:
