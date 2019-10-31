@@ -5,7 +5,6 @@ name: default
 steps:
   - name: app-test
     image: medzoner/medzoner_php
-    group: test # parallel
     commands:
       - apt-get update
       - apt-get install -y --force-yes nginx curl
@@ -19,7 +18,6 @@ steps:
 
   - name: cdn-test
     image: node:7
-    group: test # parallel
     commands:
       - npm install
       - npm install -g bower karma gulp
@@ -32,7 +30,6 @@ steps:
 
   - name: app-build
     image: plugins/docker
-    group: build # parallel
     repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
