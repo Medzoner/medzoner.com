@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export REMOTE_HOST=$(docker network inspect bridge -f '{{range .IPAM.Config}}{{.Gateway}}{{end}}')
 DOCKER="docker-compose"
 BUILDFLAGS="-f ./docker-compose-local.yml -p medzoner.com"
 

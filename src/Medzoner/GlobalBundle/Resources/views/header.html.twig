@@ -1,34 +1,20 @@
-    <section class="large-12 columns">
-        <header>
-        <nav class="top-bar" data-topbar="">
-            <ul class="title-area">
-                <li class="name">
-                    <a href="{{ path('site') }}"><img src="{{ medzoner_cdn_url ~ asset('/images/logo.png') }}" alt="WWW.MEDZONER.COM"/></a>
-                </li>
-                <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-            </ul>
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
 
-            <section class="top-bar-section">
-                <ul>
-                    <li class="first">
-                        <a href="{{ path('site_technos') }}">TECHNOS</a>
-                    </li>
-                    <li class="last">
-                        <a href="{{ path('site_contact') }}">CONTACT</a>
-                    </li>
-                </ul>
-            </section>
+        <li class="name">
+            <h1>
+                <a href="{{ path('site') }}"><img style="height: 45px;" src="{{ medzoner_cdn_url ~ asset('/images/logo.png') }}" alt="WWW.MEDZONER.COM"/></a>
+            </h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+    <div class="top-bar-section">
 
-            {% if is_granted("ROLE_ADMIN") %}
-                <section class="top-bar-section">
-                    <ul class="left">
-                        <li><p>Administration : </p></li>
-                        <li>
-                            <a href="{{ path('site_blog_new') }}">{{ 'new post' | trans }}</a>
-                        </li>
-                    </ul>
-                </section>
-            {% endif %}
-        </nav>
-        </header>
-    </section>
+        <ul class="right">
+            <li class="divider"></li>
+            <li><a href="{{ path('site_technos') }}">TECHNOS</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ path('site_contact') }}">CONTACT</a></li>
+        </ul>
+    </div>
+</nav>

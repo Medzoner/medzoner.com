@@ -20,27 +20,24 @@
         ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
-    <meta name="deploy2" />
 </head>
 <body>
 
-<div class="container">
-    {% include '@MedzonerGlobal/header.html.twig' %}
-    {% block body %}{% endblock %}
-    {% block content %}{% endblock %}
-    {% include '@MedzonerGlobal/footer.html.twig' %}
-</div>
+{% include '@MedzonerGlobal/header.html.twig' %}
+{% block body %}{% endblock %}
+{% block content %}{% endblock %}
+{% include '@MedzonerGlobal/footer.html.twig' %}
 
 <script src="https://use.fontawesome.com/14bb74bd50.js"></script>
 {% if 'dev' == app.environment %}
-    <script type="text/javascript" src="{{ medzoner_cdn_url ~ asset('/dev/js/advert.js') }}"></script>
-    <script type="text/javascript" src="{{ medzoner_cdn_url ~ asset('/js/app.js') }}"></script>
+    <script src="{{ medzoner_cdn_url ~ asset('/dev/js/advert.js') }}"></script>
+    <script src="{{ medzoner_cdn_url ~ asset('/js/app.js') }}"></script>
 {% else %}
     <!--<script type="text/javascript" src="{{ asset(advert_script) }}"></script>-->
-    <script type="text/javascript" src="{{ medzoner_cdn_url ~ asset('/js/app.min.js'|asset_js_version) }}"></script>
+    <script src="{{ medzoner_cdn_url ~ asset('/js/app.min.js'|asset_js_version) }}"></script>
 {% endif %}
 {#{{ coinhive_miner() }}#}
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
                 $(document).foundation({
                         reveal: {

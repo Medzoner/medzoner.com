@@ -44,55 +44,51 @@ class AssetVersionExtension extends \Twig_Extension
     }
 
     /**
-     * extract js versionned filename.
-     *
      * @param $filename
-     *
-     * @return mixed
-     *
-     * @throws \Exception
+     * @return null|string
      */
     public function getAssetJsVersion($filename)
     {
         //no use of versioning in debug mode
         if ($this->env == 'dev') {
-            return $filename;
+            return '/js/app.js';
         }
 
-        $manifestPath = $this->url.'/assets/rev-manifest-js.json';
+        $manifestPath = $this->url.'/rev-manifest-js.json';
 
-        $paths = json_decode(file_get_contents($manifestPath), true);
-        if (!isset($paths[basename($filename)])) {
-            return $filename;
+        try {
+            $paths = json_decode(file_get_contents($manifestPath), true);
+            if (!isset($paths[basename($filename)])) {
+                return $filename;
+            }
+            return 'js/'.$paths[basename($filename)];
+        } catch (\Exception $e) {
+            return null;
         }
-
-        return 'js/'.$paths[basename($filename)];
     }
 
     /**
-     * extract css versionned filename.
-     *
      * @param $filename
-     *
-     * @return mixed
-     *
-     * @throws \Exception
+     * @return null|string
      */
     public function getAssetCssVersion($filename)
     {
         //no use of versioning in debug mode
         if ($this->env == 'dev') {
-            return $filename;
+            return '/css/app.css';
         }
 
-        $manifestPath = $this->url.'/assets/rev-manifest-css.json';
+        $manifestPath = $this->url.'/rev-manifest-css.json';
 
-        $paths = json_decode(file_get_contents($manifestPath), true);
-        if (!isset($paths[basename($filename)])) {
-            return $filename;
+        try {
+            $paths = json_decode(file_get_contents($manifestPath), true);
+            if (!isset($paths[basename($filename)])) {
+                return $filename;
+            }
+            return '/css/'.$paths[basename($filename)];
+        } catch (\Exception $e) {
+            return null;
         }
-
-        return '/css/'.$paths[basename($filename)];
     }
 
     /**

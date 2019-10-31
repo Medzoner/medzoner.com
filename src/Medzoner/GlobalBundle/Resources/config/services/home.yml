@@ -1,8 +1,8 @@
 services:
-  medzoner.home.controller:
-    class: 'Medzoner\GlobalBundle\Controller\IndexController'
-    arguments:
-        - '@request_stack'
-        - '@templating'
-        - '@fos_http_cache.handler.tag_handler'
-        - '@fos_http_cache.cache_manager'
+  Medzoner\GlobalBundle\Controller\IndexController:
+    public: true
+    bind:
+        $request: '@request_stack'
+        $templating: '@templating'
+        #- '@fos_http_cache.handler.tag_handler'
+        #- '@fos_http_cache.cache_manager'

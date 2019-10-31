@@ -1,0 +1,55 @@
+event_bus:
+    event_name_resolver_strategy: 'named_message'
+
+parameters:
+  app.command_queue: 'medzoner_commands'
+  app.event_queue: 'medzoner_events'
+
+simple_bus_rabbit_mq_bundle_bridge:
+  commands:
+    producer_service_id: 'old_sound_rabbit_mq.asynchronous_commands_producer'
+  events:
+    producer_service_id: 'old_sound_rabbit_mq.asynchronous_events_producer'
+
+simple_bus_asynchronous:
+  events:
+    strategy: 'predefined'
+
+old_sound_rabbit_mq:
+  connections:
+    default:
+      host:     '%rabbitmq_host%'
+      port:     '%rabbitmq_port%'
+      user:     '%rabbitmq_user%'
+      password: '%rabbitmq_password%'
+      vhost:    '/'
+      lazy:     false
+      connection_timeout: 3
+      read_write_timeout: 3
+
+      # requires php-amqplib v2.4.1+ and PHP5.4+
+      keepalive: false
+
+      # requires php-amqplib v2.4.1+
+      heartbeat: 0
+  producers:
+    asynchronous_commands:
+      connection:       'default'
+      exchange_options: { name: '%app.command_queue%', type: "direct" }
+
+    asynchronous_events:
+      connection:       'default'
+      exchange_options: { name: '%app.event_queue%', type: "direct" }
+
+  consumers:
+    asynchronous_commands:
+      connection:       'default'
+      exchange_options: { name: '%app.command_queue%', type: 'direct' }
+      queue_options:    { name: '%app.command_queue%' }
+      callback:         'simple_bus.rabbit_mq_bundle_bridge.commands_consumer'
+
+    asynchronous_events:
+      connection:       default
+      exchange_options: { name: '%app.event_queue%', type: 'direct' }
+      queue_options:    { name: '%app.event_queue%' }
+      callback:         'simple_bus.rabbit_mq_bundle_bridge.events_consumer'

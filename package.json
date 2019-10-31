@@ -12,12 +12,12 @@
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.0",
+    "popper.js": "^1.12.5",
     "techno-font": "0.0.5",
     "vue": "^2.4.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.11.1",
+    "browser-sync": "^2.26.7",
     "browserify": "^13.0.0",
     "faker": "^3.0.1",
     "gulp": "^3.9.1",

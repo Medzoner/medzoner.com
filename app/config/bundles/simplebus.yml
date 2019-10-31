@@ -1,2 +1,0 @@
-event_bus:
-    event_name_resolver_strategy: 'named_message'

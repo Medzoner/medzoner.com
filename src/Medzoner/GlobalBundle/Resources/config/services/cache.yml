@@ -1,8 +1,0 @@
-services:
-    medzoner.cache.query.controller:
-        class: 'Medzoner\GlobalBundle\Controller\CacheController'
-        arguments:
-            - '@request_stack'
-            - '@templating'
-            - '@fos_http_cache.handler.tag_handler'
-            - '%cache_key_front%'

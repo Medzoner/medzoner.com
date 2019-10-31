@@ -36,12 +36,7 @@ header {
         }
     }
 }
-
-.section--footer {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    footer {
+footer.section-footer {
         display: block;
         width: 100%;
         margin: 0 0 0 0;
@@ -52,15 +47,14 @@ header {
         span {
             display: inline-block;
             width: 40%;
-            height: 48px;
+            height: 38px;
             line-height: 40px;
             font-weight: bold;
             margin: 0 0 0 15px;
         }
         img {
             margin: 0 auto;
-            height: 20px;
-            width: 10%;
+            height: 38px;
         }
         position: relative;
         height: 48px;
@@ -77,6 +71,7 @@ header {
                 i.tf-32 {
                     color: #ffffff;
                     font-size: 32px;
+                    line-height: 32px;
                 }
                 i.fa {
                     color: #ffffff;
@@ -84,7 +79,13 @@ header {
                 }
             }
         }
-    }
+
+}
+
+footer.section-footer.section-footer-fix {
+    display: block;
+    position: fixed;
+    bottom: 0;
 }
 
 
@@ -97,4 +98,44 @@ section.content
     border: 0;
     background: #000000;
     opacity: 0.9;
+}
+
+div.stack-line
+{
+    line-height: 18px;
+}
+
+div.stack-subline
+{
+    margin:  0 0 0 20px;
+}
+
+.tree h3
+{
+    font-weight: bold;
+}
+
+.experience-part1
+{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media print {
+    nav.top-bar {
+        display: none;
+    }
+    footer.section-footer {
+        display: none;
+    }
+
+    //.noprint {
+    //    display: none;
+    //}
+
+    .columns-part1 {
+        box-sizing: border-box; /* You only need this if you add padding or borders */
+        display: inline-block;
+        width: 3.5in;
+    }
 }

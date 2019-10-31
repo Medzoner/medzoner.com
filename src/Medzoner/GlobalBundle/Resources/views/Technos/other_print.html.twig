@@ -1,0 +1,25 @@
+<div class="cv-tree">
+    <div class="tree">
+        <h3> Divers</h3>
+        {% for k,other in others %}
+        <div class="stack-line">
+            <span> {{ k }} : </span>
+            {% for item in other %}
+                {% if item.title is defined %}
+                    <span>{{ item.title }}</span>
+                {% endif %}
+
+                {% if item.title is not defined %}
+                    {% for k,subother in item %}
+                        <div><span> {{ k }} : </span>
+                            {% for subitem in subother %}
+                                <span>{{ subitem.title }} </span>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

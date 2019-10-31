@@ -4,6 +4,11 @@ namespace Medzoner\GlobalBundle\Controller;
 
 use Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler;
 use Medzoner\Domain\Query\ListJobBoardQuery;
+use Medzoner\GlobalBundle\Provider\JobBoard\ExperienceProvider;
+use Medzoner\GlobalBundle\Provider\JobBoard\FormationProvider;
+use Medzoner\GlobalBundle\Provider\JobBoard\LangProvider;
+use Medzoner\GlobalBundle\Provider\JobBoard\OtherProvider;
+use Medzoner\GlobalBundle\Provider\JobBoard\StackProvider;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,7 +67,12 @@ class TechnosController
         return $this->templating->renderResponse(
             'MedzonerGlobalBundle:Technos:index.html.twig',
             [
-                'jobboard' => $jobBoard
+                'jobboard' => $jobBoard,
+                'stacks' => StackProvider::getStack(),
+                'experiences' => ExperienceProvider::getExperience(),
+                'formations' => FormationProvider::getFormation(),
+                'langs' => LangProvider::getLang(),
+                'others' => OtherProvider::getOther(),
             ]
         );
     }

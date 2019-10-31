@@ -1,0 +1,27 @@
+<div class="cv-tree">
+    <div class="tree">
+        <h3> Experience</h3>
+        {% for k,experience in experiences %}
+
+            <div><span class="folder-title experience-part1"> {{ k }}</span><br>
+                {% for item in experience %}
+                    {% if item.title is defined %}
+                        <p>{{ item.title }}</p>
+                    {% endif %}
+
+                    {% if item.title is not defined %}
+                        {% for k,subexperience in item %}
+                            <span class="folder-title"> {{ k }}: </span><p>
+                            {% for subitem in subexperience %}
+                                {{ subitem.title }}{% if not loop.last %} •{% endif %}
+
+                            {% endfor %}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+        {% endfor %}
+    </div>
+</div>

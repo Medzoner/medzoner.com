@@ -23,6 +23,11 @@ class JobBoardContent
     private $description;
 
     /**
+     * @var
+     */
+    private $logos;
+
+    /**
      * @return mixed
      */
     public function getTitle()
@@ -68,5 +73,23 @@ class JobBoardContent
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogos()
+    {
+        return $this->logos;
+    }
+
+    /**
+     * @param mixed $logos
+     * @return JobBoardContent
+     */
+    public function setLogos($logos)
+    {
+        $this->logos = $logos;
+        return $this;
     }
 }

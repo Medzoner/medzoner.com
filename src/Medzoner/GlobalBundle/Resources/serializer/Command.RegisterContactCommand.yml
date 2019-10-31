@@ -1,9 +1,0 @@
-Medzoner\Domain\Command\RegisterContactCommand:
-    exclusion_policy: 'ALL'
-
-    properties:
-        name:
-            expose: true
-            type: 'string'
-            accessor:
-                getter: 'getName'

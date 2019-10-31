@@ -23,7 +23,7 @@ else
   if [ `echo "$@" | cut -c1-4` == 'echo' ]; then
     bash -c "$@";
   else
-    build_all 'linux-amd64'
+    build_all $1
     exit 0
   fi
 fi

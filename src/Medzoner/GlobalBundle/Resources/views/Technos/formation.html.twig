@@ -1,0 +1,37 @@
+<div class="cv-tree">
+    <div class="tree">
+        <ul>
+            <li><h3> Formation</h3>
+                <ul>
+                    {% for k,formation in formations %}
+
+                        <li><span class="folder-title"> {{ k }}</span>
+                            <ul>
+                                {% for item in formation %}
+                                    {% if item.title is defined %}
+                                        <li>{{ item.title }}</li>
+                                    {% endif %}
+
+                                    {% if item.title is not defined %}
+                                        {% for k,subformation in item %}
+                                            <li><span class="folder-title"> {{ k }}</span>
+                                                <ul>
+                                                    {% for subitem in subformation %}
+                                                        <li>{{ subitem.title }}</li>
+
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                {% endfor %}
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

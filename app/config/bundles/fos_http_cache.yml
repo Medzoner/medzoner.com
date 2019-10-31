@@ -1,6 +1,0 @@
-fos_http_cache:
-    proxy_client:
-        varnish:
-                servers:
-                    - 172.61.0.1:8061
-                base_url: http://medzoner.dev

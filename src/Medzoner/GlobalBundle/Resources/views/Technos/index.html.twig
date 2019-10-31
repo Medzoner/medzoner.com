@@ -2,33 +2,51 @@
 {% set page_title = "CV" %}
 
 {% block content %}
-    <section class="content3">
-        <div class="row job-logos">
-            <div class="large-12 columns">
-                <img src="{{ asset(medzoner_cdn_url ~ '/images/php/elephpant_50_35.png') }}" alt="PHP"/>
-                <img src="{{ asset(medzoner_cdn_url ~ '/images/symfony/symfony.png') }}" alt="SYMFONY"/>
-                <img src="{{ asset(medzoner_cdn_url ~ '/images/nodejs/nodejs.png') }}" alt="NODEJS"/>
-                <img src="{{ asset(medzoner_cdn_url ~ '/images/angular/angular.png') }}" alt="ANGULARJS" />
-                <img src="{{ asset(medzoner_cdn_url ~ '/images/docker/docker.png') }}" alt="DOCKER" />
-            </div>
-        </div>
-    </section>
-    <section class="content3">
+
+    <section class="content2">
         <div class="row">
-            <br><br>
-            <div class="s10 large-12 columns">
-                <h5>GITHUB</h5>
+
+            <div class="small-6 columns columns-part1">
+                <span>Mehdi Youb</span>
+                <br>
+                <span>75019 Paris</span>
+                <br>
+                <span>medzoner@medzoner.com</span>
+                <br>
+                <span>https://github.com/Medzoner</span>
             </div>
-            <div class="s10 large-12 columns">
-                <div class="row">
-                    <div class="small-3 columns">
-                        <h6>CoinhiveBundle</h6>
-                    </div>
-                    <div class="s11 small-9 columns">
-                        <h6>https://github.com/Medzoner/CoinhiveBundle</h6>
-                    </div>
-                </div>
+            <div class="s11 small-6 columns columns-part1">
+                <span>Né le 03/03/1983</span>
+                <br>
+                <span>Nationalité Française</span>
+                <br>
+                <span>Permis B</span>
+                <br>
+                <span>https://hub.docker.com/r/medzoner</span>
             </div>
+            <hr>
+            <h2>Développeur et Devops</h2>
+
+            {% include '@MedzonerGlobal/Technos/stack.html.twig' %}
+
+            {% include '@MedzonerGlobal/Technos/experience.html.twig' %}
+
+            {% include '@MedzonerGlobal/Technos/formation.html.twig' %}
+
+            {% include '@MedzonerGlobal/Technos/lang.html.twig' %}
+
+            {% include '@MedzonerGlobal/Technos/other.html.twig' %}
+
+            {#{% include '@MedzonerGlobal/Technos/stack_print.html.twig' %}#}
+
+            {#{% include '@MedzonerGlobal/Technos/experience_print.html.twig' %}#}
+
+            {#{% include '@MedzonerGlobal/Technos/formation_print.html.twig' %}#}
+
+            {#{% include '@MedzonerGlobal/Technos/lang_print.html.twig' %}#}
+
+            {#{% include '@MedzonerGlobal/Technos/other_print.html.twig' %}#}
+
         </div>
     </section>
 {% endblock %}

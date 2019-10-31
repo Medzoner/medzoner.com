@@ -89,7 +89,7 @@ class ContactController
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->messageBus->handle($registerContactCommand);
 
             $this->session->getFlashBag()->set('blogger-notice', 'Votre message a bien été envoyé. Merci!');
@@ -99,7 +99,8 @@ class ContactController
 
         return $this->templating->renderResponse('@MedzonerGlobal/Contact/contact.html.twig', [
             'form' => $form->createView(),
-            'message' => $this->session->getFlashBag()->get('blogger-notice')
+            'message' => $this->session->getFlashBag()->get('blogger-notice'),
+            'footerFixed' => true
         ]);
     }
 }

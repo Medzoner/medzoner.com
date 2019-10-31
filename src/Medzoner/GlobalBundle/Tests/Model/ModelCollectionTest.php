@@ -3,11 +3,12 @@
 namespace Medzoner\GlobalBundle\Tests\Model;
 
 use Medzoner\GlobalBundle\Model\ModelCollection;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Class ModelCollectionTest
  */
-class ModelCollectionTest extends \PHPUnit_Framework_TestCase
+class ModelCollectionTest extends WebTestCase
 {
     /**
      *

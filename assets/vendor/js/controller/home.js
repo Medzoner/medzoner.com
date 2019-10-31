@@ -6,7 +6,7 @@ var app = new Vue({
     },
     created: function() {
         var vm = this;
-        fetch('http://medzoner.dev:9061/api/contact')
+        fetch('http://medzoner.local:9061/api/contact')
             .then(function(response) {
                 return response.json()
                     .then(function(json) {

@@ -15,8 +15,9 @@ class MedzonerGlobalExtension extends Extension
     /**
      * @param array $configs
      * @param ContainerBuilder $container
+     * @throws \Exception
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
@@ -24,12 +25,12 @@ class MedzonerGlobalExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if ($container->getParameter('kernel.environment') == 'dev') {
-            $loader->load('./services/contact-dev.yml');
-        }
+        //if ($container->getParameter('kernel.environment') == 'dev') {
+            //$loader->load('./services/contact-dev.yml');
+        //}
 
-        if ($container->getParameter('kernel.environment') == 'test') {
-            $loader->load('./services/contact-test.yml');
-        }
+        //if ($container->getParameter('kernel.environment') == 'test') {
+            //$loader->load('./services/contact-test.yml');
+        //}
     }
 }

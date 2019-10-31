@@ -80,6 +80,7 @@ class JobBoardProvider
             !isset($subpart['sub_title']) ?: $this->jobBoardContent->setTitle($subpart['sub_title']);
             !isset($subpart['sub_content']) ?: $this->jobBoardContent->setContent($subpart['sub_content']);
             !isset($subpart['sub_description']) ?: $this->jobBoardContent->setDescription($subpart['sub_description']);
+            !isset($subpart['sub_logos']) ?: $this->jobBoardContent->setLogos($subpart['sub_logos']);
             $collection->add($this->jobBoardContent);
         }
 
@@ -96,6 +97,10 @@ class JobBoardProvider
                 [
                     'sub_title' => 'Langages',
                     'sub_content' => 'PHP, javascript/NodeJs, HTML, CSS',
+                    'sub_logos' => [
+                        '/images/php/elephpant_50_35.png',
+                        '/images/nodejs/nodejs.png'
+                    ],
                 ],
                 [
                     'sub_title' => 'Base de données/stockage',
@@ -103,7 +108,11 @@ class JobBoardProvider
                 ],
                 [
                     'sub_title' => 'Frameworks',
-                    'sub_content' => 'Symfony 1.4 > 3.1, AngularJS',
+                    'sub_content' => 'Symfony 1.4, 2.x, 3.x, AngularJS',
+                    'sub_logos' => [
+                        '/images/symfony/symfony.png',
+                        '/images/angular/angular.png'
+                    ],
                 ],
                 [
                     'sub_title' => 'IDE',
@@ -124,6 +133,9 @@ class JobBoardProvider
                 [
                     'sub_title' => 'OS',
                     'sub_content' => 'GNU/LINUX (Debian/Ubuntu), Docker',
+                    'sub_logos' => [
+                        '/images/docker/docker.png'
+                    ],
                 ],
             ],
             [

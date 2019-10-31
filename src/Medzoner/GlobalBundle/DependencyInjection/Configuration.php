@@ -11,13 +11,11 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritdoc}
+     * @return TreeBuilder
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('medzoner');
-
+        $treeBuilder = new TreeBuilder('medzoner');
         return $treeBuilder;
     }
 }

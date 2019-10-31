@@ -1,0 +1,26 @@
+<div class="cv-tree">
+    <div class="tree">
+        <h3> Stack</h3>
+        {% for k,stack in stacks %}
+            <div class="stack-line">
+                <span class="folder-title"> {{ k }} : </span>
+                {% for item in stack %}
+                    {% if item.title is defined %}
+                        <span><img class="noprint" style="height: 12px;" src="{{ asset(medzoner_cdn_url ~ '/images/technos/' ~ item.img ) }}" alt="{{ item.title }}" /> {{ item.title }}&nbsp;&nbsp;</span>
+                    {% endif %}
+
+                    {% if item.title is not defined %}
+                        <div class="stack-subline">
+                            {% for k,substack in item %}
+                                <span class="folder-title"> {{ k }} : </span>
+                                {% for subitem in substack %}
+                                    <span><img class="noprint" style="height: 12px;" src="{{ asset(medzoner_cdn_url ~ '/images/technos/' ~ subitem.img ) }}" alt="{{ subitem.title }}" /> {{ subitem.title }}</span>
+                                {% endfor %}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

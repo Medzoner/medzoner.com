@@ -1,0 +1,37 @@
+imports:
+    # Framework - framework
+    - { resource: 'framework/framework.yml' }
+    # Framework - twig
+    - { resource: 'framework/twig.yml' }
+    # Framework - doctrine
+    - { resource: 'framework/doctrine.yml' }
+    # Framework - swiftmailer
+    - { resource: 'framework/swiftmailer.yml' }
+    # Framework - monolog
+    - { resource: 'framework/monolog.yml' }
+
+    # Parameters
+    - { resource: 'parameters.yml' }
+    # Security
+    - { resource: 'security.yml' }
+    # Bundles - redis
+    - { resource: 'bundles/redis.yml' }
+    # Bundles - fos
+    #- { resource: 'bundles/fos_elastica.yml' }
+    #- { resource: 'bundles/fos_http_cache.yml' }
+    - { resource: 'bundles/fos_rest.yml' }
+    # Bundles - simplebus
+    - { resource: 'bundles/simplebus.yml' }
+    # BUNDLES - JMS
+    - { resource: 'bundles/jms.yml' }
+
+command_bus:
+    logging: ~
+
+event_bus:
+    logging: ~
+
+#
+#coinhive:
+#    config:
+#        site_key: '%coinhive.site_key%'

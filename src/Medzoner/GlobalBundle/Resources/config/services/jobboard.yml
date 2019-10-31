@@ -4,12 +4,12 @@ services:
     arguments:
         - '@medzoner.jobboard.provider'
 
-  medzoner.jobboard.controller:
-    class: 'Medzoner\GlobalBundle\Controller\TechnosController'
-    arguments:
-        - '@request_stack'
-        - '@templating'
-        - '@medzoner.jobboard.queryhandler'
+  Medzoner\GlobalBundle\Controller\TechnosController:
+    public: true
+    bind:
+        $request: '@request_stack'
+        $templating: '@templating'
+        $jobBoardQueryHandler: '@medzoner.jobboard.queryhandler'
 
   medzoner.jobboard.model:
     class: 'Medzoner\GlobalBundle\Model\JobBoard\JobBoard'

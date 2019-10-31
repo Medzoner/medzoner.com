@@ -1,8 +1,7 @@
 services:
 # WRITE
-    medzoner.contact.controller:
-        class: 'Medzoner\GlobalBundle\Controller\ContactController'
-        public: 'false'
+    Medzoner\GlobalBundle\Controller\ContactController:
+        public: true
         arguments:
             - '@request_stack'
             - '@templating'
@@ -33,7 +32,8 @@ services:
             - '@event_bus'
             - '@jms_serializer'
         tags:
-            - { name: 'command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
+            - { name: 'asynchronous_command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
+            #- { name: 'asynchronous_command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
 
 
     medzoner.contact.send_contact.service:

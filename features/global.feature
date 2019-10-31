@@ -19,5 +19,5 @@ Feature: Global behavior "Medzoner"
 #------------------------------------------------------------------------------------------
 
     Scenario: [Medzoner - GET_ALL] "Home page"
-        When    I send a GET request to "/cv"
+        When    I send a GET request to "/technos"
         Then    the response status code should be 200

@@ -1,44 +1,20 @@
 # Home
 site:
     path:  /
-    defaults: { _controller: 'medzoner.home.controller:indexAction', _format: "html" }
+    defaults: { _controller: 'Medzoner\GlobalBundle\Controller\IndexController:indexAction', _format: "html" }
 
 site_home:
     path:  /home
-    defaults: { _controller: 'medzoner.home.controller:indexAction', _format: "html" }
+    defaults: { _controller: 'Medzoner\GlobalBundle\Controller\IndexController:indexAction', _format: "html" }
 
 # Contact
 site_contact:
     path:  /contact
-    defaults: { _controller: 'medzoner.contact.controller:contactAction', _format: "html" }
-
-# Portfolio
-site_book:
-    path:  /book
-    defaults: { _controller: 'MedzonerGlobalBundle:Portfolio:index', _format: "html" }
+    defaults: { _controller: 'Medzoner\GlobalBundle\Controller\ContactController:contactAction', _format: "html" }
 
 # Technos
 site_technos:
     path: /technos
-    defaults: { _controller: 'medzoner.jobboard.controller:indexAction', _format: "html" }
-
-# Foundation
-site_foundation:
-    path:  /foundation
-    defaults: { _controller: 'MedzonerGlobalBundle:Foundation:index', _format: "html" }
-
-# Proxy
-site_pages_proxy:
-    path:  /proxy
-    defaults: { _controller: 'MedzonerGlobalBundle:Proxy:index', _format: "html" }
-
-site_pages_proxy_url:
-    path:  /proxy/{url}
-    defaults: { _controller: 'MedzonerGlobalBundle:Proxy:index', _format: "html" }
+    defaults: { _controller: 'Medzoner\GlobalBundle\Controller\TechnosController:indexAction', _format: "html" }
 
 
-
-#=============================== Cache ===============================
-site_cache:
-    path:     "/cache"
-    defaults: { _controller: "medzoner.cache.query.controller:indexAction", _format: "html" }
