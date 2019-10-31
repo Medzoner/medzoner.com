@@ -11,15 +11,17 @@ COPY bin /data/bin
 COPY composer.json /data/
 COPY composer.lock /data/
 
-COPY web/app.php /data/web/app.php
-
 COPY assets/rev-manifest-css.json /data/assets/rev-manifest-css.json
 COPY assets/rev-manifest-js.json /data/assets/rev-manifest-js.json
-
+COPY web/app.php /data/web/app.php
+COPY web/assets /data/web/assets
+COPY web/bundles /data/web/bundles
 COPY web/css /data/web/css
-COPY web/js /data/web/js
+COPY web/fonts /data/web/fonts
 COPY web/images /data/web/images
+COPY web/js /data/web/js
 COPY web/favicon.png /data/web/favicon.png
+COPY web/robots.txt /data/web/robots.txt
 
 RUN mkdir -p /config
 COPY app/config/parameters.yml.dist /config/parameters.yml
