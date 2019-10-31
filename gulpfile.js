@@ -36,7 +36,7 @@ var paths = {
         'node_modules/font-mfizz/dist/font-mfizz.css'
     ],
     images: [
-        'assets/images/**/*'
+        'assets/images/**/**/**/*'
     ],
     copyfonts: [
         'node_modules/font-mfizz/dist/font-mfizz.eot',
@@ -118,7 +118,6 @@ gulp.task('styles', function(done) {
 
 gulp.task('images', function(done) {
     gulp.src(paths.images)
-    //.pipe(imagemin({optimizationLevel: 5}))
         .pipe(gulp.dest('web/images'))
         .pipe(browserSync.stream());
     done();
