@@ -1,42 +1,77 @@
-pipeline:
+---
+kind: pipeline
+name: default
 
-    app-test:
-        image: medzoner/medzoner_php
-        group: test # parallel
-        commands:
-          - apt-get update
-          - apt-get install -y --force-yes nginx curl
-          - composer install
-          - ./bin/phpunit -c app
-          - rm -rf ./vendor
-          - composer install -n --no-dev --optimize-autoloader --no-progress
-        when:
-          branch:
-            - master
-            - staging
-            - development
+steps:
+  - name: app-test
+    image: medzoner/medzoner_php
+    group: test # parallel
+    commands:
+      - apt-get update
+      - apt-get install -y --force-yes nginx curl
+      - composer install
+      - ./bin/phpunit -c app
+      - rm -rf ./vendor
+      - composer install -n --no-dev --optimize-autoloader --no-progress
+    when:
+      branch:
+        - master
+        - staging
+        - development
 
-    cdn-test:
-        image: node:7
-        group: test # parallel
-        commands:
-          - npm install
-          - npm install -g bower karma gulp
-          - gulp
+  - name: cdn-test
+    image: node:7
+    group: test # parallel
+    commands:
+      - npm install
+      - npm install -g bower karma gulp
+      - gulp
+    when:
+      branch:
+        - master
+        - staging
+        - development
 
-    app-build:
-        image: plugins/docker
-        group: build # parallel
-        repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
-        dockerfile: Dockerfile
-        secrets: [ docker_username, docker_password ]
-        registry: l24624j7.gra5.container-registry.ovh.net
-        debug: true
-        tags:
-            - latest
-            - ${DRONE_COMMIT_SHA}
-        when:
-          branch:
-            - master
-            - staging
-            - development
+  - name: app-build
+    image: plugins/docker
+    group: build # parallel
+    repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
+    dockerfile: Dockerfile
+    secrets: [ docker_username, docker_password ]
+    registry: l24624j7.gra5.container-registry.ovh.net
+    debug: true
+    tags:
+        - latest
+        - ${DRONE_COMMIT_SHA}
+    when:
+      branch:
+        - master
+        - staging
+        - development
+
+  - name: "tag config repo"
+    image: ubuntu
+    environment:
+      SSH_KEY:
+        from_secret: ssh_key
+      TAG_REPO:
+        from_secret: tag_repo
+    volumes:
+      - name: key
+        path: /root/.ssh
+    commands:
+      - apt-get -yq update && apt-get -yqq install ssh
+      - echo $SSH_KEY | base64 -d > /root/.ssh/id_rsa
+      - echo $SSH_KEY | base64 -d > /root/private_key
+      - chmod 600 /root/.ssh/id_rsa
+      - touch /root/.ssh/known_hosts
+      - ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
+      - apt update && apt install -y git
+      - git config --global user.email "pipeline@medzoner.com" && git config --global user.name "pipeline"
+      - cd /tmp && git clone $TAG_REPO && cd origami-gitops
+      - ./tag_repo.sh
+    when:
+      branch:
+        - master
+        - staging
+        - development
