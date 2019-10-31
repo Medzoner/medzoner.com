@@ -11,8 +11,8 @@ COPY bin /data/bin
 COPY composer.json /data/
 COPY composer.lock /data/
 
-COPY assets/rev-manifest-css.json /data/web/rev-manifest-css.json
-COPY assets/rev-manifest-js.json /data/web/rev-manifest-js.json
+COPY web/rev-manifest-css.json /data/web/rev-manifest-css.json
+COPY web/rev-manifest-js.json /data/web/rev-manifest-js.json
 COPY web/app.php /data/web/app.php
 COPY web/bundles /data/web/bundles
 COPY web/css /data/web/css
