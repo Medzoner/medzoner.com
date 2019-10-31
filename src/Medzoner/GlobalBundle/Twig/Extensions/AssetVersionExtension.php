@@ -59,7 +59,7 @@ class AssetVersionExtension extends \Twig_Extension
             return $filename;
         }
 
-        $manifestPath = $this->url.'/revision/rev-manifest-js.json';
+        $manifestPath = $this->url.'/assets/rev-manifest-js.json';
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
@@ -85,7 +85,7 @@ class AssetVersionExtension extends \Twig_Extension
             return $filename;
         }
 
-        $manifestPath = $this->url.'/revision/rev-manifest-css.json';
+        $manifestPath = $this->url.'/assets/rev-manifest-css.json';
 
         $paths = json_decode(file_get_contents($manifestPath), true);
         if (!isset($paths[basename($filename)])) {
