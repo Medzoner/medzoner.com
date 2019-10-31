@@ -9,7 +9,7 @@ steps:
       - apt-get update
       - apt-get install -y --force-yes nginx curl
       - composer install
-      - ./bin/phpunit -c app
+      - ./bin/phpunit -c phpunit.xml.dist
     when:
       branch:
         - master
