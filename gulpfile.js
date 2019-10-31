@@ -47,8 +47,8 @@ var paths = {
 };
 
 var versioning = {
-    manifestCss: src + '/rev-manifest-css.json',
-    manifestJS: src + '/rev-manifest-js.json'
+    manifestCss: dest + '/rev-manifest-css.json',
+    manifestJS: dest + '/rev-manifest-js.json'
 };
 
 gulp.task('javascripts', function(done) {
@@ -67,7 +67,7 @@ gulp.task('javascripts', function(done) {
         .pipe(rev())
         .pipe(gulp.dest('web/js'))
         .pipe(rev.manifest(versioning.manifestJS, {base : dest}))
-        .pipe(gulp.dest(src))
+        .pipe(gulp.dest(dest))
         .pipe(browserSync.stream())
         ;
     done();
@@ -88,7 +88,7 @@ gulp.task('backend-js', function(done) {
         .pipe(rev())
         .pipe(gulp.dest('web/js'))
         .pipe(rev.manifest(versioning.manifestJS, {base : dest}))
-        .pipe(gulp.dest(src))
+        .pipe(gulp.dest(dest))
         .pipe(browserSync.stream())
         ;
     done();
@@ -98,13 +98,12 @@ gulp.task('styles', function(done) {
     gulp.src(paths.styles)
         .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
         .pipe(concat('app.min.css'))
-        .pipe(gulp.dest('web/css'))
         .pipe(minify())
         .pipe(gulp.dest('web/css'))
         .pipe(rev())
         .pipe(gulp.dest('web/css'))
         .pipe(rev.manifest(versioning.manifestCss, {base : dest}))
-        .pipe(gulp.dest(src))
+        .pipe(gulp.dest(dest))
         .pipe(browserSync.stream())
     ;
 
