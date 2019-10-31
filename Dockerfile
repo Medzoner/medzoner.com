@@ -8,6 +8,8 @@ WORKDIR /data
 COPY app /data/app
 COPY src /data/src
 COPY bin /data/bin
+COPY translations /data/translations
+COPY config /data/config
 COPY composer.json /data/
 COPY composer.lock /data/
 
