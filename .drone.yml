@@ -11,8 +11,6 @@ steps:
       - apt-get install -y --force-yes nginx curl
       - composer install
       - ./bin/phpunit -c app
-      - rm -rf ./vendor
-      - composer install -n --no-dev --optimize-autoloader --no-progress
     when:
       branch:
         - master
