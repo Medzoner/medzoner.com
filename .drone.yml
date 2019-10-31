@@ -63,7 +63,7 @@ steps:
       - echo $SSH_KEY | base64 -d > /root/private_key
       - chmod 600 /root/.ssh/id_rsa
       - cd /tmp && git clone $TAG_REPO && cd medzoner-gitops
-      - ./tag_repo.sh
+      - ./tag_repo.sh medzoner
     when:
       branch:
         - master
