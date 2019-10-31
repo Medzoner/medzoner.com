@@ -16,13 +16,13 @@ pipeline:
             - staging
             - development
 
-#    cdn-test:
-#        image: node
-#        group: test # parallel
-#        commands:
-#          - npm install
-#          - npm install -g bower karma gulp
-#          - gulp
+    cdn-test:
+        image: node:7
+        group: test # parallel
+        commands:
+          - npm install
+          - npm install -g bower karma gulp
+          - gulp
 
     app-build:
         image: plugins/docker

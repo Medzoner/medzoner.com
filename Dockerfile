@@ -16,10 +16,10 @@ COPY web/app.php /data/web/app.php
 COPY assets/rev-manifest-css.json /data/assets/rev-manifest-css.json
 COPY assets/rev-manifest-js.json /data/assets/rev-manifest-js.json
 
-COPY web/css /data/web/assets/css
-COPY web/js /data/web/assets/js
-COPY web/images /data/web/assets/images
-COPY web/favicon.png /data/web/assets/favicon.png
+COPY web/css /data/web/css
+COPY web/js /data/web/js
+COPY web/images /data/web/images
+COPY web/favicon.png /data/web/favicon.png
 
 RUN mkdir -p /config
 COPY app/config/parameters.yml.dist /config/parameters.yml
