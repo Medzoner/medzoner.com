@@ -30,14 +30,18 @@ steps:
 
   - name: app-build
     image: plugins/docker
-    repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
-    dockerfile: Dockerfile
-    secrets: [ docker_username, docker_password ]
-    registry: l24624j7.gra5.container-registry.ovh.net
     debug: true
-    tags:
-        - latest
-        - ${DRONE_COMMIT_SHA}
+    settings:
+      repo: l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      dockerfile: Dockerfile
+      registry: l24624j7.gra5.container-registry.ovh.net
+      tags:
+          - latest
+          - ${DRONE_COMMIT_SHA}
     when:
       branch:
         - master
