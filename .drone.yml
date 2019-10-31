@@ -17,7 +17,7 @@ steps:
         - development
 
   - name: cdn-test
-    image: node:7
+    image: node:10.3.0
     commands:
       - npm install
       - npm install -g bower karma gulp
