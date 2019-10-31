@@ -55,15 +55,14 @@ steps:
       - name: key
         path: /root/.ssh
     commands:
-      - apt-get -yq update && apt-get -yqq install ssh
+      - apt-get -yq update && apt-get -yqq install ssh git
       - echo $SSH_KEY | base64 -d > /root/.ssh/id_rsa
       - echo $SSH_KEY | base64 -d > /root/private_key
       - chmod 600 /root/.ssh/id_rsa
       - touch /root/.ssh/known_hosts
       - ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
-      - apt update && apt install -y git
       - git config --global user.email "pipeline@medzoner.com" && git config --global user.name "pipeline"
-      - cd /tmp && git clone $TAG_REPO && cd origami-gitops
+      - cd /tmp && git clone $TAG_REPO && cd medzoner-gitops
       - ./tag_repo.sh
     when:
       branch:
