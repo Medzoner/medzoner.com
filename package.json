@@ -7,12 +7,12 @@
     "miner": "node miner.js"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
+    "bootstrap": "^4.3.1",
     "download": "^6.2.5",
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.5",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
     "techno-font": "0.0.5",
     "vue": "^2.4.1"
   },
@@ -34,8 +34,8 @@
     "gulp-symlink": "^2.1.4",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "jshint": "^2.9.1",
-    "mocha": "^3.2.0",
+    "jshint": "^2.10.2",
+    "mocha": "^6.2.2",
     "vinyl-source-stream": "^1.1.0",
     "webpage": "^0.3.0"
   },
