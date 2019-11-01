@@ -2,11 +2,15 @@
 
 namespace Medzoner\GlobalBundle\Model;
 
+use ArrayIterator;
+use Countable;
+use IteratorAggregate;
+
 /**
  * Class ModelCollection
  *
  */
-class ModelCollection implements \Countable, \IteratorAggregate
+class ModelCollection implements Countable, IteratorAggregate
 {
     /**
      * @var array
@@ -43,11 +47,11 @@ class ModelCollection implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @return \ArrayIterator
+     * @return ArrayIterator
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->elements);
+        return new ArrayIterator($this->elements);
     }
 
     /**

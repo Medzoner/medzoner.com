@@ -2,13 +2,9 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-//use FOS\HttpCache\Handler\TagHandler;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
-
-//use FOS\HttpCacheBundle\Http\SymfonyResponseTagger;
-//use FOS\HttpCacheBundle\CacheManager;
 
 /**
  * Class IndexController

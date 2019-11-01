@@ -44,8 +44,7 @@ class TechnosController
         RequestStack $request,
         EngineInterface $templating,
         ListJobBoardQueryHandler $jobBoardQueryHandler
-    )
-    {
+    ) {
         $this->request = $request->getMasterRequest();
 
         $this->templating = $templating;

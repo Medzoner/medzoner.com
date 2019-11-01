@@ -2,8 +2,6 @@
 
 namespace Medzoner\GlobalBundle\Form;
 
-use CoinhiveBundle\Form\CoinHiveCaptchaType;
-use CoinhiveBundle\Validator\IsTrue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,12 +27,6 @@ class RegistrationType extends AbstractType
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class)
-/*            ->add('coinhive-captcha-token', CoinHiveCaptchaType::class, [
-                'mapped'      => false,
-                'constraints' => [
-                    new IsTrue()
-                ]
-            ])*/
             ->add('Envoyer', SubmitType::class)
         ;
     }

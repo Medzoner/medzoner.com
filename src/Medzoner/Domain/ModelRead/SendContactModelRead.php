@@ -2,6 +2,8 @@
 
 namespace Medzoner\Domain\ModelRead;
 
+use DateTime;
+
 /**
  * Class SendContactCommand
  */
@@ -90,7 +92,7 @@ class SendContactModelRead
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDateAdd() {
         return $this->dateAdd;

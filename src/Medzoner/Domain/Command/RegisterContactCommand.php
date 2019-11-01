@@ -2,6 +2,7 @@
 
 namespace Medzoner\Domain\Command;
 
+use DateTime;
 use SimpleBus\Message\Name\NamedMessage;
 
 /**
@@ -38,7 +39,8 @@ class RegisterContactCommand implements NamedMessage
     /**
      *
      */
-    public function setCaptcha($captcha) {
+    public function setCaptcha($captcha)
+    {
         $this->captcha = $captcha;
 
         return $this;
@@ -47,7 +49,8 @@ class RegisterContactCommand implements NamedMessage
     /**
      * @return string
      */
-    public function getCaptcha() {
+    public function getCaptcha()
+    {
         return $this->captcha;
     }
 
@@ -56,7 +59,8 @@ class RegisterContactCommand implements NamedMessage
      *
      * @return $this
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -65,7 +69,8 @@ class RegisterContactCommand implements NamedMessage
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -73,7 +78,8 @@ class RegisterContactCommand implements NamedMessage
      * @param $email
      * @return $this
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -82,7 +88,8 @@ class RegisterContactCommand implements NamedMessage
     /**
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -90,7 +97,8 @@ class RegisterContactCommand implements NamedMessage
      * @param $message
      * @return $this
      */
-    public function setMessage($message) {
+    public function setMessage($message)
+    {
         $this->message = $message;
 
         return $this;
@@ -99,7 +107,8 @@ class RegisterContactCommand implements NamedMessage
     /**
      * @return string
      */
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 
@@ -107,16 +116,18 @@ class RegisterContactCommand implements NamedMessage
      * @param $dateAdd
      * @return $this
      */
-    public function setDateAdd($dateAdd) {
+    public function setDateAdd($dateAdd)
+    {
         $this->dateAdd = $dateAdd;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateAdd() {
+    public function getDateAdd()
+    {
         return $this->dateAdd;
     }
 

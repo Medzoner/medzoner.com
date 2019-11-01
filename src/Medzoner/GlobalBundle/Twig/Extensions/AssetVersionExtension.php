@@ -2,10 +2,14 @@
 
 namespace Medzoner\GlobalBundle\Twig\Extensions;
 
+use Exception;
+use Twig_Extension;
+use Twig_SimpleFilter;
+
 /**
  * Class AssetVersionExtension
  */
-class AssetVersionExtension extends \Twig_Extension
+class AssetVersionExtension extends Twig_Extension
 {
     /**
      * @var string
@@ -38,8 +42,8 @@ class AssetVersionExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('asset_js_version', array($this, 'getAssetJsVersion')),
-            new \Twig_SimpleFilter('asset_css_version', array($this, 'getAssetCssVersion')),
+            new Twig_SimpleFilter('asset_js_version', array($this, 'getAssetJsVersion')),
+            new Twig_SimpleFilter('asset_css_version', array($this, 'getAssetCssVersion')),
         );
     }
 
@@ -62,7 +66,7 @@ class AssetVersionExtension extends \Twig_Extension
                 return $filename;
             }
             return 'js/'.$paths[basename($filename)];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
     }
@@ -86,7 +90,7 @@ class AssetVersionExtension extends \Twig_Extension
                 return $filename;
             }
             return '/css/'.$paths[basename($filename)];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
     }

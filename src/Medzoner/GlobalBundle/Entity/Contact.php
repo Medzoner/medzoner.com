@@ -2,8 +2,8 @@
 
 namespace Medzoner\GlobalBundle\Entity;
 
+use DateTime;
 use Medzoner\Domain\Model\ContactModel;
-use Medzoner\GlobalBundle\Repository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,102 +45,93 @@ class Contact extends ContactModel
     private $message;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="date_add", type="datetime")
      */
     private $dateAdd;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return Contact
+     * @param $name
+     * @return $this|ContactModel
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get name
-     *
-     * @return string 
+     * @return mixed|string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return Contact
+     * @param $email
+     * @return $this|ContactModel
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get email
-     *
-     * @return string 
+     * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
     /**
-     * Set email
-     *
      * @param $message
-     * @return $this
+     * @return $this|ContactModel
      */
-    public function setMessage($message) {
+    public function setMessage($message)
+    {
         $this->message = $message;
 
         return $this;
     }
 
     /**
-     * Get email
-     *
-     * @return string 
+     * @return string
      */
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 
     /**
-     * Set dateAdd
-     *
-     * @param \DateTime $dateAdd
-     * @return Contact
+     * @param $dateAdd
+     * @return $this|ContactModel
      */
-    public function setDateAdd($dateAdd) {
+    public function setDateAdd($dateAdd)
+    {
         $this->dateAdd = $dateAdd;
 
         return $this;
     }
 
     /**
-     * Get dateAdd
-     *
-     * @return \DateTime 
+     * @return DateTime
      */
-    public function getDateAdd() {
+    public function getDateAdd()
+    {
         return $this->dateAdd;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -9,9 +10,10 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 class Kernel extends BaseKernel
 {
     /**
-     * @return array|iterable|\Symfony\Component\HttpKernel\Bundle\BundleInterface[]
+     * @return array|iterable|BundleInterface[]
      */
-    public function registerBundles() {
+    public function registerBundles()
+    {
         $bundles = array(
             // Framework Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -47,10 +49,7 @@ class Kernel extends BaseKernel
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
-            //new CoinhiveBundle\CoinhiveBundle(),
-
             //Medzoner
-            new Medzoner\ApiBundle\MedzonerApiBundle(),
             new Medzoner\GlobalBundle\MedzonerGlobalBundle(),
         );
 

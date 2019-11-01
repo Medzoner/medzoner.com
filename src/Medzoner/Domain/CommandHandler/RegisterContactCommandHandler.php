@@ -2,6 +2,9 @@
 
 namespace Medzoner\Domain\CommandHandler;
 
+use DateTime;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use JMS\Serializer\Serializer;
 use Medzoner\Domain\Command\RegisterContactCommand;
 use Medzoner\Domain\Event\RegisteredContactEvent;
@@ -24,6 +27,10 @@ class RegisterContactCommandHandler
      * @var RecordsMessages
      */
     private $eventBus;
+
+    /**
+     * @var Serializer
+     */
     private $serializer;
 
     /**
@@ -36,8 +43,7 @@ class RegisterContactCommandHandler
         ContactRepositoryORM $contactRepository,
         MessageBus $eventBus,
         Serializer $serializer
-    )
-    {
+    ) {
         $this->contactRepository = $contactRepository;
         $this->eventBus = $eventBus;
         $this->serializer = $serializer;
@@ -46,11 +52,14 @@ class RegisterContactCommandHandler
     /**
      * @param RegisterContactCommand $contactCommand
      * @return Contact
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
-    public function handle(RegisterContactCommand $contactCommand) {
+    public function handle(RegisterContactCommand $contactCommand)
+    {
         $contact = new Contact();
         $contact
-            ->setDateAdd(new \DateTime('now'))
+            ->setDateAdd(new DateTime('now'))
             ->setEmail($contactCommand->getEmail())
             ->setMessage($contactCommand->getMessage())
             ->setName($contactCommand->getName())

@@ -2,6 +2,7 @@
 
 namespace Medzoner\Domain\Model;
 
+use DateTime;
 use JMS\Serializer\Annotation\Type;
 
 /**
@@ -103,7 +104,7 @@ class ContactModel
     /**
      * Get dateAdd
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDateAdd() {
         return $this->dateAdd;

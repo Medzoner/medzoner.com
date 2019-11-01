@@ -2,29 +2,23 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class SearchController
  * @package Site\PagesBundle\Controller
  */
-class SearchController extends Controller
+class SearchController extends AbstractController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction()
     {
-        #$repositoryManager = $this->get('fos_elastica.manager.orm');
-
-        #$repositoryBlog = $repositoryManager->getRepository('SiteBlogBundle:Blog');
-        #$articles = $repositoryBlog->find('t');
-
-        #$repositoryUser = $repositoryManager->getRepository('MedzonerUserBundle:User');
-        #$users = $repositoryUser->find('medz');
-        
-        return $this->render('MedzonerGlobalBundle:Search:index.html.twig',
-            array('articles' => [], 'users' => [])
+        return $this->render(
+            'MedzonerGlobalBundle:Search:index.html.twig',
+            ['articles' => [], 'users' => []]
         );
     }
 }

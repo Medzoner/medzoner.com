@@ -33,8 +33,15 @@ services:
             - '@jms_serializer'
         tags:
             - { name: 'asynchronous_command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
-            #- { name: 'asynchronous_command_handler', handles: 'Medzoner\Domain\Command\RegisterContactCommand' }
 
+    medzoner.contact.register_contact.eventhandler:
+        class: 'Medzoner\Domain\EventHandler\RegisteredContactEventHandler'
+        public: 'false'
+        arguments:
+            - '@medzoner.contact.send_contact.service'
+            - '@medzoner.contact.orm.repository'
+        tags:
+            - { name: 'asynchronous_event_handler', handles: 'Medzoner\Domain\Event\RegisteredContactEvent' }
 
     medzoner.contact.send_contact.service:
         class: 'Medzoner\GlobalBundle\Services\SendContactService'

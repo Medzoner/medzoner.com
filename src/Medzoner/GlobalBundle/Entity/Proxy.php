@@ -3,6 +3,7 @@
 namespace Medzoner\GlobalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * Proxy
@@ -50,10 +51,10 @@ class Proxy
     private $baseUrl;
 
     /**
-     *
+     * Proxy constructor.
      */
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->prefix = 'http://facebook.com';
         $this->blockedDomains = array('facebook.com');
 
@@ -69,53 +70,46 @@ class Proxy
     }
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * Set ch
-     *
-     * @param string $ch
-     * @return Proxy
+     * @param $ch
+     * @return $this
      */
-    public function setCh($ch) {
+    public function setCh($ch)
+    {
         $this->ch = $ch;
-
         return $this;
     }
 
     /**
-     * Get ch
-     *
-     * @return string 
+     * @return false|resource|string
      */
-    public function getCh() {
+    public function getCh()
+    {
         return $this->ch;
     }
 
     /**
-     * Set prefix
-     *
-     * @param string $prefix
-     * @return Proxy
+     * @param $prefix
+     * @return $this
      */
-    public function setPrefix($prefix) {
+    public function setPrefix($prefix)
+    {
         $this->prefix = $prefix;
-
         return $this;
     }
 
     /**
-     * Get prefix
-     *
-     * @return string 
+     * @return string
      */
-    public function getPrefix() {
+    public function getPrefix()
+    {
         return $this->prefix;
     }
 
@@ -125,37 +119,35 @@ class Proxy
      * @param array $blockedDomains
      * @return Proxy
      */
-    public function setBlockedDomains($blockedDomains) {
+    public function setBlockedDomains($blockedDomains)
+    {
         $this->blockedDomains = $blockedDomains;
-
         return $this;
     }
 
     /**
-     * Get blockedDomains
-     *
-     * @return array 
+     * @return array
      */
-    public function getBlockedDomains() {
+    public function getBlockedDomains()
+    {
         return $this->blockedDomains;
     }
 
     /**
-     * Set baseUrl
-     *
-     * @param string $baseUrl
-     * @return Proxy
+     * @param $baseUrl
+     * @return $this
      */
-    public function setBaseUrl($baseUrl) {
+    public function setBaseUrl($baseUrl)
+    {
         $this->baseUrl = $baseUrl;
-
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getBaseUrl() {
+    public function getBaseUrl()
+    {
         return $this->baseUrl;
     }
 
@@ -164,9 +156,10 @@ class Proxy
      * @param $get
      * @param $post
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
-    public function run($url, $get, $post) {
+    public function run($url, $get, $post)
+    {
         // Use default
 
         $url = $this->decodeUrl($url);
@@ -188,8 +181,9 @@ class Proxy
         $return = $this->curlExecFollow($this->ch);
 
         // Throw exception on error
-        if ($return === false)
-            throw new \Exception($this->error());
+        if ($return === false) {
+            throw new Exception($this->error());
+        }
 
         // Strip redirect headers
         $body = $return;
@@ -198,12 +192,14 @@ class Proxy
         }
 
         // Set response headers
-        $this->setResponseHeaders($header);
+        $this->setResponseHeaders();
 
         return str_replace('<html>', '', str_replace('<html>', '', str_replace('<!DOCTYPE html>', '', $body)));
     }
 
-    protected function setResponseHeaders($header) {
+    protected function setResponseHeaders()
+    {
+        $header = [];
         // Headers that should be mapped to client
         $mappedHeaders = array(
             'Set-Cookie',
@@ -218,20 +214,22 @@ class Proxy
         $headers = $this->parseHeaders($header);
         foreach ($headers as $name => $value) {
             // If header isn't mapped, don't set it
-            if (!array_search($name, $mappedHeaders))
+            if (!array_search($name, $mappedHeaders)) {
                 continue;
-
+            }
+            header($name . ': ' . $value);
             // Support for multiple values with same name
-            if (is_array($value))
-                foreach ($value as $part)
+            if (is_array($value)) {
+                foreach ($value as $part) {
                     header($name . ': ' . $part, false);
-            else
-                header($name . ': ' . $value);
+                }
+            }
         }
     }
 
     // Parse headers into array
-    protected function parseHeaders($header) {
+    protected function parseHeaders($header)
+    {
         $retVal = array();
         $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $header));
         foreach ($fields as $field) {
@@ -248,28 +246,28 @@ class Proxy
     }
 
     /**
-     *
-     * @param string $url
-     * @return string 
+     * @param $url
+     * @return mixed
      */
-    protected function decodeUrl($url) {
+    protected function decodeUrl($url)
+    {
         return str_replace(' ', '%20', $url);
     }
 
     /**
-     * Get error message
-     * @return string 
+     * @return string
      */
-    protected function error() {
+    protected function error()
+    {
         return curl_error($this->ch);
     }
 
     /**
-     * Allow redirects under safe mode
-     * @param curl_handle $ch
-     * @return string
+     * @param $ch
+     * @return bool|string
      */
-    protected function curlExecFollow($ch) {
+    protected function curlExecFollow($ch)
+    {
         $mr = 5;
         if (ini_get('open_basedir') == '' && (ini_get('safe_mode') == 'Off' || ini_get('safe_mode') == '')) {
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $mr > 0);
@@ -285,8 +283,9 @@ class Proxy
                 curl_setopt($rch, CURLOPT_FORBID_REUSE, false);
                 curl_setopt($rch, CURLOPT_RETURNTRANSFER, true);
                 do {
-                    if (strpos($newurl, '/') === 0)
+                    if (strpos($newurl, '/') === 0) {
                         $newurl = $this->prefix . $newurl;
+                    }
 
                     curl_setopt($rch, CURLOPT_URL, $newurl);
                     $header = curl_exec($rch);

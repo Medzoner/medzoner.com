@@ -3,7 +3,6 @@
 namespace Medzoner\GlobalBundle\Services;
 
 use Medzoner\GlobalBundle\Model\ModelCollection;
-use Medzoner\Query\ListJobBoardQuery;
 
 /**
  * Interface JobBoardServiceInterface

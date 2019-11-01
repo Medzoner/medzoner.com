@@ -2,16 +2,16 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class FoundationController
- * @package Site\PagesBundle\Controller
  */
-class FoundationController extends Controller
+class FoundationController extends AbstractController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction()
     {

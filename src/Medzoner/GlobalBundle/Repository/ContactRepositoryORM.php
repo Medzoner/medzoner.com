@@ -3,7 +3,9 @@
 namespace Medzoner\GlobalBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Medzoner\GlobalBundle\Entity\Contact;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Medzoner\Domain\Model\ContactModel;
 
 /**
  * Class ContactRepositoryORM
@@ -11,10 +13,12 @@ use Medzoner\GlobalBundle\Entity\Contact;
 class ContactRepositoryORM extends EntityRepository
 {
     /**
-     * @param Contact $contact
+     * @param ContactModel $contact
      * @param bool $flush
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
-    public function save(Contact $contact, $flush = true)
+    public function save(ContactModel $contact, $flush = true)
     {
         $this->_em->persist($contact);
 

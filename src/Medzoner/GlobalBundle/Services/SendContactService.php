@@ -3,6 +3,8 @@
 namespace Medzoner\GlobalBundle\Services;
 
 use \Medzoner\Domain\ModelRead\SendContactModelRead;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
@@ -11,7 +13,7 @@ use Symfony\Component\Templating\EngineInterface;
 class SendContactService
 {
     /**
-     * @var \Swift_Mailer
+     * @var Swift_Mailer
      */
     private $mailer;
 
@@ -24,30 +26,31 @@ class SendContactService
      * SendContactCommand constructor.
      *
      * @param EngineInterface $templating
-     * @param \Swift_Mailer $mailer
+     * @param Swift_Mailer $mailer
      */
     public function __construct(
         EngineInterface $templating,
-        \Swift_Mailer $mailer
-    )
-    {
+        Swift_Mailer $mailer
+    ) {
         $this->mailer = $mailer;
         $this->templating = $templating;
     }
 
     /**
      * @param SendContactModelRead $sendContact
-     * @return \Swift_Message
+     * @return Swift_Message
      */
-    public function send(SendContactModelRead $sendContact) {
-        $message = \Swift_Message::newInstance()
+    public function send(SendContactModelRead $sendContact)
+    {
+        $message = Swift_Message::newInstance()
             ->setSubject('Contact site')
             ->setFrom('medzux@gmail.com')
             ->setTo('medzux@gmail.com')
             ->setBody(
                 $this->templating->render(
-                    'MedzonerGlobalBundle:Contact:contactEmail.txt.twig', ['enquiry' =>
-                        $sendContact
+                    'MedzonerGlobalBundle:Contact:contactEmail.txt.twig',
+                    [
+                        'enquiry' => $sendContact
                     ]
                 )
             );

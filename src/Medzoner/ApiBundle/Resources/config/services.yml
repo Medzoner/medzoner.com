@@ -1,3 +1,0 @@
-imports:
-    - { resource: "services/home.yml" }
-    - { resource: "services/contact.yml" }
