@@ -1,5 +1,0 @@
-*/4 * * * * nice -n 16 php /var/www/origami-event/current/app/console swiftmailer:spool:send --message-limit=20 --env=prod
-
-php app/console rabbitmq:consume asynchronous_commands
-
-php app/console rabbitmq:consume asynchronous_events
