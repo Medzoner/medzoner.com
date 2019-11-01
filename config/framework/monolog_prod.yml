@@ -4,16 +4,24 @@ monolog:
           type: fingers_crossed
           action_level: critical
           handler: grouped
+
       grouped:
           type:    group
-          members: [streamed, buffered]
+          members: [streamed, buffered, outputted]
+
       streamed:
           type:  stream
           path:  "%kernel.logs_dir%/%kernel.environment%.log"
           level: debug
+
       buffered:
           type:    buffer
           handler: swift
+
+      outputted:
+          type: stream
+          path: 'php://stderr'
+          level: error
 
       swift:
           type: swift_mailer

@@ -5,3 +5,15 @@ Medzoner\Domain\Command\RegisterContactCommand:
         name:
             expose: true
             type: 'string'
+
+        email:
+            expose: true
+            type: 'string'
+
+        message:
+            expose: true
+            type: 'string'
+
+        dateAdd:
+            expose: true
+            type: 'DateTime'

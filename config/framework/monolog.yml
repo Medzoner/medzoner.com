@@ -4,19 +4,24 @@ monolog:
             type:             stream
             path:             '%kernel.logs_dir%/%kernel.environment%.log'
             level:            debug
+
         firephp:
             type:             firephp
             level:            info
+
         chromephp:
             type:             chromephp
             level:            info
+
         console:
             type:             console
             bubble:           false
             verbosity_levels:
                 VERBOSITY_VERBOSE:      INFO
                 VERBOSITY_VERY_VERBOSE: DEBUG
+
             channels:         ["!doctrine"]
+
         console_very_verbose:
             type:             console
             bubble:           false
@@ -25,6 +30,11 @@ monolog:
                 VERBOSITY_VERY_VERBOSE: NOTICE
                 VERBOSITY_DEBUG:        DEBUG
             channels:         ["doctrine"]
+
+        outputted:
+            type: stream
+            path: 'php://stderr'
+            level: debug
 
         swift:
             type: swift_mailer
