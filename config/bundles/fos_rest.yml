@@ -49,4 +49,3 @@ fos_rest:
 
     serializer:
         serialize_null: true
-
