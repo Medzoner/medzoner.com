@@ -18,6 +18,8 @@
 /var/*
 /admin.conf
 /admin.conf.base64
+/bin/*
+!/bin/console
 /web/css/
 /web/fonts/
 /web/js/
