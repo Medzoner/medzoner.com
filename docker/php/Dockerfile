@@ -1,4 +1,4 @@
-FROM medzoner/medzoner_php
+FROM medzoner/medzoner_php:7.1.32
 
 
 # Conf php
