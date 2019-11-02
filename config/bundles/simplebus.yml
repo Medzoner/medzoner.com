@@ -1,6 +1,3 @@
-event_bus:
-    event_name_resolver_strategy: 'named_message'
-
 parameters:
   app.command_queue: 'medzoner_commands'
   app.event_queue: 'medzoner_events'
@@ -13,7 +10,7 @@ simple_bus_rabbit_mq_bundle_bridge:
 
 simple_bus_asynchronous:
   events:
-    strategy: 'predefined'
+    strategy: 'always'
 
 old_sound_rabbit_mq:
   connections:

@@ -3,4 +3,5 @@ Medzoner\Domain\Event\RegisteredContactEvent:
 
     properties:
         contact:
-            expose: false
+            expose: true
+            type: 'Medzoner\Domain\Model\ContactModel'

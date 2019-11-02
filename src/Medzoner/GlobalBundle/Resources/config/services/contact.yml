@@ -39,9 +39,8 @@ services:
         public: 'false'
         arguments:
             - '@medzoner.contact.send_contact.service'
-            - '@medzoner.contact.orm.repository'
         tags:
-            - { name: 'asynchronous_event_handler', handles: 'Medzoner\Domain\Event\RegisteredContactEvent' }
+            - { name: 'asynchronous_event_subscriber', subscribes_to: 'Medzoner\Domain\Event\RegisteredContactEvent' }
 
     medzoner.contact.send_contact.service:
         class: 'Medzoner\GlobalBundle\Services\SendContactService'

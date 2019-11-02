@@ -67,8 +67,7 @@ class ContactController
         Session $session,
         Router $router,
         MessageBus $messageBus
-    )
-    {
+    ) {
         $this->request = $request->getMasterRequest();
         $this->templating = $templating;
         $this->formFactory = $formFactory;

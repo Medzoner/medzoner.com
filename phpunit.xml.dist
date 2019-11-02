@@ -14,25 +14,25 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>./src/*/*Bundle/Tests</directory>
-            <directory>./src/*/Bundle/*Bundle/Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
-
-    <!--
     <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_CLASS" value="Kernel" />
+        <server name="KERNEL_DIR" value="./app/" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
     </php>
-    -->
 
     <filter>
         <whitelist>
             <directory>./src</directory>
             <exclude>
-                <directory>./src/*/*Bundle/Resources</directory>
-                <directory>./src/*/*Bundle/Tests</directory>
-                <directory>./src/*/Bundle/*Bundle/Resources</directory>
-                <directory>./src/*/Bundle/*Bundle/Tests</directory>
+                <directory>./app</directory>
+                <directory>./tests</directory>
+                <directory>./bin</directory>
+                <directory>./vendor</directory>
+                <directory>./web</directory>
             </exclude>
         </whitelist>
     </filter>

@@ -42,7 +42,7 @@ class SendContactService
      */
     public function send(SendContactModelRead $sendContact)
     {
-        $message = Swift_Message::newInstance()
+        $message = (new Swift_Message())
             ->setSubject('Contact site')
             ->setFrom('medzux@gmail.com')
             ->setTo('medzux@gmail.com')

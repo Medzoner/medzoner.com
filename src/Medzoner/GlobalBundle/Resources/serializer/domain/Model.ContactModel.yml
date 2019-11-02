@@ -7,3 +7,9 @@ Medzoner\Domain\Model\ContactModel:
             type: 'string'
             accessor:
                 getter: 'getName'
+        email:
+            expose: true
+            type: 'string'
+        message:
+            expose: true
+            type: 'string'

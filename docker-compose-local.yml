@@ -59,6 +59,11 @@ services:
             - "default"
         extra_hosts:
             - "medzoner.local:${REMOTE_HOST}"
+        environment:
+            USER_UID: "${USER_UID}"
+            USER_GID: "${USER_GID}"
+            XDEBUG_CONFIG: "remote_host=${XDEBUG_CONFIG_HOST} remote_port=${XDEBUG_CONFIG_PORT}"
+            PHP_IDE_CONFIG: "serverName=${PHP_IDE_CONFIG}"
 
     #rabbitmq
     rabbitmq-medzoner:

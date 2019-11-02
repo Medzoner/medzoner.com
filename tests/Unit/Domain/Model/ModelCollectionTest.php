@@ -1,6 +1,6 @@
 <?php
 
-namespace Medzoner\GlobalBundle\Tests\Model;
+namespace Tests\Unit\Domain\Model;
 
 use Medzoner\GlobalBundle\Model\ModelCollection;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

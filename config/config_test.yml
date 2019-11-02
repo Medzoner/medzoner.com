@@ -12,5 +12,39 @@ web_profiler:
     toolbar: false
     intercept_redirects: false
 
-swiftmailer:
-    disable_delivery: true
+#swiftmailer:
+#    disable_delivery: true
+
+old_sound_rabbit_mq:
+    sandbox: true
+
+doctrine:
+    dbal:
+        driver:   "pdo_sqlite"
+        charset:  UTF8
+        path:    '%kernel.cache_dir%/test.db'
+
+parameters:
+    old_sound_rabbit_mq.fallback.class: Medzoner\GlobalBundle\RabbitMq\Fallback
+
+services:
+    old_sound_rabbit_mq.asynchronous_commands_producer:
+        class: 'Medzoner\GlobalBundle\RabbitMq\Fallback'
+        public: 'true'
+
+    old_sound_rabbit_mq.asynchronous_events_producer:
+        class: 'Medzoner\GlobalBundle\RabbitMq\Fallback'
+        public: 'true'
+
+    m6web_redismock_factory:
+        class: 'M6Web\Component\RedisMock\RedisMockFactory'
+
+    predis_mocked:
+        class: 'M6Web\Component\RedisMock\RedisMock'
+        factory: ['@m6web_redismock_factory', 'getAdapter']
+        arguments:
+            - "Predis\\Client"
+            - 'true'
+        public: 'true'
+
+    snc_redis.mailer: '@predis_mocked'
