@@ -1,0 +1,21 @@
+language: php
+
+php:
+  - 7.1
+
+env:
+  - NODE_RELEASE=10.x
+
+services:
+  - docker
+
+before_script:
+  - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
+  - sudo apt-get update > /dev/null
+  - sudo apt-get install -y --force-yes nginx nodejs curl
+
+install:
+  - composer install -n
+
+script:
+  - ./bin/phpunit -c phpunit.xml.dist
