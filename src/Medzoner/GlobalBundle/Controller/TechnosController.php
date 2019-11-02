@@ -9,9 +9,12 @@ use Medzoner\GlobalBundle\Provider\JobBoard\FormationProvider;
 use Medzoner\GlobalBundle\Provider\JobBoard\LangProvider;
 use Medzoner\GlobalBundle\Provider\JobBoard\OtherProvider;
 use Medzoner\GlobalBundle\Provider\JobBoard\StackProvider;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class TechnosController
@@ -24,7 +27,7 @@ class TechnosController
     private $request;
 
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     private $templating;
 
@@ -37,12 +40,12 @@ class TechnosController
      * CvController constructor.
      *
      * @param RequestStack $request
-     * @param EngineInterface $templating
+     * @param Environment $templating
      * @param ListJobBoardQueryHandler $jobBoardQueryHandler
      */
     public function __construct(
         RequestStack $request,
-        EngineInterface $templating,
+        Environment $templating,
         ListJobBoardQueryHandler $jobBoardQueryHandler
     ) {
         $this->request = $request->getMasterRequest();
@@ -54,6 +57,9 @@ class TechnosController
 
     /**
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function indexAction(): Response
     {
@@ -63,7 +69,7 @@ class TechnosController
 
         $jobBoard = $this->jobBoardQueryHandler->handle($query);
 
-        return $this->templating->renderResponse(
+        return new Response($this->templating->render(
             'MedzonerGlobalBundle:Technos:index.html.twig',
             [
                 'jobboard' => $jobBoard,
@@ -73,6 +79,6 @@ class TechnosController
                 'langs' => LangProvider::getLang(),
                 'others' => OtherProvider::getOther(),
             ]
-        );
+        ));
     }
 }

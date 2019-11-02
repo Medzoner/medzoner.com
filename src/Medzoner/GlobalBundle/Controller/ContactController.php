@@ -11,9 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Router;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class ContactController
@@ -26,7 +29,7 @@ class ContactController
     private $request;
 
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     private $templating;
 
@@ -54,7 +57,7 @@ class ContactController
      * IndexController constructor.
      *
      * @param RequestStack $request
-     * @param EngineInterface $templating
+     * @param Environment $templating
      * @param FormFactory $formFactory
      * @param Session $session
      * @param Router $router
@@ -62,7 +65,7 @@ class ContactController
      */
     public function __construct(
         RequestStack $request,
-        EngineInterface $templating,
+        Environment $templating,
         FormFactory $formFactory,
         Session $session,
         Router $router,
@@ -78,7 +81,10 @@ class ContactController
 
     /**
      * @param Request $request
-     * @return RedirectResponse|Response
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function contactAction(Request $request): Response
     {
@@ -96,10 +102,10 @@ class ContactController
             return new RedirectResponse($this->router->generate('site_contact'));
         }
 
-        return $this->templating->renderResponse('@MedzonerGlobal/Contact/contact.html.twig', [
+        return new Response($this->templating->render('@MedzonerGlobal/Contact/contact.html.twig', [
             'form' => $form->createView(),
             'message' => $this->session->getFlashBag()->get('blogger-notice'),
             'footerFixed' => true
-        ]);
+        ]));
     }
 }

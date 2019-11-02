@@ -3,8 +3,11 @@
 namespace Medzoner\GlobalBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class IndexController
@@ -17,18 +20,18 @@ class IndexController
     private $request;
 
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     private $templating;
 
     /**
      * IndexController constructor.
      * @param RequestStack $request
-     * @param EngineInterface $templating
+     * @param Environment $templating
      */
     public function __construct(
         RequestStack $request,
-        EngineInterface $templating
+        Environment $templating
     ) {
         $this->request = $request->getMasterRequest();
         $this->templating = $templating;
@@ -36,17 +39,23 @@ class IndexController
 
     /**
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function indexAction(): Response
     {
-        return  $this->templating->renderResponse('@MedzonerGlobal/Index/index.html.twig', ['footerFixed' => true]);
+        return new Response($this->templating->render('@MedzonerGlobal/Index/index.html.twig', ['footerFixed' => true]));
     }
 
     /**
      * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function render(): Response
     {
-        return  $this->templating->renderResponse('@MedzonerGlobal/Index/home.html.twig', []);
+        return new Response($this->templating->render('@MedzonerGlobal/Index/home.html.twig', []));
     }
 }

@@ -3,6 +3,6 @@ services:
     public: true
     bind:
         $request: '@request_stack'
-        $templating: '@templating'
+        $templating: '@twig'
         #- '@fos_http_cache.handler.tag_handler'
         #- '@fos_http_cache.cache_manager'

@@ -5,7 +5,10 @@ namespace Medzoner\GlobalBundle\Services;
 use \Medzoner\Domain\ModelRead\SendContactModelRead;
 use Swift_Mailer;
 use Swift_Message;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class SendContactService
@@ -18,18 +21,18 @@ class SendContactService
     private $mailer;
 
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     private $templating;
 
     /**
      * SendContactCommand constructor.
      *
-     * @param EngineInterface $templating
+     * @param Environment $templating
      * @param Swift_Mailer $mailer
      */
     public function __construct(
-        EngineInterface $templating,
+        Environment $templating,
         Swift_Mailer $mailer
     ) {
         $this->mailer = $mailer;
@@ -39,6 +42,9 @@ class SendContactService
     /**
      * @param SendContactModelRead $sendContact
      * @return Swift_Message
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function send(SendContactModelRead $sendContact)
     {
@@ -48,7 +54,7 @@ class SendContactService
             ->setTo('medzux@gmail.com')
             ->setBody(
                 $this->templating->render(
-                    'MedzonerGlobalBundle:Contact:contactEmail.txt.twig',
+                    '@MedzonerGlobal/Contact/contactEmail.txt.twig',
                     [
                         'enquiry' => $sendContact
                     ]

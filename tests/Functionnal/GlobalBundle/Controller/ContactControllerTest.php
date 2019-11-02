@@ -22,13 +22,16 @@ use SimpleBus\SymfonyBridge\Bus\CommandBus;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class ContactControllerTest extends KernelTestCase
 {
@@ -93,7 +96,7 @@ class ContactControllerTest extends KernelTestCase
     private $formFactory;
 
     /**
-     * @var TwigEngine
+     * @var Environment
      */
     private $templating;
 
@@ -113,7 +116,7 @@ class ContactControllerTest extends KernelTestCase
         $container = self::$kernel->getContainer();
         $this->commandBus = $container->get('command_bus');
         $this->requestStack = $container->get('request_stack');
-        $this->templating = $container->get('templating');
+        $this->templating = $container->get('twig');
         $this->formFactory = $container->get('form.factory');
         $this->session = $container->get('session');
         $this->router = $container->get('router');
@@ -139,6 +142,11 @@ class ContactControllerTest extends KernelTestCase
         );
     }
 
+    /**
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function test_without_submit_form(): void
     {
         $response = $this->controller->contactAction($this->requestStack->getMasterRequest());
