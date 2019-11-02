@@ -8,6 +8,7 @@ steps:
     commands:
       - apt-get update
       - apt-get install -y --force-yes nginx curl
+      - 'cp -f ./config/parameters.yml.dist ./config/parameters.yml'
       - composer install
       - ./bin/phpunit -c phpunit.xml.dist
     when:

@@ -21,14 +21,12 @@ class Kernel extends BaseKernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            //new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             // Doctrine
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            //new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
 
             //Fos
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
