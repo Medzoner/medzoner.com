@@ -31,9 +31,7 @@ monolog:
             subject: "[medzoner.com %branch%] Fatal Error!"
             level: 'critical'
 
-        #monolog:
-        #    type:  service
-        #    id:    snc_redis.monolog.handler
-        #    level: critical
-        #    index: medzoner-%branch%
-        #    to_email: %monolog_mail%
+        redis:
+            type:  service
+            id:    snc_redis.monolog.handler
+            level: debug
