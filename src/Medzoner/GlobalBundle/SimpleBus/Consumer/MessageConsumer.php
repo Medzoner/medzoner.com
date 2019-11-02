@@ -44,11 +44,6 @@ class MessageConsumer extends RabbitMQMessageConsumer
     }
 
     /**
-     * Flag for message ack when failed for stop consuming
-     */
-    public const MSG_ACK_FAILED = 3;
-
-    /**
      * @param AMQPMessage $msg
      * @return int|mixed
      */
@@ -76,15 +71,15 @@ class MessageConsumer extends RabbitMQMessageConsumer
     {
         try {
             $this->entityManager->getConnection()->close();
-            $this->logger->info('[MESSAGE_CONSUMER] CLOSING EntityManager close connection success');
-        } catch (\Exception $e) {
-            $this->logger->info('[MESSAGE_CONSUMER] CLOSING EntityManager error on close connection');
+            $this->logger->info('[MESSAGE_CONSUMER] EntityManager close connection success');
+        } catch (Exception $e) {
+            $this->logger->info('[MESSAGE_CONSUMER] EntityManager error on close connection');
         }
         try {
             $this->entityManager->getConnection()->connect();
-            $this->logger->info('[MESSAGE_CONSUMER] BBB EntityManager connection success');
-        } catch (\Exception $e) {
-            $this->logger->info('[MESSAGE_CONSUMER] CCC EntityManager error on connect');
+            $this->logger->info('[MESSAGE_CONSUMER] EntityManager connection success');
+        } catch (Exception $e) {
+            $this->logger->info('[MESSAGE_CONSUMER] EntityManager error on connect');
         }
     }
 }

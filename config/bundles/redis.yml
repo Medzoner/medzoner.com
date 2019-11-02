@@ -16,7 +16,7 @@ snc_redis:
             alias: 'mailer'
             dsn: '%redis_client_default_dsn%'
             options:
-                prefix : "origami-support:mailer:"
+                prefix : "medzoner:mailer:"
                 profile: 3.2
                 connection_timeout: '%redis_connection_timeout%'
                 read_write_timeout: '%redis_read_write_timeout%'
