@@ -18,8 +18,8 @@ steps:
   - name: build-assets
     image: node:10.3.0
     commands:
-      - bower install --allow-root
-      - gulp
+      - /usr/local/bin/bower install --allow-root
+      - /usr/local/bin/gulp
     when:
       branch:
         - master
