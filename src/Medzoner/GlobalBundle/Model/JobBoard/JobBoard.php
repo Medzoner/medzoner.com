@@ -8,7 +8,7 @@ namespace Medzoner\GlobalBundle\Model\JobBoard;
 class JobBoard
 {
     /**
-     * @var
+     * @var string
      */
     private $title;
 
@@ -20,7 +20,7 @@ class JobBoard
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }

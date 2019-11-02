@@ -30,7 +30,7 @@ class ModelCollection implements Countable, IteratorAggregate
     /**
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->elements);
     }
@@ -39,7 +39,7 @@ class ModelCollection implements Countable, IteratorAggregate
      * @param $value
      * @return bool
      */
-    public function add($value)
+    public function add($value): bool
     {
         $this->elements[] = $value;
 
@@ -49,7 +49,7 @@ class ModelCollection implements Countable, IteratorAggregate
     /**
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->elements);
     }
@@ -59,7 +59,7 @@ class ModelCollection implements Countable, IteratorAggregate
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return __CLASS__ . '@' . spl_object_hash($this);
     }
