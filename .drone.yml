@@ -18,6 +18,7 @@ steps:
   - name: build-assets
     image: medzoner/medzoner_node:10.3.0
     commands:
+      - npm install
       - bower install --allow-root
       - gulp
     when:
