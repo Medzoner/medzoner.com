@@ -47,4 +47,15 @@ services:
             - 'true'
         public: 'true'
 
+    snc_redis.default: '@predis_mocked'
     snc_redis.mailer: '@predis_mocked'
+    snc_redis.swiftmailer: '@predis_mocked'
+    snc_redis.monolog: '@predis_mocked'
+    snc_redis.log: '@predis_mocked'
+
+    simple_bus.asynchronous.object_serializer:
+        public: 'true'
+        class: 'SimpleBus\JMSSerializerBridge\JMSSerializerObjectSerializer'
+        arguments:
+            - '@jms_serializer'
+            - 'json'

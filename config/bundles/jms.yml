@@ -3,5 +3,5 @@ jms_serializer:
         auto_detection: true
         directories:
             Domain:
-                path: '@MedzonerGlobalBundle/Resources/serializer/domain'
-                namespace_prefix: 'Medzoner\\Domain'
+                path: "@MedzonerGlobalBundle/Resources/serializer/domain"
+                namespace_prefix: "Medzoner\\Domain"

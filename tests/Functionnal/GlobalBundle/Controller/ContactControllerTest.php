@@ -124,7 +124,7 @@ class ContactControllerTest extends KernelTestCase
         $this->eventProducer = $container->get('old_sound_rabbit_mq.asynchronous_events_producer');
         $this->commandConsumer = $container->get('simple_bus.rabbit_mq_bundle_bridge.commands_consumer');
         $this->eventConsumer = $container->get('simple_bus.rabbit_mq_bundle_bridge.events_consumer');
-        $this->serializer = $container->get('jms_serializer');
+        $this->serializer = $container->get('simple_bus.asynchronous.object_serializer');
         $this->em = $container->get('doctrine')->getManager();
         $this->redis = $container->get('predis_mocked');
 
