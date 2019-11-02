@@ -16,10 +16,8 @@ steps:
         - development
 
   - name: build-assets
-    image: node:10.3.0
+    image: medzoner/medzoner_node
     commands:
-      - npm install
-      - npm install -g bower karma gulp
       - bower install --allow-root
       - gulp
     when:
