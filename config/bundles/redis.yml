@@ -2,8 +2,8 @@
 snc_redis:
     clients:
         default:
-            type: predis
-            alias: cache
+            type: 'predis'
+            alias: 'cache'
             dsn: '%redis_client_default_dsn%'
             options:
                 prefix : "medzoner:cache:"

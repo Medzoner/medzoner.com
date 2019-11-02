@@ -3,37 +3,37 @@ fos_elastica:
         default: { host: '%elastica_host%', port: '%elastica_port%' }
     indexes:
         app:
-            index_name: app_%kernel.environment%
+            index_name: 'app_%kernel.environment%'
             settings:
                 index:
                     analysis:
                         analyzer:
                             autocomplete_analyzer:
-                                type: custom
-                                tokenizer: autocomplete_tokenizer
-                                filter: [lowercase, asciifolding]
+                                type: 'custom'
+                                tokenizer: 'autocomplete_tokenizer'
+                                filter: ['lowercase', 'asciifolding']
                         tokenizer:
                             autocomplete_tokenizer:
-                                type: nGram
+                                type: 'nGram'
                                 min_gram: 3
                                 max_gram: 20
             types:
                 contact:
                     mappings:
                         id:
-                            type: integer
+                            type: 'integer'
                         email :
-                            type : string
+                            type : 'string'
                         name :
-                            type : string
+                            type : 'string'
                     properties:
                         email: ~
                         name: ~
                     persistence:
-                        identifier: id
-                        driver: orm
-                        model: Medzoner\GlobalBundle\Entity\Contact
+                        identifier: 'id'
+                        driver: 'orm'
+                        model: 'Medzoner\GlobalBundle\Entity\Contact'
                         provider: ~
                         finder: ~
                         listener: ~
-                        repository: Medzoner\GlobalBundle\Repository\ContactRepositoryElastica
+                        repository: 'Medzoner\GlobalBundle\Repository\ContactRepositoryElastica'

@@ -1,10 +1,10 @@
 imports:
-    - { resource: config_dev.yml }
+    - { resource: 'config_dev.yml' }
 
 framework:
     test: ~
     session:
-        storage_id: session.storage.mock_file
+        storage_id: 'session.storage.mock_file'
     profiler:
         collect: true
 
@@ -20,12 +20,12 @@ old_sound_rabbit_mq:
 
 doctrine:
     dbal:
-        driver:   "pdo_sqlite"
-        charset:  UTF8
+        driver:   'pdo_sqlite'
+        charset:  'UTF8'
         path:    '%kernel.cache_dir%/test.db'
 
 parameters:
-    old_sound_rabbit_mq.fallback.class: Medzoner\GlobalBundle\RabbitMq\Fallback
+    old_sound_rabbit_mq.fallback.class: 'Medzoner\GlobalBundle\RabbitMq\Fallback'
 
 services:
     old_sound_rabbit_mq.asynchronous_commands_producer:

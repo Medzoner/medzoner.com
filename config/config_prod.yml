@@ -1,5 +1,5 @@
 imports:
-    - { resource: config.yml }
+    - { resource: 'config.yml' }
 
 #framework:
 #    validation:
@@ -14,36 +14,36 @@ imports:
 monolog:
     handlers:
         main:
-            type: fingers_crossed
+            type: 'fingers_crossed'
             buffer_size: 200
-            action_level: critical
-            handler: grouped
+            action_level: 'critical'
+            handler: 'grouped'
         grouped:
-            type:    group
-            members: [nested, buffered, outputted]
+            type:    'group'
+            members: ['nested', 'buffered', 'outputted']
 
         nested:
-            type: stream
+            type: 'stream'
             path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: error
+            level: 'error'
 
         outputted:
-            type: stream
+            type: 'stream'
             path: 'php://stderr'
-            level: error
+            level: 'error'
 
         buffered:
-            type:    buffer
-            handler: swift
+            type:    'buffer'
+            handler: 'swift'
 
         swift:
-            type: swift_mailer
+            type: 'swift_mailer'
             from_email: '%monolog_mail%'
             to_email: '%monolog_mail%'
             subject: "[medzoner.com %branch%] Fatal Error!"
-            level: critical
+            level: 'critical'
 
         redis:
-            type:  service
-            id:    snc_redis.monolog.handler
-            level: critical
+            type:  'service'
+            id:    'snc_redis.monolog.handler'
+            level: 'critical'

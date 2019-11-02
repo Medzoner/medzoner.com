@@ -3,17 +3,17 @@ monolog:
         main:
             type:             'fingers_crossed'
             action_level:            'debug'
-            handler: grouped
+            handler: 'grouped'
             channels: ['!event']
 
         grouped:
-            type:    group
-            members: [nested, buffered, outputted]
+            type:    'group'
+            members: ['nested', 'buffered', 'outputted']
 
         nested:
-            type: stream
+            type: 'stream'
             path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
+            level: 'debug'
 
         outputted:
             type: 'stream'
@@ -21,8 +21,8 @@ monolog:
             level: 'debug'
 
         buffered:
-            type:    buffer
-            handler: swift
+            type:    'buffer'
+            handler: 'swift'
 
         swift:
             type: 'swift_mailer'
@@ -32,6 +32,6 @@ monolog:
             level: 'critical'
 
         redis:
-            type:  service
-            id:    snc_redis.monolog.handler
-            level: debug
+            type:  'service'
+            id:    'snc_redis.monolog.handler'
+            level: 'debug'
