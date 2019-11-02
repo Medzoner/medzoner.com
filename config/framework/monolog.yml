@@ -1,47 +1,35 @@
 monolog:
     handlers:
         main:
-            type:             stream
-            path:             '%kernel.logs_dir%/%kernel.environment%.log'
-            level:            debug
+            type:             'fingers_crossed'
+            action_level:            'debug'
+            handler: grouped
+            channels: ['!event']
 
-        firephp:
-            type:             firephp
-            level:            info
+        grouped:
+            type:    group
+            members: [nested, buffered, outputted]
 
-        chromephp:
-            type:             chromephp
-            level:            info
-
-        console:
-            type:             console
-            bubble:           false
-            verbosity_levels:
-                VERBOSITY_VERBOSE:      INFO
-                VERBOSITY_VERY_VERBOSE: DEBUG
-
-            channels:         ["!doctrine"]
-
-        console_very_verbose:
-            type:             console
-            bubble:           false
-            verbosity_levels:
-                VERBOSITY_VERBOSE:      NOTICE
-                VERBOSITY_VERY_VERBOSE: NOTICE
-                VERBOSITY_DEBUG:        DEBUG
-            channels:         ["doctrine"]
-
-        outputted:
+        nested:
             type: stream
-            path: 'php://stderr'
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
 
+        outputted:
+            type: 'stream'
+            path: 'php://stdout'
+            level: 'debug'
+
+        buffered:
+            type:    buffer
+            handler: swift
+
         swift:
-            type: swift_mailer
+            type: 'swift_mailer'
             from_email: '%monolog_mail%'
             to_email: '%monolog_mail%'
             subject: "[medzoner.com %branch%] Fatal Error!"
-            level: critical
+            level: 'critical'
 
         #monolog:
         #    type:  service

@@ -21,6 +21,20 @@ snc_redis:
                 connection_timeout: '%redis_connection_timeout%'
                 read_write_timeout: '%redis_read_write_timeout%'
 
+        log:
+            type: 'predis'
+            alias: 'monolog'
+            dsn: '%redis_client_default_dsn%'
+            options:
+                prefix : "medzoner:monolog:"
+                profile: 3.2
+                connection_timeout: '%redis_connection_timeout%'
+                read_write_timeout: '%redis_read_write_timeout%'
+
     swiftmailer:
         client: 'mailer'
         key: 'swiftmailer'
+
+    monolog:
+        client: 'log'
+        key: 'monolog'
