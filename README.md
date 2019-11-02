@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Medzoner/medzoner.com.svg?branch=master)
+[![Build Status](https://travis-ci.org/Medzoner/medzoner.com.svg?branch=master)](https://travis-ci.org/medzoner/medzoner.com)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Medzoner/medzoner.com/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Medzoner/CoinhiveBundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Medzoner/medzoner.com/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Medzoner/CoinhiveBundle/?branch=master)
