@@ -30,8 +30,7 @@ monolog:
         outputted:
             type: stream
             path: 'php://stderr'
-            level: error
-
+            level: debug
 
         buffered:
             type:    buffer
