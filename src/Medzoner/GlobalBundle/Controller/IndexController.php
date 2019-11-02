@@ -22,39 +22,22 @@ class IndexController
     private $templating;
 
     /**
-     * @var SymfonyResponseTagger
-     */
-    //private $symfonyResponseTagger;
-
-    /**
-     * @var CacheManager
-     */
-    //private $cacheManager;
-
-    /**
      * IndexController constructor.
      * @param RequestStack $request
      * @param EngineInterface $templating
-     * @param TagHandler $symfonyResponseTagger
-     * @param CacheManager $cacheManager
      */
     public function __construct(
         RequestStack $request,
-        EngineInterface $templating//,
-//        TagHandler $symfonyResponseTagger,
-//        CacheManager $cacheManager
-    )
-    {
+        EngineInterface $templating
+    ) {
         $this->request = $request->getMasterRequest();
         $this->templating = $templating;
-        //$this->symfonyResponseTagger = $symfonyResponseTagger;
-        //$this->cacheManager = $cacheManager;
     }
 
     /**
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return  $this->templating->renderResponse('@MedzonerGlobal/Index/index.html.twig', ['footerFixed' => true]);
     }
@@ -62,10 +45,8 @@ class IndexController
     /**
      * @return Response
      */
-    public function render()
+    public function render(): Response
     {
-        //$this->symfonyResponseTagger->addTags(['homepage']);
-
         return  $this->templating->renderResponse('@MedzonerGlobal/Index/home.html.twig', []);
     }
 }

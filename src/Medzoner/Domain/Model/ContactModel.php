@@ -3,110 +3,77 @@
 namespace Medzoner\Domain\Model;
 
 use DateTime;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class ContactModel
  */
-class ContactModel
+class ContactModel implements ContactInterface
 {
     /**
-     * @Type("string")
-     * @var
+     * @var string
      */
-    private $name;
+    protected $name;
 
     /**
-     * @Type("string")
-     * @var
+     * @var string
      */
-    private $email;
+    protected $email;
 
     /**
-     * @Type("string")
-     * @var
+     * @var string
      */
-    private $message;
+    protected $message;
 
     /**
-     * @Type("DateTime")
-     * @var
+     * @var DateTime
      */
-    private $dateAdd;
+    protected $dateAdd;
 
-    /**
-     * @param $name
-     * @return $this
-     */
-    public function setName($name) {
+    public function setName($name): ContactInterface
+    {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName() {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    /**
-     * @param $email
-     * @return $this
-     */
-    public function setEmail($email) {
+    public function setEmail($email): ContactInterface
+    {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail() {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
-    /**
-     * Set email
-     *
-     * @param $message
-     * @return $this
-     */
-    public function setMessage($message) {
+    public function setMessage($message): ContactInterface
+    {
         $this->message = $message;
 
         return $this;
     }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getMessage() {
+    public function getMessage(): string
+    {
         return $this->message;
     }
 
-    /**
-     * @param $dateAdd
-     * @return $this
-     */
-    public function setDateAdd($dateAdd) {
+    public function setDateAdd($dateAdd): ContactInterface
+    {
         $this->dateAdd = $dateAdd;
 
         return $this;
     }
 
-    /**
-     * Get dateAdd
-     *
-     * @return DateTime
-     */
-    public function getDateAdd() {
+    public function getDateAdd(): DateTime
+    {
         return $this->dateAdd;
     }
 }

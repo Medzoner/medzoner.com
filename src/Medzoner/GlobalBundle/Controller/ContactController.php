@@ -80,7 +80,7 @@ class ContactController
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function contactAction(Request $request)
+    public function contactAction(Request $request): Response
     {
         $registerContactCommand = new RegisterContactCommand();
 

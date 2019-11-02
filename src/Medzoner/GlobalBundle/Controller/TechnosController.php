@@ -55,7 +55,7 @@ class TechnosController
     /**
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $query = new ListJobBoardQuery(
             $this->request->request->all()
