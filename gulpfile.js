@@ -9,7 +9,6 @@ var rev = require('gulp-rev');
 var symlink = require('gulp-symlink');
 
 var dest = './web';
-var src = './assets';
 
 gulp.task('webserver', function() {
     connect.server({
