@@ -9,11 +9,6 @@ env:
 services:
   - docker
 
-before_script:
-  - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
-  - sudo apt-get update > /dev/null
-  - sudo apt-get install -y --force-yes nginx nodejs curl
-
 install:
   - composer install -n
 
