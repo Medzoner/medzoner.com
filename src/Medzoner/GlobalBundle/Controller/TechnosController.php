@@ -70,7 +70,7 @@ class TechnosController
         $jobBoard = $this->jobBoardQueryHandler->handle($query);
 
         return new Response($this->templating->render(
-            'MedzonerGlobalBundle:Technos:index.html.twig',
+            '@MedzonerGlobal/Technos/index.html.twig',
             [
                 'jobboard' => $jobBoard,
                 'stacks' => StackProvider::getStack(),

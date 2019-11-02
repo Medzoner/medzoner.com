@@ -1,51 +1,51 @@
-fos_rest:
-    body_listener:
-        array_normalizer: 'fos_rest.normalizer.camel_keys'
-
-    format_listener:
-        rules:
-            - { path: '^/api/.', priorities: ['json'], fallback_format: 'json' }
-            -
-                priorities: ['html']
-                fallback_format: 'html'
-
-    allowed_methods_listener: true
-
-    view:
-        #Not working for YET ???
-#        exception_wrapper_handler: null
-
-        view_response_listener: 'force'
-
-        formats:
-            xml: false
-            json : true
-            html: true
-
-        templating_formats:
-            html: true
-            json : false
-
-        force_redirects:
-            html: true
-
-        failed_validation: 'HTTP_BAD_REQUEST'
-        default_engine: 'twig'
-
-    routing_loader:
-        default_format: 'null'
-
-    exception:
-        enabled: true
-
-        codes:
-            'Symfony\Component\Security\Core\Exception\AuthenticationException':   401
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException':       404
-            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException': 400
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException': 400
-
-        messages:
-            'Symfony\Component\HttpKernel\Exception\HttpException': true
-
-    serializer:
-        serialize_null: true
+#fos_rest:
+#    body_listener:
+#        array_normalizer: 'fos_rest.normalizer.camel_keys'
+#
+#    format_listener:
+#        rules:
+#            - { path: '^/api/.', priorities: ['json'], fallback_format: 'json' }
+#            -
+#                priorities: ['html']
+#                fallback_format: 'html'
+#
+#    allowed_methods_listener: true
+#
+#    view:
+#        #Not working for YET ???
+##        exception_wrapper_handler: null
+#
+#        view_response_listener: 'force'
+#
+#        formats:
+#            xml: false
+#            json : true
+#            html: true
+#
+#        templating_formats:
+#            html: true
+#            json : false
+#
+#        force_redirects:
+#            html: true
+#
+#        failed_validation: 'HTTP_BAD_REQUEST'
+#        default_engine: 'twig'
+#
+#    routing_loader:
+#        default_format: 'null'
+#
+#    exception:
+#        enabled: true
+#
+#        codes:
+#            'Symfony\Component\Security\Core\Exception\AuthenticationException':   401
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException':       404
+#            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException': 400
+#            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException': 400
+#
+#        messages:
+#            'Symfony\Component\HttpKernel\Exception\HttpException': true
+#
+#    serializer:
+#        serialize_null: true

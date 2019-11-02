@@ -4,7 +4,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 
 use Doctrine\ORM\EntityManager;
@@ -15,7 +14,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext implements Context, KernelAwareContext, SnippetAcceptingContext
+class FeatureContext implements Context, KernelAwareContext
 {
     /**
      * Project kernel
