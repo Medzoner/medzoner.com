@@ -10,6 +10,7 @@ services:
   - docker
 
 install:
+  - 'cp -f ./config/parameters.yml.dist ./config/parameters.yml'
   - composer install -n
 
 script:
