@@ -1,7 +1,5 @@
 imports:
     - { resource: config.yml }
-    # Framework - monolog
-    - { resource: framework/monolog.yml }
 
 #framework:
 #    validation:
@@ -12,3 +10,43 @@ imports:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc
 #        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            buffer_size: 200
+            action_level: critical
+            handler: grouped
+        grouped:
+            type:    group
+            members: [nested, buffered, outputted]
+
+        nested:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+
+        outputted:
+            type: stream
+            path: 'php://stderr'
+            level: error
+
+
+        buffered:
+            type:    buffer
+            handler: swift
+
+        swift:
+            type: swift_mailer
+            from_email: '%monolog_mail%'
+            to_email: '%monolog_mail%'
+            subject: "[medzoner.com %branch%] Fatal Error!"
+            level: critical
+
+        #monolog:
+        #    type:  service
+        #    id:    snc_redis.monolog.handler
+        #    level: critical
+        #    index: medzoner-%branch%
+        #    to_email: %monolog_mail%
