@@ -30,12 +30,6 @@ class Kernel extends BaseKernel
 
             //Fos
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            //new FOS\ElasticaBundle\FOSElasticaBundle(),
-//            new FOS\HttpCacheBundle\FOSHttpCacheBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-
-            //Liip
-            //new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Snc\RedisBundle\SncRedisBundle(),
 
