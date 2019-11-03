@@ -1,12 +1,12 @@
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
+        driver:   '%env(string:DB_DRIVER)%'
+        host:     '%env(string:DB_HOST)%'
+        port:     '%env(string:DB_PORT)%'
+        dbname:   '%env(string:DB_DATABASE)%'
+        user:     '%env(string:DB_USER)%'
+        password: '%env(string:DB_PASSWORD)%'
         charset:  'UTF8'
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"

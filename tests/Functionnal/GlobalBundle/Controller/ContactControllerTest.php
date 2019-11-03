@@ -22,6 +22,7 @@ use SimpleBus\SymfonyBridge\Bus\CommandBus;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -112,7 +113,9 @@ class ContactControllerTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        self::bootKernel();
+        $dotenv = new Dotenv();
+        $dotenv->load(__DIR__.'/../../../../.env.test');
+        self::bootKernel(['environment' => 'test']);
         $container = self::$kernel->getContainer();
         $this->commandBus = $container->get('command_bus');
         $this->requestStack = $container->get('request_stack');

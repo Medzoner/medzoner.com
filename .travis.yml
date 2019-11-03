@@ -10,7 +10,7 @@ services:
   - docker
 
 install:
-  - 'cp -f ./config/parameters.yml.dist ./config/parameters.yml'
+  - 'cp -f ./.env.test ./.env'
   - composer install -n
 
 script:

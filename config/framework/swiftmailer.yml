@@ -3,14 +3,14 @@ swiftmailer:
     default_mailer: 'default'
     mailers:
         default:
-            transport: "%mailer_transport%"
-            host:      "%mailer_host%"
-            username:  "%mailer_user%"
-            password:  "%mailer_password%"
+            transport: "%env(string:mailer_transport)%"
+            host:      "%env(string:mailer_host)%"
+            username:  "%env(string:mailer_user)%"
+            password:  "%env(string:mailer_password)%"
             #encryption: "tls"
             #port:       "587"
-            #encryption: "%mailer_encryption%"
-            #port:       "%mailer_port%"
+            #encryption: "%env(string:mailer_encryption)%"
+            #port:       "%env(string:mailer_port)%"
             spool:
                 type: 'service'
                 id: 'snc_redis.swiftmailer.spool'

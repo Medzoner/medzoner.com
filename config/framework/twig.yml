@@ -4,5 +4,5 @@ twig:
     strict_variables: "%kernel.debug%"
 
     globals:
-        medzoner_cdn_url: '%medzoner_cdn_url%'
-        advert_script: '%advert_script%'
+        medzoner_cdn_url: '%env(string:medzoner_cdn_url)%'
+        advert_script: '%env(string:advert_script)%'

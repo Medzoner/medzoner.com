@@ -15,11 +15,11 @@ simple_bus_asynchronous:
 old_sound_rabbit_mq:
   connections:
     default:
-      host:     '%rabbitmq_host%'
-      port:     '%rabbitmq_port%'
-      user:     '%rabbitmq_user%'
-      password: '%rabbitmq_password%'
-      vhost:    '%rabbitmq_vhost%'
+      host:     '%env(string:rabbitmq_host)%'
+      port:     '%env(string:rabbitmq_port)%'
+      user:     '%env(string:rabbitmq_user)%'
+      password: '%env(string:rabbitmq_password)%'
+      vhost:    '%env(string:rabbitmq_vhost)%'
       lazy:     false
       connection_timeout: 3
       read_write_timeout: 3

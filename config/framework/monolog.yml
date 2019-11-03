@@ -26,9 +26,9 @@ monolog:
 
         swift:
             type: 'swift_mailer'
-            from_email: '%monolog_mail%'
-            to_email: '%monolog_mail%'
-            subject: "[medzoner.com %branch%] Fatal Error!"
+            from_email: '%env(string:monolog_mail)%'
+            to_email: '%env(string:monolog_mail)%'
+            subject: "[medzoner.com %env(string:branch)%] Fatal Error!"
             level: 'critical'
 
         redis:

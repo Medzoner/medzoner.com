@@ -3,7 +3,7 @@ services:
   #Service - TWIG Extension - Asset version
   twig.asset_version_extension:
       class: 'Medzoner\GlobalBundle\Twig\Extensions\AssetVersionExtension'
-      arguments: ['%kernel.root_dir%', '%kernel.environment%', '%medzoner_cdn_url%']
+      arguments: ['%kernel.root_dir%', '%kernel.environment%', '%env(string:medzoner_cdn_url)%']
       tags:
           - { name: "twig.extension" }
 

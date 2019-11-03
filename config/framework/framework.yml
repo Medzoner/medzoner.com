@@ -1,7 +1,7 @@
 framework:
     #esi:             ~
-    translator:      { fallback: "%locale%" }
-    secret:          "%secret%"
+    translator:      { fallback: '%env(string:locale)%' }
+    secret:          '%env(string:secret)%'
     router:
         resource: "%kernel.root_dir%/../config/routing.yml"
         strict_requirements: ~
@@ -9,7 +9,7 @@ framework:
     csrf_protection: true
     validation:      { enable_annotations: true }
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  '%env(string:locale)%'
     trusted_hosts:   ~
     #trusted_proxies: ~
     session:

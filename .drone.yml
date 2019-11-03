@@ -6,7 +6,7 @@ steps:
   - name: unit-test
     image: medzoner/medzoner_php
     commands:
-      - 'cp -f ./config/parameters.yml.dist ./config/parameters.yml'
+      - 'cp -f ./config/.env.test ./config/.env'
       - composer install
       - ./bin/phpunit -c phpunit.xml.dist
     when:

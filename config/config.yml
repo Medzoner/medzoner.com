@@ -10,8 +10,6 @@ imports:
     # Framework - monolog
     - { resource: 'framework/monolog.yml' }
 
-    # Parameters
-    - { resource: 'parameters.yml' }
     # Security
     - { resource: 'security.yml' }
     # Bundles - redis
@@ -35,3 +33,7 @@ event_bus:
 #coinhive:
 #    config:
 #        site_key: '%coinhive.site_key%'
+parameters:
+    cache_key_front:
+        homepage:
+            - homepage
