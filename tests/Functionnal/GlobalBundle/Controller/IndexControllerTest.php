@@ -2,8 +2,7 @@
 
 namespace Tests\Functionnal\GlobalBundle\Controller;
 
-use Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler;
-use Medzoner\GlobalBundle\Controller\TechnosController;
+use Medzoner\GlobalBundle\Controller\IndexController;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +13,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class TechnosControllerTest extends KernelTestCase
+class IndexControllerTest extends KernelTestCase
 {
     /**
      * @var RequestStack
@@ -22,17 +21,12 @@ class TechnosControllerTest extends KernelTestCase
     private $requestStack;
 
     /**
-     * @var ListJobBoardQueryHandler
-     */
-    private $jobBoardQueryHandler;
-
-    /**
      * @var Environment
      */
     private $templating;
 
     /**
-     * @var TechnosController
+     * @var IndexController
      */
     private $controller;
 
@@ -42,7 +36,6 @@ class TechnosControllerTest extends KernelTestCase
         $dotenv->load(__DIR__.'/../../../../.env.test');
         self::bootKernel(['environment' => 'test']);
         $container = self::$kernel->getContainer();
-        $this->jobBoardQueryHandler = $container->get('medzoner.jobboard.queryhandler');
 
         $this->requestStack = $container->get('request_stack');
         $request = new Request();
@@ -50,10 +43,9 @@ class TechnosControllerTest extends KernelTestCase
         $this->requestStack->push($request);
         $this->templating = $container->get('twig');
 
-        $this->controller = new TechnosController(
+        $this->controller = new IndexController(
             $this->requestStack,
-            $this->templating,
-            $this->jobBoardQueryHandler
+            $this->templating
         );
     }
 

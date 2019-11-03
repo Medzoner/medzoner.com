@@ -4,5 +4,3 @@ services:
     bind:
         $request: '@request_stack'
         $templating: '@twig'
-        #- '@fos_http_cache.handler.tag_handler'
-        #- '@fos_http_cache.cache_manager'
