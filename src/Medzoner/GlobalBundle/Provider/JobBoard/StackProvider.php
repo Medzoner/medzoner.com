@@ -12,6 +12,6 @@ class StackProvider
      */
     public static function getStack()
     {
-        return json_decode(file_get_contents(__DIR__.'/stacks.json'), true);
+        return json_decode(file_get_contents(__DIR__ . '/stacks.json'), true);
     }
 }

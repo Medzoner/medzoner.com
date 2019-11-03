@@ -12,6 +12,6 @@ class ExperienceProvider
      */
     public static function getExperience()
     {
-        return json_decode(file_get_contents(__DIR__.'/experiences.json'), true);
+        return json_decode(file_get_contents(__DIR__ . '/experiences.json'), true);
     }
 }

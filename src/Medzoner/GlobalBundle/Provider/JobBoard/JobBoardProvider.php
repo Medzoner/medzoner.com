@@ -92,6 +92,6 @@ class JobBoardProvider
      */
     public function getAllSubparts()
     {
-        return json_decode(file_get_contents(__DIR__.'/subparts.json'), true);
+        return json_decode(file_get_contents(__DIR__ . '/subparts.json'), true);
     }
 }
