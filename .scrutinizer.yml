@@ -15,9 +15,9 @@ build:
         override:
           - php-scrutinizer-run
           -
-            command: phpcs-run
+            command: cp -f ./.env.test ./.env && phpcs-run
             use_website_config: true
-    tests: true
+
 filter:
   excluded_paths:
     - 'tests/*'
