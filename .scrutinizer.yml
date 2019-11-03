@@ -6,13 +6,11 @@ build:
           - 'true'
       tests:
         override:
-          - php-scrutinizer-run
           -
             command: cp -f ./.env.test ./.env && ./bin/phpunit -c phpunit.xml.dist --coverage-clover=build/coverage.xml
-            use_website_config: true
             coverage:
               file: build/coverage.xml
-              format: clover
+              format: php-clover
     tests: true
 filter:
   excluded_paths:
