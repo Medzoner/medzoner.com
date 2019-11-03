@@ -1,9 +1,6 @@
 build:
   nodes:
-    analysis:
-      project_setup:
-        override:
-          - 'true'
+    coverage:
       tests:
         override:
           -
@@ -12,18 +9,18 @@ build:
               file: build/coverage.xml
               format: php-clover
     tests: true
-filter:
-  excluded_paths:
-    - 'tests/*'
-
-checks:
-  php: true
-
-coding_style:
-  php:
-    spaces:
-      other:
-        after_type_cast: false
+#filter:
+#  excluded_paths:
+#    - 'tests/*'
+#
+#checks:
+#  php: true
+#
+#coding_style:
+#  php:
+#    spaces:
+#      other:
+#        after_type_cast: false
 #
 #tools:
 #  external_code_coverage:

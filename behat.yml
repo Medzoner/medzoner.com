@@ -9,7 +9,7 @@ default:
                 - \Behatch\Context\BrowserContext
                 - \Behatch\Context\RestContext
                 - FeatureContext:
-                    baseUrl : 'http://medzoner.local'
+                    baseUrl : 'http://medzoner.local/test.php'
                 - Behat\MinkExtension\Context\MinkContext
 
     extensions:
@@ -19,7 +19,7 @@ default:
             class: Kernel
         Behatch\Extension: ~
         Behat\MinkExtension:
-            base_url: 'http://medzoner.local'
+            base_url: 'http://medzoner.local/test.php'
             files_path: '%paths.base%/features'
             sessions:
                 default:
