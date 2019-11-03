@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 use Behat\Behat\Context\Context;
@@ -33,6 +34,8 @@ class FeatureContext implements Context, KernelAwareContext
      */
     public function __construct($baseUrl)
     {
+        $dotenv = new Dotenv();
+        $dotenv->load(__DIR__.'/../../.env.test');
         $this->baseUrl = $baseUrl;
     }
 
