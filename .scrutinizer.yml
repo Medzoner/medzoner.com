@@ -31,7 +31,7 @@ coding_style:
       other:
         after_type_cast: false
 
-tools:
-  external_code_coverage:
-    timeout: 600
-    runs: 1
+#tools:
+#  external_code_coverage:
+#    timeout: 600
+#    runs: 1
