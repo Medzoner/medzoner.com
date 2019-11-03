@@ -15,7 +15,7 @@ COPY composer.lock /data/
 
 COPY web/rev-manifest-css.json /data/web/rev-manifest-css.json
 COPY web/rev-manifest-js.json /data/web/rev-manifest-js.json
-COPY web/app.php /data/web/app.php
+COPY web/index.php /data/web/index.php
 COPY web/bundles /data/web/bundles
 COPY web/css /data/web/css
 COPY web/fonts /data/web/fonts
