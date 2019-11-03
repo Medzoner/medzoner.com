@@ -18,6 +18,3 @@ ${DOCKER} ${BUILDFLAGS} pull
 ${DOCKER} ${BUILDFLAGS} build
 
 ${DOCKER} ${BUILDFLAGS} up -d --force-recreate
-
-
-

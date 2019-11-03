@@ -35,5 +35,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Set up the command arguments.
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-
 CMD ["php-fpm"]
