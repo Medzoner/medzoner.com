@@ -1,11 +1,7 @@
 default:
-    # Authorized formatters
     formatters:
-#        html:
-#            output_path: '%paths.base%/build/html/behat'
         pretty: true
 
-    # Authorized contexts
     suites:
         default:
             contexts:
@@ -16,11 +12,10 @@ default:
                     baseUrl : 'http://medzoner.local'
                 - Behat\MinkExtension\Context\MinkContext
 
-    # Authorized extensions
     extensions:
         Behat\Symfony2Extension:
           kernel:
-            bootstrap: "vendor/autoload.php"
+            bootstrap: "features/bootstrap/bootstrap.php"
             class: Kernel
         Behatch\Extension: ~
         Behat\MinkExtension:
@@ -29,14 +24,6 @@ default:
             sessions:
                 default:
                     goutte: ~
-
-#        emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
-#            name: html
-#            renderer: Twig,Behat2
-#            file_name: Index
-#            print_args: true
-#            print_outp: true
-#            loop_break: true
 
         AdamQuaile\Behat\CommandRunnerExtension:
             beforeSuite:
