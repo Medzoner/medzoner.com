@@ -8,8 +8,11 @@ build:
         override:
           - php-scrutinizer-run
           -
-            command: cp -f ./config/parameters.yml.dist ./config/parameters.yml && phpcs-run
+            command: cp -f ./.env.test ./.env && ./bin/phpunit -c phpunit.xml.dist --coverage-clover=build/coverage.xml
             use_website_config: true
+            coverage:
+              file: build/coverage.xml
+              format: clover
     tests: true
 filter:
   excluded_paths:
