@@ -58,14 +58,14 @@ class AssetVersionExtension extends AbstractExtension
             return '/js/app.js';
         }
 
-        $manifestPath = $this->url.'/rev-manifest-js.json';
+        $manifestPath = $this->url . '/rev-manifest-js.json';
 
         try {
             $paths = json_decode(file_get_contents($manifestPath), true);
             if (!isset($paths[basename($filename)])) {
                 return $filename;
             }
-            return 'js/'.$paths[basename($filename)];
+            return 'js/' . $paths[basename($filename)];
         } catch (Exception $e) {
             return null;
         }
@@ -82,14 +82,14 @@ class AssetVersionExtension extends AbstractExtension
             return '/css/app.css';
         }
 
-        $manifestPath = $this->url.'/rev-manifest-css.json';
+        $manifestPath = $this->url . '/rev-manifest-css.json';
 
         try {
             $paths = json_decode(file_get_contents($manifestPath), true);
             if (!isset($paths[basename($filename)])) {
                 return $filename;
             }
-            return '/css/'.$paths[basename($filename)];
+            return '/css/' . $paths[basename($filename)];
         } catch (Exception $e) {
             return null;
         }
