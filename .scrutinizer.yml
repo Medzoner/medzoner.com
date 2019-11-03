@@ -3,26 +3,35 @@ build:
     coverage:
       tests:
         override:
-          -
-            command: cp -f ./.env.test ./.env && ./bin/phpunit -c phpunit.xml.dist --coverage-clover=build/coverage.xml
+          - command: cp -f ./.env.test ./.env && ./bin/phpunit -c phpunit.xml.dist --coverage-clover=build/coverage.xml
             coverage:
               file: build/coverage.xml
               format: php-clover
+    analysis:
+      project_setup:
+        override:
+          - 'true'
+      tests:
+        override:
+          - php-scrutinizer-run
+          -
+            command: phpcs-run
+            use_website_config: true
     tests: true
-#filter:
-#  excluded_paths:
-#    - 'tests/*'
-#
-#checks:
-#  php: true
-#
-#coding_style:
-#  php:
-#    spaces:
-#      other:
-#        after_type_cast: false
-#
-#tools:
-#  external_code_coverage:
-#    timeout: 600
-#    runs: 1
+filter:
+  excluded_paths:
+    - 'tests/*'
+
+checks:
+  php: true
+
+coding_style:
+  php:
+    spaces:
+      other:
+        after_type_cast: false
+
+tools:
+  external_code_coverage:
+    timeout: 600
+    runs: 1
