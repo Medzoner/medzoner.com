@@ -59,7 +59,7 @@ class RegisterContactCommandHandler
     {
         $contact = new Contact();
         $contact
-            ->setDateAdd(new DateTime('now'))
+            ->setDateAdd($contactCommand->getDateAdd())
             ->setEmail($contactCommand->getEmail())
             ->setMessage($contactCommand->getMessage())
             ->setName($contactCommand->getName())

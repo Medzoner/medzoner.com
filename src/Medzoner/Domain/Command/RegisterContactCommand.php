@@ -31,30 +31,6 @@ class RegisterContactCommand implements NamedMessage
     private $dateAdd;
 
     /**
-     * @var
-     */
-    private $captcha;
-
-
-    /**
-     *
-     */
-    public function setCaptcha($captcha)
-    {
-        $this->captcha = $captcha;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCaptcha()
-    {
-        return $this->captcha;
-    }
-
-    /**
      * @param $name
      *
      * @return $this

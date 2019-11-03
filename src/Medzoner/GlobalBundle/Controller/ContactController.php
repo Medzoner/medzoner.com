@@ -2,6 +2,7 @@
 
 namespace Medzoner\GlobalBundle\Controller;
 
+use DateTime;
 use Medzoner\Domain\Command\RegisterContactCommand;
 use Medzoner\GlobalBundle\Form\RegistrationType;
 use SimpleBus\Message\Bus\MessageBus;
@@ -88,7 +89,7 @@ class ContactController
      */
     public function contactAction(Request $request): Response
     {
-        $registerContactCommand = new RegisterContactCommand();
+        $registerContactCommand = (new RegisterContactCommand())->setDateAdd(new DateTime('now'));
 
         $form = $this->formFactory->create(RegistrationType::class, $registerContactCommand, ['method' => 'POST']);
 
