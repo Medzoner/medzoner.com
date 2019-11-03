@@ -25,7 +25,6 @@ COPY web/favicon.png /data/web/favicon.png
 COPY web/robots.txt /data/web/robots.txt
 
 RUN mkdir -p /config
-COPY config/parameters.yml.dist /config/parameters.yml
 
 WORKDIR /var/www
 
