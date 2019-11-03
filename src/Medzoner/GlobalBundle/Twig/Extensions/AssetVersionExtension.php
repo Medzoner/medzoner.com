@@ -3,13 +3,13 @@
 namespace Medzoner\GlobalBundle\Twig\Extensions;
 
 use Exception;
-use Twig_Extension;
-use Twig_SimpleFilter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * Class AssetVersionExtension
  */
-class AssetVersionExtension extends Twig_Extension
+class AssetVersionExtension extends AbstractExtension
 {
     /**
      * @var string
@@ -42,8 +42,8 @@ class AssetVersionExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            new Twig_SimpleFilter('asset_js_version', array($this, 'getAssetJsVersion')),
-            new Twig_SimpleFilter('asset_css_version', array($this, 'getAssetCssVersion')),
+            new TwigFilter('asset_js_version', array($this, 'getAssetJsVersion')),
+            new TwigFilter('asset_css_version', array($this, 'getAssetCssVersion')),
         );
     }
 

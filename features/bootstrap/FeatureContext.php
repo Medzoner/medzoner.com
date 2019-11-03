@@ -3,13 +3,9 @@
 use Symfony\Component\HttpKernel\KernelInterface;
 
 use Behat\Behat\Context\Context;
-use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 
 /**
  * Defines application features from the specific context.
