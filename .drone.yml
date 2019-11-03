@@ -6,7 +6,7 @@ steps:
   - name: unit-test
     image: medzoner/medzoner_php
     commands:
-      - 'cp -f ./config/.env.test ./config/.env'
+      - 'cp -f ./.env.test ./.env'
       - composer install
       - ./bin/phpunit -c phpunit.xml.dist
     when:
