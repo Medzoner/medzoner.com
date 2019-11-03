@@ -6,16 +6,14 @@ services:
 
   Medzoner\GlobalBundle\Controller\TechnosController:
     public: true
-    bind:
-        $request: '@request_stack'
-        $templating: '@twig'
-        $jobBoardQueryHandler: '@medzoner.jobboard.queryhandler'
-
-  medzoner.jobboard.model:
-    class: 'Medzoner\GlobalBundle\Model\JobBoard\JobBoard'
+    arguments:
+        - '@request_stack'
+        - '@twig'
+        - '@medzoner.jobboard.queryhandler'
 
   medzoner.jobboard.queryhandler:
     class: 'Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler'
+    public: true
     arguments:
         - '@medzoner.jobboard.service'
 
