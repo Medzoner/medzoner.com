@@ -1,0 +1,113 @@
+[
+  [
+    {
+      "sub_title": "Langages",
+      "sub_content": "PHP, javascript\/NodeJs, HTML, CSS",
+      "sub_logos": [
+        "\/images\/php\/elephpant_50_35.png",
+        "\/images\/nodejs\/nodejs.png"
+      ]
+    },
+    {
+      "sub_title": "Base de donn\u00e9es\/stockage",
+      "sub_content": "MySQL, Sqlite, MongoDB, Redis, Elasticsearch"
+    },
+    {
+      "sub_title": "Frameworks",
+      "sub_content": "Symfony 1.4, 2.x, 3.x, AngularJS",
+      "sub_logos": [
+        "\/images\/symfony\/symfony.png",
+        "\/images\/angular\/angular.png"
+      ]
+    },
+    {
+      "sub_title": "IDE",
+      "sub_content": "Phpstorm, Netbeans, Eclipse"
+    },
+    {
+      "sub_title": "Versionning",
+      "sub_content": "GIT: Github, Bitbucket"
+    },
+    {
+      "sub_title": "Deploy",
+      "sub_content": "Capistrano"
+    },
+    {
+      "sub_title": "Test, int\u00e9gration continue et d\u00e9ploiement continu",
+      "sub_content": "PhpUnit, Behat, Moka, Jenkins, Capistrano, Codeship, Travis"
+    },
+    {
+      "sub_title": "OS",
+      "sub_content": "GNU\/LINUX (Debian\/Ubuntu), Docker",
+      "sub_logos": [
+        "\/images\/docker\/docker.png"
+      ]
+    }
+  ],
+  [
+    {
+      "sub_title": "2015 \u00e0 maintenant",
+      "sub_content": "LEADERSLEAGUE - D\u00e9veloppeur Backend",
+      "sub_description": [
+        "Microservices: Api RESTful, HATEOAS",
+        "M\u00e9thodes: SCRUM (JIRA), Int\u00e9gration continue"
+      ]
+    },
+    {
+      "sub_title": "2012-2015",
+      "sub_content": "ADMP - D\u00e9veloppeur Backend et Frontend",
+      "sub_description": [
+        "Cr\u00e9ation et gestion de projets: Sites web, CRM, ERP",
+        "Maintenance",
+        "Administration de serveur web et mail (nginx\/apache2, varnish, postfix....)",
+        "Gestion de bases de donn\u00e9es"
+      ]
+    },
+    {
+      "sub_title": "2011-2012",
+      "sub_content": "ADMP Informatique - Contrat Professionnelle",
+      "sub_description": [
+        "Cr\u00e9ation du CRM interne en PHP5 :",
+        "Gestion des soci\u00e9t\u00e9s, des contacts, des interventions, des techniciens.",
+        "Relev\u00e9s mensuels par mailing,",
+        "Ticketing. Statistiques. Exports CSV et PDF."
+      ]
+    },
+    {
+      "sub_title": "2008-2011",
+      "sub_content": "WEBPORTAGE - D\u00e9veloppeur\/Webmaster."
+    },
+    {
+      "sub_title": "2005-2008",
+      "sub_content": "Renault Centre Technique - Traitement et Analyse de donn\u00e9es qualit\u00e9."
+    }
+  ],
+  [
+    {
+      "sub_title": "2014",
+      "sub_content": "Formation JAVA - Global Knowledge"
+    },
+    {
+      "sub_title": "2011-2012",
+      "sub_content": "Formation Professionnelle \u2013 IP Formation \u2013 Paris"
+    }
+  ],
+  [
+    {
+      "sub_title": "Anglais",
+      "sub_content": "Bonne ma\u00eetrise des documentations et notices techniques."
+    }
+  ],
+  [
+    {
+      "sub_title": "Internet",
+      "sub_content": "Local and online"
+    }
+  ],
+  [
+    {
+      "sub_title": "CoinhiveBundle",
+      "sub_content": "https:\/\/github.com\/Medzoner\/CoinhiveBundle"
+    }
+  ]
+]
