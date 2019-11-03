@@ -179,8 +179,10 @@ class ContactControllerTest extends KernelTestCase
         /** @var DefaultEnvelope $commandEnvelope */
         $commandEnvelope = $this->serializer->deserialize($commandMsgBody, DefaultEnvelope::class, 'json');
 
+        /** @var RegisterContactCommand $command */
         $command = $this->serializer->deserialize($commandEnvelope->serializedMessage(), $commandEnvelope->messageType(), 'json');
         $this->assertInstanceOf(RegisterContactCommand::class, $command);
+        $this->assertEquals(RegisterContactCommand::messageName(), $command->messageName());
 
         $this->resetBdd();
         $commandMessage =  new AMQPMessage();
@@ -192,8 +194,10 @@ class ContactControllerTest extends KernelTestCase
         /** @var DefaultEnvelope $eventEnvelope */
         $eventEnvelope = $this->serializer->deserialize($eventMsgBody, DefaultEnvelope::class, 'json');
 
+        /** @var RegisteredContactEvent $event */
         $event = $this->serializer->deserialize($eventEnvelope->serializedMessage(), $eventEnvelope->messageType(), 'json');
         $this->assertInstanceOf(RegisteredContactEvent::class, $event);
+        $this->assertEquals(RegisteredContactEvent::messageName(), $event->messageName());
 
         $eventMessage =  new AMQPMessage();
         $eventMessage->body = $eventMsgBody;
