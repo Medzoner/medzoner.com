@@ -31,13 +31,6 @@ class FeatureContext implements Context, KernelAwareContext
     protected $baseUrl;
 
     /**
-     * Fixture with all status
-     *
-     * @var bool
-     */
-    protected $fixtureWithAllStatus = false;
-
-    /**
      * Construct.
      *
      * @param string $baseUrl
@@ -75,61 +68,5 @@ class FeatureContext implements Context, KernelAwareContext
     protected function getEntityManager()
     {
         return $this->kernel->getContainer()->get("doctrine")->getManager();
-    }
-
-    /**
-     * @Given /^Load the fixtures by entities:$/
-     */
-    public function loadFixturesByEntities(TableNode $entitiesTable)
-    {
-        // Get entities list to init
-        $entities = $this->castListEntities($entitiesTable);
-
-        // Load fixtures by entities (passed in parameter)
-        $loader = new Loader();
-        $loader = $this->loadDataFixtureByEntities($loader, $entities);
-
-        // Init & Execute ORMPurger
-        $executor = new ORMExecutor($this->getEntityManager(), new ORMPurger());
-
-        $executor->purge();
-        $executor->execute($loader->getFixtures(), true);
-    }
-
-    /**
-     * * Transform Table(BEHAT) in array
-     *
-     * @param TableNode $entitiesTable
-     * @return array
-     */
-    private function castListEntities(TableNode $entitiesTable)
-    {
-        $entities = array();
-        foreach ($entitiesTable->getHash() as $entity) {
-            $entities[] = array('entityName' => $entity['name'], 'forPagination' => $entity['pagination'] === "yes" ? true : false);
-        }
-
-        return $entities;
-    }
-
-    /**
-     * Load the data fixture by entities
-     *
-     * @param Loader $loader
-     * @param array $entities
-     * @return Loader
-     */
-    private function loadDataFixtureByEntities(Loader $loader, $entities)
-    {
-        $dataFixture = new EventSpecificFixtureData($entities);
-        if ($loader->hasFixture($dataFixture)) {
-            unset($dataFixture);
-
-            return $loader;
-        }
-
-        $loader->addFixture($dataFixture);
-
-        return $loader;
     }
 }
