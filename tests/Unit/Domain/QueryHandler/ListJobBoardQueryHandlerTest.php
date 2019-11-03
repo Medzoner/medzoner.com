@@ -5,6 +5,7 @@ namespace Tests\Unit\Domain\QueryHandler;
 use Exception;
 use Medzoner\Domain\Query\ListJobBoardQuery;
 use Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler;
+use Medzoner\GlobalBundle\Provider\JobBoard\JobBoardProvider;
 use Medzoner\GlobalBundle\Services\JobBoardService;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -24,6 +25,16 @@ class ListJobBoardQueryHandlerTest extends TestCase
     {
         $this->jobBoardService = $this->prophesize(JobBoardService::class);
     }
+
+    public function test_success()
+    {
+        $query = (new ListJobBoardQuery());
+        $queryHandler = new ListJobBoardQueryHandler(new JobBoardService(new JobBoardProvider()));
+        $query->getParam('no');
+        $jobs = $queryHandler->handle($query);
+        $this->assertCount(6, $jobs);
+    }
+
     public function test_failed()
     {
         $query = (new ListJobBoardQuery(['fake' => 'nothing']));
