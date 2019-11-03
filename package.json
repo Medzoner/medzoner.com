@@ -8,10 +8,15 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "clean-css": "^4.2.1",
     "download": "^6.2.5",
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
+    "open": "^7.0.0",
+    "parsejson": "0.0.3",
     "popper.js": "^1.12.5",
     "techno-font": "0.0.5",
     "vue": "^2.4.1"
