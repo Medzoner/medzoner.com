@@ -88,15 +88,9 @@ class ModelCollection implements Countable, IteratorAggregate, ArrayAccess
     /**
      * @param mixed $offset
      * @param mixed $value
-     *
-     * @return mixed
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        if (!isset($offset)) {
-            return $this->add($value);
-        }
-
         $this->elements[$offset] = $value;
     }
 
