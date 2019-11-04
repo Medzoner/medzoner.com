@@ -33,6 +33,7 @@ class ListJobBoardQueryHandlerTest extends TestCase
         $query = (new ListJobBoardQuery());
         $queryHandler = new ListJobBoardQueryHandler(new JobBoardService(new JobBoardProvider()));
         $query->getParam('no');
+        $query->getParams();
         $jobs = $queryHandler->handle($query);
         $this->assertCount(6, $jobs);
         $this->assertInstanceOf(JobBoard::class, $jobs->offsetGet(0));

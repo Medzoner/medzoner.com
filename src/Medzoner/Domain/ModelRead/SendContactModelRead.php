@@ -34,7 +34,8 @@ class SendContactModelRead
      *
      * @return $this
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -43,7 +44,8 @@ class SendContactModelRead
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -51,7 +53,8 @@ class SendContactModelRead
      * @param $email
      * @return $this
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -60,7 +63,8 @@ class SendContactModelRead
     /**
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -68,7 +72,8 @@ class SendContactModelRead
      * @param $message
      * @return $this
      */
-    public function setMessage($message) {
+    public function setMessage($message)
+    {
         $this->message = $message;
 
         return $this;
@@ -77,7 +82,8 @@ class SendContactModelRead
     /**
      * @return string
      */
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 
@@ -85,7 +91,8 @@ class SendContactModelRead
      * @param $dateAdd
      * @return $this
      */
-    public function setDateAdd($dateAdd) {
+    public function setDateAdd($dateAdd)
+    {
         $this->dateAdd = $dateAdd;
 
         return $this;
@@ -94,7 +101,8 @@ class SendContactModelRead
     /**
      * @return DateTime
      */
-    public function getDateAdd() {
+    public function getDateAdd()
+    {
         return $this->dateAdd;
     }
 }

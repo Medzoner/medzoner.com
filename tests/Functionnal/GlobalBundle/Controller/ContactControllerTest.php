@@ -15,6 +15,7 @@ use Medzoner\Domain\Command\RegisterContactCommand;
 use Medzoner\Domain\Event\RegisteredContactEvent;
 use Medzoner\GlobalBundle\Controller\ContactController;
 use Medzoner\GlobalBundle\RabbitMq\Fallback;
+use Medzoner\GlobalBundle\Repository\ContactRepositoryORM;
 use PhpAmqpLib\Message\AMQPMessage;
 use SimpleBus\RabbitMQBundleBridge\RabbitMQMessageConsumer;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
@@ -36,6 +37,11 @@ use Twig\Error\SyntaxError;
 
 class ContactControllerTest extends KernelTestCase
 {
+    /**
+     * @var ContactRepositoryORM
+     */
+    public $contactRepository;
+
     /**
      * @var Serializer
      */
@@ -130,6 +136,7 @@ class ContactControllerTest extends KernelTestCase
         $this->serializer = $container->get('simple_bus.asynchronous.object_serializer');
         $this->em = $container->get('doctrine')->getManager();
         $this->redis = $container->get('predis_mocked');
+        $this->contactRepository = $container->get('medzoner.contact.orm.repository');
 
         $this->request = new Request();
         $this->request->setDefaultLocale('fr');
@@ -210,6 +217,10 @@ class ContactControllerTest extends KernelTestCase
         $this->assertContains($form['name'], $mail->getBody());
         $this->assertContains($form['email'], $mail->getBody());
         $this->assertContains($form['message'], $mail->getBody());
+
+        $contact = $this->contactRepository->findOneBy(['id' => 1]);
+        $this->assertEquals(1, $contact->getId());
+        $this->assertEquals((new \DateTime())->format('Y-m-d'), $contact->getDateAdd()->format('Y-m-d'));
     }
 
     /**
