@@ -17,6 +17,11 @@ use Twig\Error\SyntaxError;
 class TechnosControllerTest extends KernelTestCase
 {
     /**
+     * @var Request
+     */
+    private $request;
+
+    /**
      * @var RequestStack
      */
     private $requestStack;
@@ -45,9 +50,9 @@ class TechnosControllerTest extends KernelTestCase
         $this->jobBoardQueryHandler = $container->get('medzoner.jobboard.queryhandler');
 
         $this->requestStack = $container->get('request_stack');
-        $request = new Request();
-        $request->setDefaultLocale('fr');
-        $this->requestStack->push($request);
+        $this->request = new Request();
+        $this->request->setDefaultLocale('fr');
+        $this->requestStack->push($this->request);
         $this->templating = $container->get('twig');
 
         $this->controller = new TechnosController(
@@ -66,6 +71,18 @@ class TechnosControllerTest extends KernelTestCase
     {
         $response = $this->controller->indexAction();
 
+        $this->assertInstanceOf(Response::class, $response);
+    }
+
+    /**
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function test_with_null_lang(): void
+    {
+        $this->request->request->set('lang', null);
+        $response = $this->controller->indexAction();
         $this->assertInstanceOf(Response::class, $response);
     }
 }

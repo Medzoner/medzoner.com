@@ -2,6 +2,7 @@
 
 namespace Medzoner\GlobalBundle\Model;
 
+use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
@@ -10,7 +11,7 @@ use IteratorAggregate;
  * Class ModelCollection
  *
  */
-class ModelCollection implements Countable, IteratorAggregate
+class ModelCollection implements Countable, IteratorAggregate, ArrayAccess
 {
     /**
      * @var array
@@ -62,5 +63,56 @@ class ModelCollection implements Countable, IteratorAggregate
     public function __toString(): string
     {
         return __CLASS__ . '@' . spl_object_hash($this);
+    }
+
+    /**
+     * @param int $offset
+     *
+     * @return bool
+     */
+    public function offsetExists($offset): bool
+    {
+        return isset($this->elements[$offset]) || array_key_exists($offset, $this->elements);
+    }
+
+    /**
+     * @param mixed $offset
+     *
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        return isset($this->elements[$offset]) ? $this->elements[$offset] : null;
+    }
+
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function offsetSet($offset, $value)
+    {
+        if (!isset($offset)) {
+            return $this->add($value);
+        }
+
+        $this->elements[$offset] = $value;
+    }
+
+    /**
+     * @param mixed $offset
+     * @return mixed
+     */
+    public function offsetUnset($offset)
+    {
+        if (!isset($this->elements[$offset]) && !array_key_exists($offset, $this->elements)) {
+            return null;
+        }
+
+        $removed = $this->elements[$offset];
+        unset($this->elements[$offset]);
+
+        return $removed;
     }
 }
