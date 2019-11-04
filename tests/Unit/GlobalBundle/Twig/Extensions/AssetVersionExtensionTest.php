@@ -19,6 +19,7 @@ class AssetVersionExtensionTest extends TestCase
     {
         $assetVersionExtension = new AssetVersionExtension(__DIR__ . '/files', 'prod', __DIR__ . '/files');
         $this->assertIsString($assetVersionExtension->getAssetCssVersion('app.css'));
+        $this->assertIsString($assetVersionExtension->getAssetCssVersion('app.min.css'));
     }
     public function test_failed_css_prod()
     {
@@ -34,6 +35,7 @@ class AssetVersionExtensionTest extends TestCase
     {
         $assetVersionExtension = new AssetVersionExtension(__DIR__ . '/files', 'prod', __DIR__ . '/files');
         $this->assertIsString($assetVersionExtension->getAssetJsVersion('app.js'));
+        $this->assertIsString($assetVersionExtension->getAssetJsVersion('app.min.js'));
     }
     public function test_failed_js_prod()
     {
