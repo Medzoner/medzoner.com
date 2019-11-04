@@ -42,14 +42,4 @@ class RegistrationType extends AbstractType
             'csrf_field_name' => '_token',
         ]);
     }
-
-    /**
-     * Get the form name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'contact';
-    }
 }

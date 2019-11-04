@@ -2,6 +2,7 @@
 
 namespace Tests\Functionnal\GlobalBundle\Controller;
 
+use DateTime;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\DBAL\Schema\SchemaException;
@@ -220,7 +221,7 @@ class ContactControllerTest extends KernelTestCase
 
         $contact = $this->contactRepository->findOneBy(['id' => 1]);
         $this->assertEquals(1, $contact->getId());
-        $this->assertEquals((new \DateTime())->format('Y-m-d'), $contact->getDateAdd()->format('Y-m-d'));
+        $this->assertEquals((new DateTime())->format('Y-m-d'), $contact->getDateAdd()->format('Y-m-d'));
     }
 
     /**
