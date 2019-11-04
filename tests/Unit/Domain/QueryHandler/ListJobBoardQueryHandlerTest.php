@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Domain\QueryHandler;
 
-use Exception;
 use Medzoner\Domain\Query\ListJobBoardQuery;
 use Medzoner\Domain\QueryHandler\ListJobBoardQueryHandler;
 use Medzoner\GlobalBundle\Model\JobBoard\JobBoard;
