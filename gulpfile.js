@@ -35,7 +35,7 @@ var paths = {
         'node_modules/font-mfizz/dist/font-mfizz.css'
     ],
     images: [
-        'assets/images/**/**/**/*'
+        'assets/images/**/**/**/*.{gif,jpg,png,svg}'
     ],
     copyfonts: [
         'node_modules/font-mfizz/dist/font-mfizz.eot',
