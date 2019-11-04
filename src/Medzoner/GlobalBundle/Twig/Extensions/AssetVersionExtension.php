@@ -94,12 +94,4 @@ class AssetVersionExtension extends AbstractExtension
             return null;
         }
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'asset_version';
-    }
 }
