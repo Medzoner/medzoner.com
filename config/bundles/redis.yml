@@ -30,10 +30,10 @@ snc_redis:
                 prefix : "medzoner:monolog:"
                 connection_persistent: true
 
-    swiftmailer:
-        client: 'mailer'
-        key: 'swiftmailer'
-
     monolog:
         client: 'monolog'
         key: 'monolog'
+
+    swiftmailer:
+        client: 'mailer'
+        key: 'swiftmailer'
