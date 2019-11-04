@@ -62,7 +62,7 @@ class ModelCollection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function __toString(): string
     {
-        return __CLASS__ . '@' . spl_object_hash($this);
+        return __CLASS__.'@'.spl_object_hash($this);
     }
 
     /**
