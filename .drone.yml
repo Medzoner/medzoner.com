@@ -12,8 +12,6 @@ steps:
     when:
       branch:
         - master
-        - staging
-        - development
 
   - name: build-assets
     image: medzoner/medzoner_node:10.3.0
@@ -24,8 +22,6 @@ steps:
     when:
       branch:
         - master
-        - staging
-        - development
 
   - name: image-build
     image: plugins/docker
@@ -44,8 +40,6 @@ steps:
     when:
       branch:
         - master
-        - staging
-        - development
 
   - name: "tag config repo"
     image: medzoner/pipeline
@@ -66,5 +60,3 @@ steps:
     when:
       branch:
         - master
-        - staging
-        - development
