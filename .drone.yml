@@ -42,7 +42,7 @@ steps:
         - master
 
   - name: "tag config repo"
-    image: medzoner/pipeline
+    image: medzoner/tools
     environment:
       SSH_KEY:
         from_secret: ssh_key
