@@ -2,7 +2,7 @@
 
 export REMOTE_HOST=$(docker network inspect bridge -f '{{range .IPAM.Config}}{{.Gateway}}{{end}}')
 DOCKER="docker-compose"
-BUILDFLAGS="-f ./docker-compose-local.yml -p medzoner.com"
+BUILDFLAGS="-f ./docker-compose.yml -p medzoner.com"
 
 #is ssh agent set ?
 if [ -z "$SSH_AUTH_SOCK" ] ; then
