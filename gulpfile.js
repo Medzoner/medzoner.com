@@ -53,9 +53,6 @@ var versioning = {
 gulp.task('javascripts', function(done) {
 
     gulp.src(paths.javascripts)
-        .pipe(gulp.dest('assets/vendors/js'))
-    ;
-    gulp.src(paths.javascripts)
         .pipe(concat('app.js'))
         .pipe(gulp.dest('web/js'))
     ;
