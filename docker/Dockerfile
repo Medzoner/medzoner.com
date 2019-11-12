@@ -29,7 +29,7 @@ RUN mkdir -p /config
 WORKDIR /var/www
 
 #entry point
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Set up the command arguments.
