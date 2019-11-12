@@ -32,7 +32,7 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       registry: l24624j7.gra5.container-registry.ovh.net
       tags:
           - latest

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function build_and_push_images() {
-  docker build -t "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}" -f ./Dockerfile .
-  docker tag  "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}" "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com"
+  docker build -t "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}" -f ./docker/Dockerfile .
+  docker tag  "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com" "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}"
   docker push "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com:${VERSION}"
   docker push "l24624j7.gra5.container-registry.ovh.net/medzoner/medzoner.com"
 }
