@@ -60,4 +60,3 @@ steps:
     when:
       branch:
         - master
-
