@@ -6,6 +6,7 @@ RUN mkdir -p /data
 WORKDIR /data
 
 COPY ./app /data/app
+COPY ./vendor /data/vendor
 COPY ./src /data/src
 COPY ./bin /data/bin
 COPY ./translations /data/translations
