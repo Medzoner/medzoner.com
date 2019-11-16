@@ -36,7 +36,7 @@ steps:
       registry: l24624j7.gra5.container-registry.ovh.net
       tags:
           - latest
-          - latest-${DRONE_BRANCH}
+          - ${DRONE_BRANCH}-latest
           - ${DRONE_BRANCH}
           - ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
     when:
