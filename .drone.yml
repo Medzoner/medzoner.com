@@ -3,7 +3,7 @@ kind: pipeline
 name: default
 
 steps:
-  - name: unit-test
+  - name: "unit-test"
     image: medzoner/medzoner_php
     commands:
       - 'cp -f ./.env.test ./.env'
@@ -13,7 +13,7 @@ steps:
       branch:
         - master
 
-  - name: build-assets
+  - name: "build-assets"
     image: medzoner/medzoner_node:10.3.0
     commands:
       - npm install
@@ -23,7 +23,7 @@ steps:
       branch:
         - master
 
-  - name: image-build
+  - name: "image-build"
     image: plugins/docker
     debug: true
     settings:
