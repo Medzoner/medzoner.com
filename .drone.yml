@@ -59,7 +59,7 @@ steps:
       - chmod 600 /root/.ssh/id_rsa
       - eval `ssh-agent -s` && ssh-add
       - cd /tmp && git clone $TAG_REPO && cd medzoner-gitops
-      - ./bin/app tag medzoner ${DRONE_BRANCH} ${DRONE_COMMIT_SHA} medzoner.com
+      - ./bin/app tag ${DRONE_BRANCH} medzoner ${DRONE_COMMIT_SHA} medzoner.com
     when:
       branch:
         - master
