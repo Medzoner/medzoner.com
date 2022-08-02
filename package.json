@@ -13,7 +13,7 @@
     "font-awesome": "^4.7.0",
     "font-mfizz": "github:fizzed/font-mfizz",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
     "open": "^7.0.0",
     "parsejson": "0.0.3",
